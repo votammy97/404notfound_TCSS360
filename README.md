@@ -8,5 +8,6 @@
 - Ken Gil Romero
 - Tammy Vo
 
+[Documentation](docs/Documentation.md)
 
 [Email Team Members](mailto:gord@uw.edu,votammy97@gmail.com,kgmr@uw.edu,lz897825130@gmail.com,matthew417@gmail.com)
