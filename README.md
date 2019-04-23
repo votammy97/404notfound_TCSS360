@@ -8,9 +8,9 @@
 - Ken Gil Romero
 - Tammy Vo
 
-### [Documentation](website/Documentation.md)  
-#### [Latest Minutes](website/documents/Minutes_Week_00.pdf)  
-#### [Latets Task Matrix](website/documents/TaskMatrix_Week_00.pdf)
+##### [Latest Minutes](website/documents/Minutes_Week_00.pdf)  
+##### [Latets Task Matrix](website/documents/TaskMatrix_Week_00.pdf)  
+### [All Documentation](website/Documentation.md)  
   
   
   
