@@ -1,5 +1,5 @@
-## 404 NOT FOUND project website
-*Last Update: April 16, 2019*
+# 404 NOT FOUND project website
+*Last Update: April 22, 2019*
 
 **Team Members:**
 - Matthew Chan
@@ -8,5 +8,12 @@
 - Ken Gil Romero
 - Tammy Vo
 
-
-[Email Team Members](mailto:gord@uw.edu,votammy97@gmail.com,kgmr@uw.edu,lz897825130@gmail.com,matthew417@gmail.com)
+##### [Latest Minutes](website/documents/Minutes_Week_00.pdf)  
+##### [Latets Task Matrix](website/documents/TaskMatrix_Week_00.pdf)  
+### [All Documentation](website/Documentation.md)  
+  
+  
+  
+  
+[Email Team Members](mailto:404nf.mailbox@gmail.com)  
+404nf.mailbox@gmail.com
