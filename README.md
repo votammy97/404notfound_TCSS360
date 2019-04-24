@@ -1,5 +1,5 @@
 # 404 NOT FOUND project website
-*Last Update: April 22, 2019*
+*Last Update: April 24, 2019*
 
 **Team Members:**
 - Matthew Chan
@@ -8,8 +8,8 @@
 - Ken Gil Romero
 - Tammy Vo
 
-##### [Latest Minutes](website/documents/Minutes_Week_00.pdf)  
-##### [Latets Task Matrix](website/documents/TaskMatrix_Week_00.pdf)  
+##### [Latest Minutes](website/documents/Minutes_Week_01.pdf)  
+##### [Latets Task Matrix](website/documents/TaskMatrix_Week_01.pdf)  
 ### [All Documentation](website/Documentation.md)  
   
   
