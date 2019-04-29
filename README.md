@@ -1,5 +1,5 @@
 # 404 NOT FOUND project website
-*Last Update: April 24, 2019*
+*Last Update: April 28, 2019*
 
 **Team Members:**
 - Matthew Chan
@@ -8,7 +8,7 @@
 - Ken Gil Romero
 - Tammy Vo  
   
-### [Requirements & Specifications Document](documents/Requirements_Specification.pdf)
+### [Requirements & Specifications Document](website/documents/Requirements_Specification.pdf)
   
   
 ##### [Latest Minutes](website/documents/Minutes_Week_01.pdf)  
