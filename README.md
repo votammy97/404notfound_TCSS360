@@ -12,7 +12,7 @@
   
   
 ##### [Latest Minutes](website/documents/Minutes_Week_01.pdf)  
-##### [Latets Task Matrix](website/documents/TaskMatrix_Week_01.pdf)  
+##### [Latest Task Matrix](website/documents/TaskMatrix_Week_01.pdf)  
 ### [All Documentation](website/Documentation.md)  
   
   
