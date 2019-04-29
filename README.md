@@ -6,8 +6,11 @@
 - Zhe Li
 - Gordon McCreary
 - Ken Gil Romero
-- Tammy Vo
-
+- Tammy Vo  
+  
+### [Requirements & Specifications Document](documents/Requirements_Specification.pdf)
+  
+  
 ##### [Latest Minutes](website/documents/Minutes_Week_01.pdf)  
 ##### [Latets Task Matrix](website/documents/TaskMatrix_Week_01.pdf)  
 ### [All Documentation](website/Documentation.md)  
