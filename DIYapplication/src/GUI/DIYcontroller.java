@@ -3,7 +3,7 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,6 +22,7 @@ public class DIYcontroller extends JFrame {
 
 	public DIYcontroller() {
 		super("DIY Project Planner");
+		super.setIconImage((new ImageIcon("./Images/iconDIY.png")).getImage());
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(500, 400));
 	}
@@ -60,6 +61,7 @@ public class DIYcontroller extends JFrame {
 		final JMenuItem open = new JMenuItem("Open...");
 		final JMenuItem save = new JMenuItem("Save...");
 		final JMenuItem exit = new JMenuItem("Exit");
+		exit.addActionListener(theEvent -> System.exit(0));
 
 		menu.add(make);
 		menu.add(open);
