@@ -19,4 +19,5 @@
 
 ----  
 #### Miscellaneous Documents
-[Check-In 2 (User Story 1 Class and Sequence Diagrams)](documents/Check-In2.pdf)
+[Check-In 2](documents/Check-In2.pdf)
+[Check-In 3](documents/Check-In3.pdf)
