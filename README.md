@@ -8,6 +8,7 @@
 - Ken Gil Romero
 - Tammy Vo  
   
+### [Design Document](website/documents/Design.pdf)  
 ### [Requirements & Specifications Document](website/documents/Requirements_Specification.pdf)  
   
 ______________________________________  
