@@ -16,6 +16,7 @@
 ----  
 ### Deliverables:
 1: [Requirements & Specifications Document](documents/Requirements_Specification.pdf)  
+2: [Design Document](documents/Design.pdf)  
 
 ----  
 #### Miscellaneous Documents
