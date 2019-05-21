@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Scanner;
 
-public class DIYmodel {
+public class DIYModel {
 	
 	private static final String fileHeader = "#DIY Projects";
 	private static final String fileProjectsSizeHeader = "#Projects Size: ";
