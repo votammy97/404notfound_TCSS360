@@ -1,4 +1,4 @@
-package GUI;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,9 +13,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import Model.DIYmodel;
+import model.DIYModel;
 
-public class DIYcontroller extends JFrame {
+public class DIYProjectPlanner extends JFrame {
 
     /**
      * A generated serial version UID for object Serialization.
@@ -29,9 +29,9 @@ public class DIYcontroller extends JFrame {
     private JFileChooser jFileChooser;
     
     /** The model for reference. */
-	private /*PropertyChangeEnabledRaceControls*/ DIYmodel model;
+	private /*PropertyChangeEnabledRaceControls*/ DIYModel model;
 
-	public DIYcontroller(final DIYmodel model) {
+	public DIYProjectPlanner(final DIYModel model) {
 		super("DIY Project Planner");
 		super.setIconImage((new ImageIcon("./Images/iconDIY.png")).getImage());
 		setLayout(new BorderLayout());
@@ -123,8 +123,8 @@ public class DIYcontroller extends JFrame {
      * Start of the application.
      */
     public static void start() {  
-        final DIYmodel model = new DIYmodel();
-        final DIYcontroller controller = new DIYcontroller(model);
+        final DIYModel model = new DIYModel();
+        final DIYProjectPlanner controller = new DIYProjectPlanner(model);
         
         controller.createAndShowGUI();
     }
