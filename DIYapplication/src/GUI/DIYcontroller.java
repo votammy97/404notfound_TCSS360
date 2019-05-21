@@ -3,12 +3,17 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
+import javax.swing.JFileChooser;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
+import Model.DIYmodel;
 
 public class DIYcontroller extends JFrame {
 
@@ -19,11 +24,20 @@ public class DIYcontroller extends JFrame {
 	private static final long serialVersionUID = -131614090848525596L;
 	
 	private static final String VERSION = "0.0.1";
+	
+    /** The file chooser for opening and saving an image. */
+    private JFileChooser jFileChooser;
+    
+    /** The model for reference. */
+	private /*PropertyChangeEnabledRaceControls*/ DIYmodel model;
 
-	public DIYcontroller() {
+	public DIYcontroller(final DIYmodel model) {
 		super("DIY Project Planner");
+		super.setIconImage((new ImageIcon("./Images/iconDIY.png")).getImage());
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(500, 400));
+		this.model = model;
+		jFileChooser = new JFileChooser(".");
 	}
 
 	public void createAndShowGUI() {
@@ -57,9 +71,10 @@ public class DIYcontroller extends JFrame {
 		menu.setMnemonic(KeyEvent.VK_F);
 
 		final JMenuItem make = new JMenuItem("New...");
-		final JMenuItem open = new JMenuItem("Open...");
-		final JMenuItem save = new JMenuItem("Save...");
+		final JMenuItem open = addAndSetsMenuItemOpen();
+		final JMenuItem save = addAndSetsMenuItemSave();
 		final JMenuItem exit = new JMenuItem("Exit");
+		exit.addActionListener(theEvent -> System.exit(0));
 
 		menu.add(make);
 		menu.add(open);
@@ -68,6 +83,52 @@ public class DIYcontroller extends JFrame {
 
 		return menu;
 	}
+	
+	/**
+     * @return adds and sets the JMenuItem open
+     */
+    private JMenuItem addAndSetsMenuItemOpen() {
+        final JMenuItem jMenuItemLoadRace = new JMenuItem("Open...");
+        jMenuItemLoadRace.addActionListener(theEvent -> {
+        	if (jFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        		try {                  
+        			model.loadProjects(jFileChooser.getSelectedFile()); 
+                        
+                } catch (final IOException e) {
+                    JOptionPane.showMessageDialog(this,
+                                    "Error loading file.");
+                }
+            }
+        });
+        return jMenuItemLoadRace;
+    }
+    
+    private JMenuItem addAndSetsMenuItemSave() {
+    	final JMenuItem jMenuItemLoadRace = new JMenuItem("Save...");
+        jMenuItemLoadRace.addActionListener(theEvent -> {
+        	if (jFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+        		try {                  
+        			model.saveProjects(jFileChooser.getSelectedFile()); 
+                        
+                } catch (final IOException e) {
+                    JOptionPane.showMessageDialog(this,
+                                    "Error saving file.");
+                }
+            }
+        });
+    	return jMenuItemLoadRace;
+    }
+    
+    /**
+     * Start of the application.
+     */
+    public static void start() {  
+        final DIYmodel model = new DIYmodel();
+        final DIYcontroller controller = new DIYcontroller(model);
+        
+        controller.createAndShowGUI();
+    }
+
 
 	private JMenu createHelpMenu() {
 		final JMenu menu = new JMenu("Help");

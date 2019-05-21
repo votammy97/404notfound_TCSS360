@@ -9,8 +9,12 @@ import GUI.DIYcontroller;
 
 public final class Main {
 
-	private Main() {
-	}
+    /**
+     * Private constructor, to prevent instantiation of this class.
+     */
+    private Main() {
+        throw new IllegalStateException();
+    }
 
 	public static void main(final String[] theArgs) {
 		try {
@@ -28,7 +32,7 @@ public final class Main {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new DIYcontroller().createAndShowGUI();
+				DIYcontroller.start();
 			}
 		});
 	}
