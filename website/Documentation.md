@@ -12,6 +12,8 @@
 - [Week 3 Task Matrix](documents/TaskMatrix_Week_03.pdf)  
 - [Week 4 Minutes](documents/Minutes_Week_04.pdf)  
 - [Week 4 Task Matrix](documents/TaskMatrix_Week_04.pdf)  
+- [Week 5 Minutes](documents/Minutes_Week_05.pdf)  
+- [Week 5 Task Matrix](documents/TaskMatrix_Week_05.pdf)  
   
 ----  
 ### Deliverables:
