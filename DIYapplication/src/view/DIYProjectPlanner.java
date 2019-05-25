@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import model.DIYFileManager;
+import model.Project;
 
 public class DIYProjectPlanner extends JFrame {
 
@@ -33,6 +35,14 @@ public class DIYProjectPlanner extends JFrame {
     /** The file chooser for opening and saving an image. */
     private JFileChooser jFileChooser;
     
+    /**
+     * The add button to add projects and its panel
+     */
+    JButton addJButton;
+    
+    /**
+     * The left panel where the projects are
+     */
     JPanel jPanelLeft;
     
     /** The model for reference. */
@@ -65,7 +75,7 @@ public class DIYProjectPlanner extends JFrame {
 		final JScrollPane jScrollPaneLeft = setUpLeftPanel();
         add(jScrollPaneLeft, BorderLayout.WEST);
         
-        //TODO: Remove
+        //TODO: Description
         final JPanel jPanelRight = new JPanel();//setUpLeftPanel();
         add(jPanelRight, BorderLayout.EAST);
 	}
@@ -79,16 +89,17 @@ public class DIYProjectPlanner extends JFrame {
         JPanel jPanelLeft = new JPanel();
         //jPanelLeft.setLayout(new BorderLayout());
         
-        JButton button = new JButton("+");
-        button.setBackground(Color.WHITE);
-        button.setPreferredSize(new Dimension(250, 50));
-        button.addActionListener(theEvent -> {
+        addJButton = new JButton("+");
+        addJButton.setBackground(Color.WHITE);
+        addJButton.setPreferredSize(new Dimension(250, 50));
+        addJButton.addActionListener(theEvent -> {
         	//TODO: 
-        	////open add project window
-        	////Project project = new Project();
-        	////addProject(project)
+//        	open add project window
+//        	Project project = new Project();
+//        	addProject(project)
         });
-        jPanelLeft.add(button);
+        
+        jPanelLeft.add(addJButton);
         final JScrollPane jScrollPane = new JScrollPane(jPanelLeft, 
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, //VERTICAL_SCROLLBAR_ALWAYS
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -99,43 +110,44 @@ public class DIYProjectPlanner extends JFrame {
       * add a project to the left components.
       * @param project the project to be added
       */
-//    public void addProject(Project project) {
-//    	JPanel jPanel = new JPanel(new BorderLayout());
-//    	jPanel.setBorder(new BorderFactory.createTitledBorder(project.name));
-//		JButton edit = new JButton("Edit");
-//		edit.addActionListener(theEvent -> {
-//			editProject(jPanel/*, project*/);
-//		});
-//		JButton delete = new JButton("Delete");
-//	    delete.addActionListener(theEvent -> {
-//			deleteProject(project, jPanel);
-//		});
-//		jPanel.add(edit);
-//		jPanel.add(delete);
-//    	jPanelLeft.add(jPanel);
-//    	jPanelLeft.revalidate();
-//    }
+    public void addProject(Project project) {
+    	JPanel jPanel = new JPanel(new BorderLayout());
+    	jPanel.setBorder(BorderFactory.createTitledBorder(project.getMyName()));
+		JButton edit = new JButton("Edit");
+		edit.addActionListener(theEvent -> {
+			editProject(jPanel);
+		});
+		JButton delete = new JButton("Delete");
+	    delete.addActionListener(theEvent -> {
+			deleteProject(/* project, */ jPanel); //TODO
+		});
+		jPanel.add(edit);
+		jPanel.add(delete);
+    	jPanelLeft.add(jPanel);
+    	jPanelLeft.revalidate();
+    }
     
     /**
      * edit a project to the left components.
      * @param panel to be edited
      */
-//    public void editProject(JPanel jPanel/*, Project project*/) {
-//		jPanelLeft.remove(jPanel);
-//		TODO:open edit, get the edited project
-////		add(project);
-//		//add the edited project();
-//    	jPanelLeft.revalidate();
-//    }
+    public void editProject(JPanel jPanel) {
+		jPanelLeft.remove(jPanel);
+		//TODO open editGUI and get project
+//		model.addProject(project);
+//		addProject(project);
+    	jPanelLeft.revalidate();
+    }
     
     /**
      * remove a panel to the left components.
      * @param jPanel the panel to be deleted
      */
-//    public void deleteProject(JPanel jPanel) {
-//		jPanelLeft.remove(jPanel)
-//    	jPanelLeft.revalidate();
-//    }
+    public void deleteProject(JPanel jPanel) {
+		jPanelLeft.remove(jPanel);
+		//TODO remove in the project list
+    	jPanelLeft.revalidate();
+    }
     
 	public JMenuBar createMenuBar() {
 		final JMenuBar bar = new JMenuBar();
