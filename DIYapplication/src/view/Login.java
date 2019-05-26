@@ -1,6 +1,9 @@
 package view;
 
 import javax.swing.*;
+
+import model.DIYFileManager;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +23,7 @@ public class Login extends JFrame{
 	JPanel panel2;
 	JPanel panel3;
 	JPanel panel4;
+	private DIYFileManager mng = new DIYFileManager();
 	
 	public Login() {
 		firstName = new JTextField(12);
@@ -61,6 +65,8 @@ public class Login extends JFrame{
 		
 		this.setLocationRelativeTo(null);
 		
+		
+		
 		button1.addActionListener(new ActionListener() {
 
 			@Override
@@ -72,10 +78,8 @@ public class Login extends JFrame{
 					
 				} else {
 					panel4.setVisible(false);
-					name = firstName.getText();
-					email = emailAddress.getText();
-					System.out.println(name);
-					System.out.println(email);
+					setName(firstName.getText());
+					setEmail(emailAddress.getText());
 					dispose();
 					DIYProjectPlanner.start();
 				}
@@ -93,6 +97,26 @@ public class Login extends JFrame{
 			
 		});
 		
+	}
+	
+	public void setName(String newName) {
+		name = newName;
+	}
+	
+	public void setEmail(String newEmail) {
+		email = newEmail;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setInfo(DIYFileManager mng) {
+		mng.setEmail(this.getEmail());
+		mng.setName(this.getName());
 	}
 	
 	public void open() {

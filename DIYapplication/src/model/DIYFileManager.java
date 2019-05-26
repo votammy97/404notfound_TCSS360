@@ -256,4 +256,20 @@ public class DIYFileManager {
 //    	}
     	fileWriter.close();
     }
+    
+    public String getName() {
+    	return userName;
+    }
+    
+    public void setName(String firstName) {
+    	userName = firstName;
+    }
+    
+    public String getEmail() {
+    	return userEmailAddr;
+    }
+    
+    public void setEmail(String email) {
+    	userEmailAddr = email;
+    }
 }
