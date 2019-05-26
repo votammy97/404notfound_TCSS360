@@ -74,10 +74,10 @@ public class Login extends JFrame{
 					panel4.setVisible(false);
 					name = firstName.getText();
 					email = emailAddress.getText();
-					System.out.println(name);
-					System.out.println(email);
+					//System.out.println(name);
+					//System.out.println(email);
 					dispose();
-					DIYProjectPlanner.start();
+					DIYProjectPlanner.start(name, email);
 				}
 			}
 			

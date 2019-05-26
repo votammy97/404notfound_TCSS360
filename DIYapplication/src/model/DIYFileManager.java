@@ -89,20 +89,35 @@ public class DIYFileManager {
 	/**
 	 * The user's name
 	 */
-	public String userName;
+	private String userName;
 	
 	/**
 	 * The user's email address
 	 */
-	public String userEmailAddr;
+	private String userEmailAddr;
 	
 	/**
 	 * Constructor of  the DIYFileManager
 	 */
-	public DIYFileManager() {
+	public DIYFileManager(String name, String emailAddr) {
 		projects= new ProjectList();
-		userName = "<Name>";
-		userEmailAddr = "<EmailAddress>";
+		userName = name;
+		userEmailAddr = emailAddr;
+	}
+	
+	/**
+	 * @return the first name of the DIYer
+	 */
+	public String getFirstName() {
+		return userName;
+	}
+	
+	
+	/**
+	 * @return the email address of the DIYer
+	 */
+	public String getEmailAddress() {
+		return userEmailAddr;
 	}
 	
 	/**
