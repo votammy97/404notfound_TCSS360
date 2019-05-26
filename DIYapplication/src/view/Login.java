@@ -23,7 +23,7 @@ public class Login extends JFrame{
 	JPanel panel2;
 	JPanel panel3;
 	JPanel panel4;
-	private DIYFileManager mng = new DIYFileManager();
+	private DIYFileManager mng = new DIYFileManager("firsName", "emailAddress");
 	
 	public Login() {
 		firstName = new JTextField(12);
@@ -78,10 +78,14 @@ public class Login extends JFrame{
 					
 				} else {
 					panel4.setVisible(false);
+					name = firstName.getText();
+					email = emailAddress.getText();
+					//System.out.println(name);
+					//System.out.println(email);
 					setName(firstName.getText());
 					setEmail(emailAddress.getText());
 					dispose();
-					DIYProjectPlanner.start();
+					DIYProjectPlanner.start(name, email);
 				}
 			}
 			

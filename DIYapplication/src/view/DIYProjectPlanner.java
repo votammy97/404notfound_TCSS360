@@ -214,8 +214,8 @@ public class DIYProjectPlanner extends JFrame {
     /**
      * Start of the application.
      */
-    public static void start() {  
-        final DIYFileManager model = new DIYFileManager();
+    public static void start(String name, String emailAddr) {  
+        final DIYFileManager model = new DIYFileManager(name, emailAddr);
         final DIYProjectPlanner controller = new DIYProjectPlanner(model);
         
         controller.createAndShowGUI();
