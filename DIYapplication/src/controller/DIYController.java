@@ -6,6 +6,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import view.DIYProjectPlanner;
+import view.Login;
 
 public final class DIYController {
 
@@ -32,7 +33,8 @@ public final class DIYController {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				DIYProjectPlanner.start();
+				Login a = new Login();
+				
 			}
 		});
 	}

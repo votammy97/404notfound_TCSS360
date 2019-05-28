@@ -4,115 +4,227 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Class for saving and loading information
+ * @author Ken Gil Romero
+ * @version Spring 19
+ */
 public class DIYFileManager {
 	
-	private static final String fileHeader = "#DIY Projects";
-	private static final String fileProjectsSizeHeader = "#Projects Size: ";
+	/**
+	 * Header of the project workspace
+	 */
+	private static final String fileHeader = "#DIYProjects";
+	
+	/**
+	 * Header of the projects' user's name
+	 */
 	private static final String fileNameHeader = "#Name: ";
+	
+	/**
+	 * Header of the projects' user's email address
+	 */
+	private static final String fileEmailAddrHeader = "#EmailAddress: ";
+	
+	/**
+	 * Header of the number of projects
+	 */
+	private static final String fileProjectsSizeHeader = "#ProjectsSize: ";
+	
+	/**
+	 * Header of a project's name
+	 */
+	private static final String fileProjectNameHeader = "#ProjectName: ";
+	
+	/**
+	 * Header of the project's cost
+	 */
 	private static final String fileCostHeader = "#Cost: ";
-	private static final String fileDurationDayHeader = "#Duration Day: ";
-	private static final String fileDurationWeekHeader = "#Duration Week: ";
-	private static final String fileDurationMonthHeader = "#Duration Month: ";
-	private static final String fileEnergyEffHeader = "#Energy Efficiency: ";
+	
+	/**
+	 * Header of the project's duration for days
+	 */
+	private static final String fileDurationDayHeader = "#DurationDay: ";
+//	private static final String fileDurationWeekHeader = "#DurationWeek: ";
+//  private static final String fileDurationMonthHeader = "#DurationMonth: ";
+	
+	/**
+	 * Header of the project's energy efficiency
+	 */
+	private static final String fileEnergyEffHeader = "#EnergyEfficiency: ";
+	
+	/**
+	 * Header of the project's notes
+	 */
 	private static final String fileNotesHeader = "#Notes: ";
-	private static final String fileMaterialsSizeHeader = "#Material Size: ";
-	private static final String fileMaterialHeader = "#Material: ";
-	private static final String fileMaterialCostHeader = "#Material: ";
-	private static final String fileEndNotes = "-end notes-";
 	
-	//TODO: add more headers for loading project and saving project
+	/**
+	 * Header of the project's number of materials
+	 */
+	private static final String fileMaterialsSizeHeader = "#MaterialSize: ";
 	
+	/**
+	 * Header of the project's material's name
+	 */
+	private static final String fileMaterialNameHeader = "#MaterialName: ";
+	
+	/**
+	 * Header of the project's material's cost
+	 */
+	private static final String fileMaterialCostHeader = "#MaterialCost: ";
+	
+	/**
+	 * Header of the project's notes end
+	 */
+	private static final String fileEndNotes = "-endnotes-";
+	
+	/**
+	 * The list of projects
+	 */
+	private ProjectList projects;
+	
+	/**
+	 * The user's name
+	 */
+	private String userName;
+	
+	/**
+	 * The user's email address
+	 */
+	private String userEmailAddr;
+	
+	/**
+	 * Constructor of  the DIYFileManager
+	 */
+	public DIYFileManager(String name, String emailAddr) {
+		projects= new ProjectList();
+		userName = name;
+		userEmailAddr = emailAddr;
+	}
+	
+	/**
+	 * @return the first name of the DIYer
+	 */
+	public String getFirstName() {
+		return userName;
+	}
+	
+	
+	/**
+	 * @return the email address of the DIYer
+	 */
+	public String getEmailAddress() {
+		return userEmailAddr;
+	}
+	
+	/**
+	 * @param project to be added to the list of projects
+	 */
+	public void addProject(Project project) {
+		projects.addProject(project);
+	}
+	
+	/**
+	 * loading the list of projects
+	 * @param projectsFile the file to be loaded
+	 * @throws IOException the exception to be thrown
+	 */
     public void loadProjects(final File projectsFile) throws IOException {
     	final Scanner scan = new Scanner(projectsFile); 
     	int projectsSize = 0;
     	checkHeader(scan, fileHeader);
-    	checkHeader(scan, fileProjectsSizeHeader);
-    	if (scan.hasNextInt()) {
-    		projectsSize = scan.nextInt();
-    	} else {
-    		closeScanThrowIOEx(scan);
-    	}
-    	//new project list
-    	for (int i = 0; i < projectsSize; i++) {
-        	//TODO://new project
-        	checkHeader(scan, fileNameHeader);
-        	String projectName = scan.next();    	//TODO:
-        	checkHeader(scan, fileCostHeader);
-        	int projectCost;    	//TODO:
-        	if (scan.hasNextInt()) {
-        		projectCost = scan.nextInt();
-        	} else {
-        		closeScanThrowIOEx(scan);
-        	}
-        	checkHeader(scan, fileDurationDayHeader);
-        	int projectDurationDay;    	//TODO:
-        	if (scan.hasNextInt()) {
-        		projectDurationDay = scan.nextInt();
-        	} else {
-        		closeScanThrowIOEx(scan);
-        	}
-        	checkHeader(scan, fileDurationWeekHeader);
-        	int projectDurationWeek;    	//TODO:
-        	if (scan.hasNextInt()) {
-        		projectDurationWeek = scan.nextInt();
-        	} else {
-        		closeScanThrowIOEx(scan);
-        	}
-        	checkHeader(scan, fileDurationMonthHeader);
-        	int projectDurationMonth;    	//TODO:
-        	if (scan.hasNextInt()) {
-        		projectDurationMonth = scan.nextInt();
-        	} else {
-        		closeScanThrowIOEx(scan);
-        	}
-        	checkHeader(scan, fileEnergyEffHeader);
-        	//TODO://enum energy eff
-        	if (scan.hasNextInt()) {
-        		//energy eff = scan.nextInt();
-        	} else {
-        		closeScanThrowIOEx(scan);
-        	}
-        	checkHeader(scan, fileNotesHeader);
-        	String projectNotes = "";
-        	while (scan.hasNextLine()) {
-        		String currLine = scan.nextLine();    	//TODO:
-        		if (currLine.equals(fileEndNotes)) {
-        			break;
-        		} else {
-        			projectNotes += currLine;    	//TODO:
-        		}
-        	}
-        	checkHeader(scan, fileMaterialsSizeHeader);
-        	int materialsSize = 0;//TODO:
-        	//TODO://enum energy eff
-        	if (scan.hasNextInt()) {
-        		materialsSize = scan.nextInt();
-        	} else {
-        		closeScanThrowIOEx(scan);
-        	}
-        	for (int j = 0; j < materialsSize; j++) {
-            	//TODO://new material
-        		checkHeader(scan, fileMaterialHeader);
-        		String materialName = scan.next();
-        		checkHeader(scan, fileMaterialCostHeader);
-        		int materialCost;
-            	if (scan.hasNextInt()) {
-            		materialCost = scan.nextInt();
-            	} else {
-            		closeScanThrowIOEx(scan);
-            	}
-            	//TODO://add material to the material list of the project
-        	}
-        	//TODO://add to project list
-    	}
+    	checkHeader(scan, fileNameHeader);
+    	userName = scan.next(); //TODO:
+    	checkHeader(scan, fileEmailAddrHeader);
+    	userEmailAddr = scan.next(); //TODO:
+//    	checkHeader(scan, fileProjectsSizeHeader);
+//    	if (scan.hasNextInt()) {
+//    		projectsSize = scan.nextInt();
+//    	} else {
+//    		closeScanThrowIOEx(scan);
+//    	}
+//    	//new project list
+//    	for (int i = 0; i < projectsSize; i++) {
+//        	checkHeader(scan, fileProjectNameHeader);
+//        	String projectName = scan.next();    
+//        	checkHeader(scan, fileCostHeader);
+//        	int projectCost;    
+//        	if (scan.hasNextInt()) {
+//        		projectCost = scan.nextInt();
+//        	} else {
+//        		closeScanThrowIOEx(scan);
+//        	}
+//        	checkHeader(scan, fileDurationDayHeader);
+//        	int projectDurationDay;    	
+//        	if (scan.hasNextInt()) {
+//        		projectDurationDay = scan.nextInt();
+//        	} else {
+//        		closeScanThrowIOEx(scan);
+//        	}
+////        	checkHeader(scan, fileDurationWeekHeader);
+////        	int projectDurationWeek;    
+////        	if (scan.hasNextInt()) {
+////        		projectDurationWeek = scan.nextInt();
+////        	} else {
+////        		closeScanThrowIOEx(scan);
+////        	}
+////        	checkHeader(scan, fileDurationMonthHeader);
+////        	int projectDurationMonth;    	
+////        	if (scan.hasNextInt()) {
+////        		projectDurationMonth = scan.nextInt();
+////        	} else {
+////        		closeScanThrowIOEx(scan);
+////        	}
+//        	checkHeader(scan, fileEnergyEffHeader);
+//        	//TODO://enum energy eff
+//        	if (scan.hasNextInt()) {
+//        		//energy eff = scan.nextInt();
+//        	} else {
+//        		closeScanThrowIOEx(scan);
+//        	}
+//        	checkHeader(scan, fileNotesHeader);
+//        	String projectNotes = "";
+//        	while (scan.hasNextLine()) {
+//        		String currLine = scan.nextLine();    	
+//        		if (currLine.equals(fileEndNotes)) {
+//        			break;
+//        		} else {
+//        			projectNotes += currLine;    
+//        		}
+//        	}
+//        	checkHeader(scan, fileMaterialsSizeHeader);
+//        	int materialsSize = 0;
+//        	if (scan.hasNextInt()) {
+//        		materialsSize = scan.nextInt();
+//        	} else {
+//        		closeScanThrowIOEx(scan);
+//        	}
+//        	Material materials = new Materials();
+//        	for (int j = 0; j < materialsSize; j++) {
+//            	//TODO://new material
+//        		checkHeader(scan, fileMaterialNameHeader);
+//        		String materialName = scan.next();
+//        		checkHeader(scan, fileMaterialCostHeader);
+//        		double materialCost;
+//            	if (scan.hasNextDouble()) {
+//            		materialCost = scan.nextDouble();
+//            	} else {
+//            		closeScanThrowIOEx(scan);
+//            	}
+//            	materials.addMaterial(materialName, materialCost);
+//        	}
+//        	Project project = new Project(projectName, projectDurationDay, projectCost, materials, theEnergy, projectNotes);//TODO
+//        	projects.addProject(project);
+//    	}
     	scan.close();
     }
 
 	/**
-	 * @param scan
-	 * @throws IOException
+	 * @param scan the scanner to be closed
+	 * @throws IOException the exception to be thrown
 	 */
 	private void closeScanThrowIOEx(final Scanner scan) throws IOException {
 		scan.close();
@@ -121,36 +233,58 @@ public class DIYFileManager {
     
     /**
      * Closes the scan and throw IOException.
-     * 
+     * @param scan the scanner to be closed
+     * @param header the header to be checked
      * @throws IOException the exception thrown.
      */
     private void checkHeader(Scanner scan, String header) throws IOException {
-    	if(!scan.next().equals(header)) {	
+    	String scan1 = scan.next();
+    	if(!scan1.equals(header.trim())) {	
     		closeScanThrowIOEx(scan);
     	}
     }
     
+    /**
+     * @param projectsFile the file to be saved
+     * @throws IOException the exception to be thrown
+     */
     public void saveProjects(final File projectsFile) throws IOException {
-    	//TODO: save projects
     	FileWriter fileWriter = new FileWriter(projectsFile);
     	fileWriter.write(fileHeader + "\n");
-    	fileWriter.write(fileProjectsSizeHeader + "" + "\n"); //TODO:
-    	int projectSize = 0, materialsSize = 0;//TODO:
-    	for (int i = 0; i < projectSize; i++) {//TODO:
-    		fileWriter.write(fileNameHeader + "" + "\n");  	//TODO:
-    		fileWriter.write(fileCostHeader + "" + "\n");//TODO:
-    		fileWriter.write(fileDurationDayHeader + "" + "\n");//TODO:
-    		fileWriter.write(fileDurationWeekHeader + "" + "\n");//TODO:
-    		fileWriter.write(fileDurationMonthHeader + "" + "\n");//TODO:
-    		fileWriter.write(fileEnergyEffHeader + "" + "\n");//TODO:
-    		fileWriter.write(fileNotesHeader + "" + "\n");//TODO:
-    		fileWriter.write(fileEndNotes + "\n");//TODO:
-    		fileWriter.write(fileMaterialsSizeHeader + "" + "\n");//TODO:
-    		for (int j = 0; j < materialsSize; j++) {//TODO:
-    			fileWriter.write(fileMaterialHeader + "" + "\n");//TODO:
-    		}
-    	}
+    	fileWriter.write(fileNameHeader + userName + "\n"); //TODO
+    	fileWriter.write(fileEmailAddrHeader + userEmailAddr + "\n"); //TODO
+//    	fileWriter.write(fileProjectsSizeHeader + projects.getProjectList().size() + "\n"); 
+//    	for (int i = 0; i < projects.getProjectList().size(); i++) {
+//    		fileWriter.write(fileProjectNameHeader + projects.getProjectList().get(i).getMyName() + "\n");  	
+//    		fileWriter.write(fileCostHeader + projects.getProjectList().get(i).getMyCost() + "\n");
+//    		fileWriter.write(fileDurationDayHeader + projects.getProjectList().get(i).getMyDays() + "\n");
+////    		fileWriter.write(fileDurationWeekHeader + "" + "\n");
+//    		//fileWriter.write(fileDurationMonthHeader + "" + "\n");
+//    		fileWriter.write(fileEnergyEffHeader + "" + "\n");//TODO:
+//    		fileWriter.write(fileNotesHeader + projects.getProjectList().get(i).getMyNotes() + "\n");
+//    		fileWriter.write(fileEndNotes + "\n");
+//    		fileWriter.write(fileMaterialsSizeHeader + projects.getProjectList().get(i).getMyMaterials().size() + "\n");
+//    		for (Map.Entry<String,Double> entry : projects.getProjectList().get(i).getMyMaterials().entrySet()) {
+//    			fileWriter.write(fileMaterialNameHeader + entry.getKey() + "\n");
+//    			fileWriter.write(fileMaterialCostHeader + entry.getValue() + "\n");
+//    		}
+//    	}
     	fileWriter.close();
     }
-
+    
+    public String getName() {
+    	return userName;
+    }
+    
+    public void setName(String firstName) {
+    	userName = firstName;
+    }
+    
+    public String getEmail() {
+    	return userEmailAddr;
+    }
+    
+    public void setEmail(String email) {
+    	userEmailAddr = email;
+    }
 }
