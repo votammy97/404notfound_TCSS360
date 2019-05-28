@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * Class for the project list.
  * 
  * @author Tammy Vo
- *
  */
 public class ProjectList {
 	
@@ -15,12 +14,17 @@ public class ProjectList {
 
 	/** Constructor for ProjectList. */
 	public ProjectList() {
-		myProjectList = new ArrayList<Project>();
+		myProjectList = new ArrayList<>();
 	}
 	
 	/** Method to add projects to project list. */
-	public void addProject(Project p) {
-		myProjectList.add(p);
+	public void addProject(final Project theProject) {
+		myProjectList.add(theProject);
+	}
+	
+	/** Method to delete projects from project list. */
+	public void deleteProject(final Project theProject) {
+		myProjectList.remove(theProject);
 	}
 	
 	/** Method to get project list. */
