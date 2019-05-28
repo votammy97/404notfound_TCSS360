@@ -16,26 +16,33 @@ public class Project {
 	/** Project days. */
 	private int myDays;
 	/** Project cost. */
-	private int myCost;
+	private double myCost;
 	/** Project materials. */
 	private HashMap<String, Double> myMaterials;
 	/** Project energy efficiency. */
-	private byte myEnergy;
+	private Energy myEnergy;
 	/** Project notes. */
 	private String myNotes;
 
 	/**
-	 * Create a project object. 
-	 * 
-	 * @param theName the name of the project. 
-	 * @param theDays the days to complete project. 
-	 * @param theCost the cost of the project. 
-	 * @param theMaterials the materials of project. 
-	 * @param theEnergy the energy efficiency of project. 
-	 * @param theNotes the notes of the project. 
+	 * Default constructor.
 	 */
-	public Project(final String theName, final int theDays, final int theCost,
-			final HashMap<String, Double> theMaterials, final byte theEnergy, final String theNotes) {
+	public Project() {
+		this("", 0, 0, new HashMap<String, Double>(), Energy.LOW, "");
+	}
+
+	/**
+	 * Create a project object.
+	 * 
+	 * @param theName      the name of the project.
+	 * @param theDays      the days to complete project.
+	 * @param theCost      the cost of the project.
+	 * @param theMaterials the materials of project.
+	 * @param theEnergy    the energy efficiency of project.
+	 * @param theNotes     the notes of the project.
+	 */
+	public Project(final String theName, final int theDays, final double theCost,
+			final HashMap<String, Double> theMaterials, final Energy theEnergy, final String theNotes) {
 		myName = theName;
 		myDays = theDays;
 		myCost = theCost;
@@ -44,47 +51,90 @@ public class Project {
 		myNotes = theNotes;
 
 	}
-	
+	/**
+	 * Get project name.
+	 * @return project name. 
+	 */
 	public String getMyName() {
 		return myName;
 	}
-
-	public void setMyName(String myName) {
+	
+	/**
+	 * Set project name.
+	 * @param myName project name. 
+	 */
+	public void setMyName(final String myName) {
 		this.myName = myName;
 	}
-
+	
+	/**
+	 * Get project days. 
+	 * @return project days. 
+	 */
 	public int getMyDays() {
 		return myDays;
 	}
 
-	public void setMyDays(int myDays) {
+	/**
+	 * Set project days. 
+	 * @param myDays project days. 
+	 */
+	public void setMyDays(final int myDays) {
 		this.myDays = myDays;
 	}
 
-	public int getMyCost() {
+	/**
+	 * Get project cost. 
+	 * @return project cost. 
+	 */
+	public double getMyCost() {
 		return myCost;
 	}
 
-	public void setMyCost(int myCost) {
+	/**
+	 * Set project cost. 
+	 * @param myCost project cost. 
+	 */
+	public void setMyCost(final int myCost) {
 		this.myCost = myCost;
 	}
 
-	public byte getMyEnergy() {
+	/**
+	 * Get energy efficiency.
+	 * @return LOW, MED, or HIGH. 
+	 */
+	public Energy getMyEnergy() {
 		return myEnergy;
 	}
 
-	public void setMyEnergy(byte myEnergy) {
+	/**
+	 * Set energy efficiency. 
+	 * @param myEnergy project energy efficiency. 
+	 */
+	public void setMyEnergy(final Energy myEnergy) {
 		this.myEnergy = myEnergy;
 	}
 
+	/**
+	 * Get project notes. 
+	 * @return project notes. 
+	 */
 	public String getMyNotes() {
 		return myNotes;
 	}
 
-	public void setMyNotes(String myNotes) {
+	/**
+	 * Set project notes.
+	 * @param myNotes project notes. 
+	 */
+	public void setMyNotes(final String myNotes) {
 		this.myNotes = myNotes;
 	}
-
+	
+	/**
+	 * Get materials.
+	 * @return materials. 
+	 */
 	public HashMap<String, Double> getMyMaterials() {
 		return myMaterials;
 	}
