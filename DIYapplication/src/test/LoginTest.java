@@ -11,7 +11,7 @@ import view.Login;
 class LoginTest {
 
 	private Login a = new Login();
-	private DIYFileManager mng = new DIYFileManager();
+	private DIYFileManager mng = new DIYFileManager("firstName", "emailAddress");
 	@Test
 	void testSetNameString() {
 		String name = "testName";

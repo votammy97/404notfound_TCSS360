@@ -29,7 +29,7 @@ class LoadAndSaveTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
-		fm = new DIYFileManager();
+		fm = new DIYFileManager("firstName", "emailAddress");
 	}
 
 	/**
@@ -45,8 +45,8 @@ class LoadAndSaveTest {
 			e.printStackTrace();
 			
 		}
-		assertEquals("AAAA", fm.userName, "first name wrong");
-		assertEquals("BBBBB", fm.userEmailAddr, "email address wrong");
+		assertEquals("AAAA", fm.getFirstName(), "first name wrong");
+		assertEquals("BBBBB", fm.getEmailAddress(), "email address wrong");
 	}
 	
 	/**
@@ -62,7 +62,7 @@ class LoadAndSaveTest {
 			e.printStackTrace();
 			assertFalse(true);
 		}
-		assertEquals("<Name>", fm.userName, "first name wrong");
-		assertEquals("<EmailAddress>", fm.userEmailAddr, "email address wrong");
+		assertEquals("firstName", fm.getFirstName(), "first name wrong");
+		assertEquals("emailAddress", fm.getEmailAddress(), "email address wrong");
 	}
 }
