@@ -2,9 +2,11 @@ package controller;
 
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import model.*;
 import view.*;
@@ -31,6 +33,8 @@ public class Controller {
 		myJFileChooser = new JFileChooser(".");
 		setSaveActionListener();
 		setOpenActionListener();
+		//setEditProjectButtonActionListener();
+		//setDeleteProjectButtonActionListener();
 	}
 	
 	public void createNewProject() {
@@ -74,4 +78,58 @@ public class Controller {
             }
         });
     }
+    
+    /**
+     * Sets the action of the add button
+     */
+    private void setAddProjectButtonActionListener() {
+        myView.myAddJButton.addActionListener(theEvent -> {
+        	createNewProject();
+        	//TODO
+//        	Project project = new Project();
+//        	addProject(project)
+        });
+    }
+    
+    /**
+     * Sets the action of the edit button
+     */
+    private void setEditProjectButtonActionListener() {
+		myView.myJPanelLeft.myEditJButton.addActionListener(theEvent -> {
+			//editProject(jPanel, theProject);
+		});
+    }
+    
+    /**
+     * Sets the action of the delete button
+     */
+    private void setDeleteProjectButtonActionListener() {
+		myView.myJPanelLeft.myDeleteJButton.addActionListener(theEvent -> {
+			//deleteProject(jPanel, theProject);
+		});
+    }
+    
+    /**
+     * edit a project to the left components.
+     * @param panel to be edited
+     * @param theProject to be edited
+     */
+ 	public void editProject(JPanel theJPanel, Project theProject) {
+ 		//TODO open editGUI and get project	
+// 		model.addProject(project);
+// 		addProject(project);
+ 		theJPanel.setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
+    	myView.myJPanelLeft.revalidate();
+ 	}
+    
+    /**
+     * remove a panel to the left components.
+     * @param theJPanel the panel to be deleted
+     * @param theProject to be deleted
+     */
+    public void deleteProject(JPanel theJPanel, Project theProject) {
+ 		//myView.myJPanelLeft.remove(theJPanel);
+ 		//TODO:delete Project
+ 		myView.myJPanelLeft.revalidate();
+    }   
 }

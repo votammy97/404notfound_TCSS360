@@ -15,7 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import model.ProjectsScrollPane;
+
 import controller.Controller;
 
 /**
@@ -37,12 +37,12 @@ public class DIYProjectPlanner extends JFrame {
     /**
      * The add button to add projects and its panel
      */
-    JButton myAddJButton;
+    public JButton myAddJButton;
     
     /**
      * The left panel where the projects are
      */
-    JPanel myJPanelLeft;
+    public ProjectsScrollPane myJPanelLeft;
     
     /** The model for reference. */
 	private Controller myController;
@@ -56,6 +56,11 @@ public class DIYProjectPlanner extends JFrame {
 	 * JMenuItem for opening a file
 	 */
 	public JMenuItem myOpen;
+	
+	/**
+	 * The left component of the application where the project panels are
+	 */
+	public JScrollPane myProjectsScrollPane;
 
 	public DIYProjectPlanner(final Controller theController) {
 		super("DIY Project Planner");
@@ -82,8 +87,8 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
-		final JScrollPane jScrollPaneLeft = new ProjectsScrollPane();
-        add(jScrollPaneLeft, BorderLayout.WEST);
+		myProjectsScrollPane = new ProjectsScrollPane();
+        add(myProjectsScrollPane, BorderLayout.WEST);
         
         //TODO: Description
         final JPanel jPanelRight = new JPanel();
