@@ -1,13 +1,11 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,12 +15,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 
 import model.DIYFileManager;
-import model.ProjectsPanel;
-import model.Project;
+import model.ProjectsScrollPane;
 
+/**
+ * Main Application
+ * @author
+ * @author Ken Gil Romero
+ * @version Spring 19
+ */
 public class DIYProjectPlanner extends JFrame {
 
     /**
@@ -73,7 +75,7 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
-		final JScrollPane jScrollPaneLeft = new ProjectsPanel();
+		final JScrollPane jScrollPaneLeft = new ProjectsScrollPane();
         add(jScrollPaneLeft, BorderLayout.WEST);
         
         //TODO: Description

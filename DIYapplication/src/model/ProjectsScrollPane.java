@@ -1,23 +1,20 @@
 package model;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class ProjectsPanel extends JScrollPane {
-	
-	/**
-	 * Class for the left component of the main application
-	 * @author Ken Gil Romero
-	 * @version Spring 19
-	 */
-	
+/**
+ * Class for the left component of the main application
+ * @author Ken Gil Romero
+ * @version Spring 19
+ */
+public class ProjectsScrollPane extends JScrollPane {
+		
     /**
      * A generated serial version UID for object Serialization.
      */
@@ -32,7 +29,7 @@ public class ProjectsPanel extends JScrollPane {
      * Setting up the Left components.
      * 
      */
-    public ProjectsPanel() {      
+    public ProjectsScrollPane() {      
         super(new JPanel(), 
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, //VERTICAL_SCROLLBAR_ALWAYS
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -53,44 +50,44 @@ public class ProjectsPanel extends JScrollPane {
      * add a project to the left components.
      * @param theProject the project to be added
      */
-   public void addProject(Project theProject) {
-   	JPanel jPanel = new JPanel(new BorderLayout());
+    public void addProject(Project theProject) {
+   	JPanel jPanel = new JPanel();
    	jPanel.setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
-		JButton edit = new JButton("Edit");
-		edit.addActionListener(theEvent -> {
-			editProject(jPanel, theProject);
-		});
-		JButton delete = new JButton("Delete");
-	    delete.addActionListener(theEvent -> {
-			deleteProject(jPanel, theProject); 
-		});
-		jPanel.add(edit);
-		jPanel.add(delete);
-   		this.add(jPanel);
-   		this.revalidate();
-   }
+	JButton edit = new JButton("Edit");
+	edit.addActionListener(theEvent -> {
+		editProject(jPanel, theProject);
+	});
+	JButton delete = new JButton("Delete");
+    delete.addActionListener(theEvent -> {
+		deleteProject(jPanel, theProject); 
+	});
+	jPanel.add(edit);
+	jPanel.add(delete);
+	this.add(jPanel);
+	this.revalidate();
+    }
    
    /**
     * edit a project to the left components.
     * @param panel to be edited
     * @param theProject to be edited
     */
-   public void editProject(JPanel theJPanel, Project theProject) {
-		this.remove(theJPanel);
+	public void editProject(JPanel theJPanel, Project theProject) {
 		//TODO open editGUI and get project	
 //		model.addProject(project);
 //		addProject(project);
+		theJPanel.setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
    		this.revalidate();
-   }
+	}
    
    /**
     * remove a panel to the left components.
     * @param theJPanel the panel to be deleted
     * @param theProject to be deleted
     */
-   public void deleteProject(JPanel theJPanel, Project theProject) {
+   	public void deleteProject(JPanel theJPanel, Project theProject) {
 		this.remove(theJPanel);
-		
+		//TODO:delete Project
 		this.revalidate();
-   }
+   	}   
 }
