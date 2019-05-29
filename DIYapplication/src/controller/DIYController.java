@@ -1,12 +1,10 @@
 package controller;
 
 import java.awt.EventQueue;
-
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import view.DIYProjectPlanner;
-import view.Login;
+import model.*;
+import view.*;
 
 public final class DIYController {
 
@@ -33,10 +31,8 @@ public final class DIYController {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				Login a = new Login();
-				
+				new Controller(new Login());
 			}
 		});
 	}
-
 }
