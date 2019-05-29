@@ -25,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controller.Controller;
 import model.Energy;
 import model.Project;
 
@@ -69,6 +70,12 @@ public class NewEditProjectWindow {
 	/* The frame that is the main application. */
 	private DIYProjectPlanner myApp;
 	
+	/* The application controller. */
+	private Controller myController;
+	
+	/* True if creating a new project. */
+	private boolean myNewFlag;
+	
 	/**
 	 * Constructor for the NewEditProjectWindow.
 	 * 
@@ -76,16 +83,18 @@ public class NewEditProjectWindow {
 	 * @param theApp The main application that this window was called from.
 	 */
 	public NewEditProjectWindow(final Project theProject,
-											   final DIYProjectPlanner theApp) {
+			   final DIYProjectPlanner theApp, final Controller theController) {
 		theApp.setEnabled(false);
 		myApp = theApp;
 		myProject = theProject;
 		myListener = new ProjectListener();
+		myController = theController;
 		JPanel panel = new JPanel();
 		buildPanel(panel);
 		
 		// Sets JFrame title and JButton text based on whether new or editing.
-		if ("".equals(theProject.getMyName())) {
+		myNewFlag = "".equals(theProject.getMyName());
+		if (myNewFlag) {
 			myFrame = new JFrame("Create New Project");
 		} else {
 			myFrame = new JFrame("Edit Project");
@@ -295,7 +304,13 @@ public class NewEditProjectWindow {
 						myProject.setMyEnergy(Energy.LOW);
 				}
 				myProject.setMyNotes(myNotesField.getText());
+				myApp.setAlwaysOnTop(true);
 				myFrame.dispose();
+				myApp.setAlwaysOnTop(false);
+				if (myNewFlag) {
+					myController.addCreatedProject(myProject);
+				}
+				myController.refreshProjects();
 				myApp.setEnabled(true);
 			}
 		});
