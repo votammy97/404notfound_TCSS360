@@ -1,14 +1,9 @@
-/**
- * 
- */
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +36,6 @@ class LoadAndSaveTest {
 		try {
 			fm.loadProjects(file);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
 		}
@@ -58,7 +52,6 @@ class LoadAndSaveTest {
 		try {
 			fm.saveProjects(file);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			assertFalse(true);
 		}
