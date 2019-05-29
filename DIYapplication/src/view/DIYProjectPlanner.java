@@ -37,12 +37,13 @@ public class DIYProjectPlanner extends JFrame {
     /**
      * The add button to add projects and its panel
      */
-    public JButton myAddJButton;
+    private JButton myAddJButton;
     
     /**
      * The left panel where the projects are
      */
     public ProjectsScrollPane myJPanelLeft;
+
     
     /** The model for reference. */
 	private Controller myController;
@@ -50,7 +51,7 @@ public class DIYProjectPlanner extends JFrame {
 	/**
 	 * JMenuItem for saving the projects
 	 */
-	public JMenuItem mySave;
+	private JMenuItem mySave;
 	
 	/**
 	 * JMenuItem for opening a file
@@ -111,7 +112,9 @@ public class DIYProjectPlanner extends JFrame {
 		final JMenuItem make = new JMenuItem("New...");
 		make.addActionListener(theEvent -> myController.createNewProject());
 		myOpen = new JMenuItem("Open...");
+		myOpen.addActionListener(theEvent -> myController.openProjects());
 		mySave = new JMenuItem("Save...");
+		mySave.addActionListener(theEvent -> myController.saveProjects());
 		final JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(theEvent -> System.exit(0));
 
