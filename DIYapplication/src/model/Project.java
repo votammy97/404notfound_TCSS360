@@ -95,7 +95,7 @@ public class Project {
 	 * Set project cost. 
 	 * @param myCost project cost. 
 	 */
-	public void setMyCost(final int myCost) {
+	public void setMyCost(final double myCost) {
 		this.myCost = myCost;
 	}
 
