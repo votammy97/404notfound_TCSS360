@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import model.*;
@@ -25,6 +24,9 @@ public class Controller {
 												final DIYFileManager theModel) {
 		myView = theView;
 		myModel = theModel;
+		//myJFileChooser = new JFileChooser(".");
+		//setEditProjectButtonActionListener();
+		//setDeleteProjectButtonActionListener();
 	}
 	
 	public void createNewProject() {
@@ -33,15 +35,20 @@ public class Controller {
 	
 	public void addCreatedProject(final Project theProject) {
 		myModel.addProject(theProject);
+		refreshProjects();
 	}
 	
 	public void editProject(final Project theProject) {
 		new NewEditProjectWindow(theProject, myView, this);
 	}
 	
+	/**
+	 * Refresh the projects panels
+	 */
 	public void refreshProjects() {
 		// This method will refresh the GUI with the updated project list.
-		System.out.println("Refreshing project list not yet implemented.");
+		//System.out.println("Refreshing project list not yet implemented.");
+		myView.buildProjectPanels(myModel.getProjects());
 	}
 	
 	/**
@@ -55,6 +62,7 @@ public class Controller {
                 JOptionPane.showMessageDialog(myView, "Error loading file.");
             }
         }
+    	refreshProjects();
     }
     
     /**
@@ -69,4 +77,28 @@ public class Controller {
             }
         }
     }
+    
+//    /**
+//     * Sets the action of the add button
+//     */
+//    public void setAddProjectButtonActionListener() {
+//    	createNewProject();
+//        	//TODO
+////        	Project project = new Project();
+////        	addProject(project)
+//    }
+//    
+//    /**
+//     * Sets the action of the edit button
+//     */
+//    public void setEditProjectButtonActionListener() {
+//		//editProject(jPanel, theProject);
+//    }
+//    
+//    /**
+//     * Sets the action of the delete button
+//     */
+//    public void setDeleteProjectButtonActionListener() {
+//		//deleteProject(jPanel, theProject);
+//    }
 }
