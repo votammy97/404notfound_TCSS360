@@ -22,7 +22,7 @@ public class Controller {
 	}
 	
 	public void createNewProject() {
-		new NewEditProjectWindow(new Project(), myView);
+		new NewEditProjectWindow(new Project(), myView, this);
 	}
 	
 	public void addCreatedProject(final Project theProject) {
