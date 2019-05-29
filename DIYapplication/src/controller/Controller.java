@@ -29,8 +29,6 @@ public class Controller {
 		myView = theView;
 		myModel = theModel;
 		myJFileChooser = new JFileChooser(".");
-		setSaveActionListener();
-		setOpenActionListener();
 	}
 	
 	public void createNewProject() {
@@ -44,34 +42,30 @@ public class Controller {
 	/**
      * Sets the action of Open
      */
-    private void setOpenActionListener() {
-        myView.myOpen.addActionListener(theEvent -> {
-        	if (myJFileChooser.showOpenDialog(myView) == JFileChooser.APPROVE_OPTION) {
-        		try {                  
-        			myModel.loadProjects(myJFileChooser.getSelectedFile()); 
-                        
-                } catch (final IOException e) {
-                    JOptionPane.showMessageDialog(myView,
-                                    "Error loading file.");
-                }
+    public void openProjects() {
+    	if (myJFileChooser.showOpenDialog(myView) == JFileChooser.APPROVE_OPTION) {
+    		try {                  
+    			myModel.loadProjects(myJFileChooser.getSelectedFile()); 
+                    
+            } catch (final IOException e) {
+                JOptionPane.showMessageDialog(myView,
+                                "Error loading file.");
             }
-        });
+        }
     }
     
     /**
      * Sets the action of Save
      */
-    private void setSaveActionListener() {
-        myView.mySave.addActionListener(theEvent -> {
-        	if (myJFileChooser.showSaveDialog(myView) == JFileChooser.APPROVE_OPTION) {
-        		try {                  
-        			myModel.saveProjects(myJFileChooser.getSelectedFile()); 
-                        
-                } catch (final IOException e) {
-                    JOptionPane.showMessageDialog(myView,
-                                    "Error saving file.");
-                }
+    public void saveProjects() {
+    	if (myJFileChooser.showSaveDialog(myView) == JFileChooser.APPROVE_OPTION) {
+    		try {                  
+    			myModel.saveProjects(myJFileChooser.getSelectedFile()); 
+                    
+            } catch (final IOException e) {
+                JOptionPane.showMessageDialog(myView,
+                                "Error saving file.");
             }
-        });
+        }
     }
 }
