@@ -1,7 +1,5 @@
 package model;
 
-import java.util.HashMap;
-
 /**
  * Class for project info.
  * 
@@ -18,7 +16,7 @@ public class Project {
 	/** Project cost. */
 	private double myCost;
 	/** Project materials. */
-	private HashMap<String, Double> myMaterials;
+	private Materials myMaterials;
 	/** Project energy efficiency. */
 	private Energy myEnergy;
 	/** Project notes. */
@@ -28,7 +26,7 @@ public class Project {
 	 * Default constructor.
 	 */
 	public Project() {
-		this("", 0, 0, new HashMap<String, Double>(), Energy.LOW, "");
+		this("", 0, 0, new Materials(), Energy.LOW, "");
 	}
 
 	/**
@@ -41,8 +39,8 @@ public class Project {
 	 * @param theEnergy    the energy efficiency of project.
 	 * @param theNotes     the notes of the project.
 	 */
-	public Project(final String theName, final int theDays, final double theCost,
-			final HashMap<String, Double> theMaterials, final Energy theEnergy, final String theNotes) {
+	public Project(final String theName, final int theDays, final double theCost, final Materials theMaterials,
+			final Energy theEnergy, final String theNotes) {
 		myName = theName;
 		myDays = theDays;
 		myCost = theCost;
@@ -147,7 +145,7 @@ public class Project {
 	 * 
 	 * @return materials.
 	 */
-	public HashMap<String, Double> getMyMaterials() {
+	public Materials getMyMaterials() {
 		return myMaterials;
 	}
 
