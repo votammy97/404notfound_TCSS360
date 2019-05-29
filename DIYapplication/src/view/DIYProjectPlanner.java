@@ -3,9 +3,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-
-import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -58,10 +55,10 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	public JMenuItem myOpen;
 	
-	/**
-	 * The left component of the application where the project panels are
-	 */
-	public JScrollPane myProjectsScrollPane;
+//	/**
+//	 * The left component of the application where the project panels are
+//	 */
+//	public JScrollPane myProjectsScrollPane;
 
 	public DIYProjectPlanner(final Controller theController) {
 		super("DIY Project Planner");
@@ -88,8 +85,9 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
-		myProjectsScrollPane = new ProjectsScrollPane();
-        add(myProjectsScrollPane, BorderLayout.WEST);
+		//myProjectsScrollPane = new ProjectsPanel(myController);
+        //add(myProjectsScrollPane, BorderLayout.WEST);
+		add(new ProjectsPanel(myController), BorderLayout.WEST);
         
         //TODO: Description
         final JPanel jPanelRight = new JPanel();

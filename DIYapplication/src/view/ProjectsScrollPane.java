@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controller.Controller;
 import model.Project;
 
 /**
@@ -22,48 +23,19 @@ public class ProjectsScrollPane extends JScrollPane {
      */
 	private static final long serialVersionUID = 2077101975990854195L;
 	
-    /**
-     * The add button to add projects and its panel
-     */
-    public JButton myAddJButton;   
-    
-    /**
-     * The edit button to edit a project and its panel
-     */
-    public JButton myEditJButton;
-    
-    /**
-     * The delete button to delete a project and its panel
-     */
-    public JButton myDeleteJButton;
-
+	// /** The model for reference. */
+	// private Controller myController;
+	
 	/**
-     * Setting up the Left components.
+     * Setting up the Projects panels.
      * 
      */
-    public ProjectsScrollPane() {      
+	public ProjectsScrollPane(/* final Controller theController */) {      
         super(new JPanel(), 
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, //VERTICAL_SCROLLBAR_ALWAYS
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        myAddJButton = new JButton("+");
-        myAddJButton.setBackground(Color.WHITE);
-        myAddJButton.setPreferredSize(new Dimension(250, 50));
-	   	myEditJButton = new JButton("Edit");
-		myDeleteJButton = new JButton("Delete");
-        
-        ((JPanel)this.getViewport().getView()).add(myAddJButton);
-    }
-    
-    /**
-     * add a project to the left components.
-     * @param theProject the project to be added
-     */
-    public void addProjectPanel(Project theProject) {
-	   	JPanel jPanel = new JPanel();
-	   	jPanel.setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
-		jPanel.add(myEditJButton);
-		jPanel.add(myDeleteJButton);
-		this.add(jPanel);
-		this.revalidate();
+//        myController = theController;
+        ((JPanel)this.getViewport().getView()).setPreferredSize(new Dimension(250, 270));;
+        //((JPanel)this.getViewport().getView()).add();
     }
 }
