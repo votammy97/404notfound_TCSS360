@@ -1,19 +1,19 @@
-package controller;
+package application;
 
 import java.awt.EventQueue;
-
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import view.DIYProjectPlanner;
-import view.Login;
+import controller.Controller;
+import model.*;
+import view.*;
 
-public final class DIYController {
+public final class Main {
 
     /**
      * Private constructor, to prevent instantiation of this class.
      */
-    private DIYController() {
+    private Main() {
         throw new IllegalStateException();
     }
 
@@ -33,10 +33,8 @@ public final class DIYController {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				Login a = new Login();
-				
+				new Controller(new Login());
 			}
 		});
 	}
-
 }
