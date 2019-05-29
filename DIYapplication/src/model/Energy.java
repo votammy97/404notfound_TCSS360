@@ -15,8 +15,8 @@ public enum Energy {
 		value = newValue;
 	}
 	
-	public Energy valueOf(final int theValue) {
-		return Energy.values()[theValue];
+	public static Energy getEnumVal(final int theValue) {
+		return Energy.values()[theValue - 1];
 	}
 	
 	/**
