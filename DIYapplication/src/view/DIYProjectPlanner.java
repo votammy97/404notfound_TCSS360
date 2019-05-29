@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import model.DIYFileManager;
+import model.GUILeftComponent;
 import model.Project;
 
 public class DIYProjectPlanner extends JFrame {
@@ -33,17 +34,17 @@ public class DIYProjectPlanner extends JFrame {
 	private static final String VERSION = "0.0.1";
 	
     /** The file chooser for opening and saving an image. */
-    private JFileChooser jFileChooser;
+    private JFileChooser myJFileChooser;
     
     /**
      * The add button to add projects and its panel
      */
-    JButton addJButton;
+    JButton myAddJButton;
     
     /**
      * The left panel where the projects are
      */
-    JPanel jPanelLeft;
+    JPanel myJPanelLeft;
     
     /** The model for reference. */
 	private /*PropertyChangeEnabledRaceControls*/ DIYFileManager model;
@@ -54,7 +55,7 @@ public class DIYProjectPlanner extends JFrame {
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(500, 400));
 		this.model = model;
-		jFileChooser = new JFileChooser(".");
+		myJFileChooser = new JFileChooser(".");
 	}
 
 	public void createAndShowGUI() {
@@ -72,7 +73,7 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
-		final JScrollPane jScrollPaneLeft = setUpLeftPanel();
+		final JScrollPane jScrollPaneLeft = new GUILeftComponent();
         add(jScrollPaneLeft, BorderLayout.WEST);
         
         //TODO: Description
@@ -80,75 +81,6 @@ public class DIYProjectPlanner extends JFrame {
         add(jPanelRight, BorderLayout.EAST);
 	}
 	
-    /**
-     * Setting up the Left components.
-     * 
-     * @return the left scroll pane
-     */
-    private JScrollPane setUpLeftPanel() {
-        JPanel jPanelLeft = new JPanel();
-        //jPanelLeft.setLayout(new BorderLayout());
-        
-        addJButton = new JButton("+");
-        addJButton.setBackground(Color.WHITE);
-        addJButton.setPreferredSize(new Dimension(250, 50));
-        addJButton.addActionListener(theEvent -> {
-        	//TODO: 
-//        	open add project window
-//        	Project project = new Project();
-//        	addProject(project)
-        });
-        
-        jPanelLeft.add(addJButton);
-        final JScrollPane jScrollPane = new JScrollPane(jPanelLeft, 
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, //VERTICAL_SCROLLBAR_ALWAYS
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        return jScrollPane;
-    }
-    
-     /**
-      * add a project to the left components.
-      * @param project the project to be added
-      */
-    public void addProject(Project project) {
-    	JPanel jPanel = new JPanel(new BorderLayout());
-    	jPanel.setBorder(BorderFactory.createTitledBorder(project.getMyName()));
-		JButton edit = new JButton("Edit");
-		edit.addActionListener(theEvent -> {
-			editProject(jPanel);
-		});
-		JButton delete = new JButton("Delete");
-	    delete.addActionListener(theEvent -> {
-			deleteProject(/* project, */ jPanel); //TODO
-		});
-		jPanel.add(edit);
-		jPanel.add(delete);
-    	jPanelLeft.add(jPanel);
-    	jPanelLeft.revalidate();
-    }
-    
-    /**
-     * edit a project to the left components.
-     * @param panel to be edited
-     */
-    public void editProject(JPanel jPanel) {
-		jPanelLeft.remove(jPanel);
-		//TODO open editGUI and get project
-//		model.addProject(project);
-//		addProject(project);
-    	jPanelLeft.revalidate();
-    }
-    
-    /**
-     * remove a panel to the left components.
-     * @param jPanel the panel to be deleted
-     */
-    public void deleteProject(JPanel jPanel) {
-		jPanelLeft.remove(jPanel);
-		//TODO remove in the project list
-    	jPanelLeft.revalidate();
-    }
-    
 	public JMenuBar createMenuBar() {
 		final JMenuBar bar = new JMenuBar();
 
@@ -182,9 +114,9 @@ public class DIYProjectPlanner extends JFrame {
     private JMenuItem addAndSetsMenuItemOpen() {
         final JMenuItem jMenuItemLoadRace = new JMenuItem("Open...");
         jMenuItemLoadRace.addActionListener(theEvent -> {
-        	if (jFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        	if (myJFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
         		try {                  
-        			model.loadProjects(jFileChooser.getSelectedFile()); 
+        			model.loadProjects(myJFileChooser.getSelectedFile()); 
                         
                 } catch (final IOException e) {
                     JOptionPane.showMessageDialog(this,
@@ -198,9 +130,9 @@ public class DIYProjectPlanner extends JFrame {
     private JMenuItem addAndSetsMenuItemSave() {
     	final JMenuItem jMenuItemLoadRace = new JMenuItem("Save...");
         jMenuItemLoadRace.addActionListener(theEvent -> {
-        	if (jFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+        	if (myJFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
         		try {                  
-        			model.saveProjects(jFileChooser.getSelectedFile()); 
+        			model.saveProjects(myJFileChooser.getSelectedFile()); 
                         
                 } catch (final IOException e) {
                     JOptionPane.showMessageDialog(this,
