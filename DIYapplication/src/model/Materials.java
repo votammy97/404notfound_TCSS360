@@ -3,17 +3,18 @@ package model;
 import java.util.HashMap;
 
 /**
- * Class for materials. 
+ * Class for materials.
+ * 
  * @author Tammy Vo
- *
  */
-public class Material {
+public class Materials {
 	
-	private static HashMap<String, Double> myMaterials = new HashMap<>();
+	/** The HashMap storing all materials needed. */
+	private HashMap<String, Double> myMaterials;
 	
 	/** Private constructor. */
-	private Material(){
-
+	public Materials(){
+		myMaterials = new HashMap<>();
 	}
 	
 	/**
@@ -22,7 +23,7 @@ public class Material {
 	 * @param theName of the material. 
 	 * @param theCost of the material. 
 	 */
-	public static void addMaterial (String theName, double theCost) {
+	public void addMaterials(final String theName, final double theCost) {
 		myMaterials.put(theName, theCost);
 	}
 	
@@ -31,7 +32,7 @@ public class Material {
 	 * 
 	 * @return the materials. 
 	 */
-	public static HashMap<String, Double> getMaterialMap(){
+	public HashMap<String, Double> getMaterialMap(){
 		return myMaterials;
 	}
 	
