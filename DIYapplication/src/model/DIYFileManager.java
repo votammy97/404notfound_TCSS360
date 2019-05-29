@@ -141,85 +141,86 @@ public class DIYFileManager {
     	checkHeader(scan, myfileEmailAddrHeader);
     	myUserEmailAddr = scan.next(); 
     	checkHeader(scan, myFileProjectsSizeHeader);
-//    	if (scan.hasNextInt()) {
-//    		projectsSize = scan.nextInt();
-//    	} else {
-//    		closeScanThrowIOEx(scan);
-//    	}
-//    	//new project list
-//    	for (int i = 0; i < projectsSize; i++) {
-//        	checkHeader(scan, myFileProjectNameHeader);
-//        	String projectName = scan.next();    
-//        	checkHeader(scan, myFileCostHeader);
-//        	int projectCost;    
+    	if (scan.hasNextInt()) {
+    		projectsSize = scan.nextInt();
+    	} else {
+    		closeScanThrowIOEx(scan);
+    	}
+    	//new project list
+    	for (int i = 0; i < projectsSize; i++) {
+        	checkHeader(scan, myFileProjectNameHeader);
+        	String projectName = scan.next();    
+        	checkHeader(scan, myFileCostHeader);
+        	double projectCost = 0;    
+        	if (scan.hasNextDouble()) {
+        		projectCost = scan.nextDouble();
+        	} else {
+        		closeScanThrowIOEx(scan);
+        	}
+        	checkHeader(scan, myFileDurationDayHeader);
+        	int projectDurationDay = 0;    	
+        	if (scan.hasNextInt()) {
+        		projectDurationDay = scan.nextInt();
+        	} else {
+        		closeScanThrowIOEx(scan);
+        	}
+//        	checkHeader(scan, fileDurationWeekHeader);
+//        	int projectDurationWeek;    
 //        	if (scan.hasNextInt()) {
-//        		projectCost = scan.nextInt();
+//        		projectDurationWeek = scan.nextInt();
 //        	} else {
 //        		closeScanThrowIOEx(scan);
 //        	}
-//        	checkHeader(scan, myFileDurationDayHeader);
-//        	int projectDurationDay;    	
+//        	checkHeader(scan, fileDurationMonthHeader);
+//        	int projectDurationMonth;    	
 //        	if (scan.hasNextInt()) {
-//        		projectDurationDay = scan.nextInt();
+//        		projectDurationMonth = scan.nextInt();
 //        	} else {
 //        		closeScanThrowIOEx(scan);
 //        	}
-////        	checkHeader(scan, fileDurationWeekHeader);
-////        	int projectDurationWeek;    
-////        	if (scan.hasNextInt()) {
-////        		projectDurationWeek = scan.nextInt();
-////        	} else {
-////        		closeScanThrowIOEx(scan);
-////        	}
-////        	checkHeader(scan, fileDurationMonthHeader);
-////        	int projectDurationMonth;    	
-////        	if (scan.hasNextInt()) {
-////        		projectDurationMonth = scan.nextInt();
-////        	} else {
-////        		closeScanThrowIOEx(scan);
-////        	}
-//        	checkHeader(scan, myFileEnergyEffHeader);
-//        	//TODO://enum energy eff
-//        	if (scan.hasNextInt()) {
-//        		//energy eff = scan.nextInt();
-//        	} else {
-//        		closeScanThrowIOEx(scan);
-//        	}
-//        	checkHeader(scan, myFileNotesHeader);
-//        	String projectNotes = "";
-//        	while (scan.hasNextLine()) {
-//        		String currLine = scan.nextLine();    	
-//        		if (currLine.equals(myFileEndNotes)) {
-//        			break;
-//        		} else {
-//        			projectNotes += currLine;    
-//        		}
-//        	}
-//        	checkHeader(scan, myFileMaterialsSizeHeader);
-//        	int materialsSize = 0;
-//        	if (scan.hasNextInt()) {
-//        		materialsSize = scan.nextInt();
-//        	} else {
-//        		closeScanThrowIOEx(scan);
-//        	}
-//        	Material materials = new Materials();
-//        	for (int j = 0; j < materialsSize; j++) {
-//            	//TODO://new material
-//        		checkHeader(scan, myFileMaterialNameHeader);
-//        		String materialName = scan.next();
-//        		checkHeader(scan, myFileMaterialCostHeader);
-//        		double materialCost;
-//            	if (scan.hasNextDouble()) {
-//            		materialCost = scan.nextDouble();
-//            	} else {
-//            		closeScanThrowIOEx(scan);
-//            	}
-//            	materials.addMaterial(materialName, materialCost);
-//        	}
-//        	Project project = new Project(projectName, projectDurationDay, projectCost, materials, theEnergy, projectNotes);//TODO
-//        	myProjects.addProject(project);
-//    	}
-//    	scan.close();
+        	checkHeader(scan, myFileEnergyEffHeader);
+        	int energyEff = 0;
+        	if (scan.hasNextInt()) {
+        		energyEff = scan.nextInt();
+        	} else {
+        		closeScanThrowIOEx(scan);
+        	}
+        	checkHeader(scan, myFileNotesHeader);
+        	String projectNotes = "";
+        	while (scan.hasNextLine()) {
+        		String currLine = scan.nextLine();    	
+        		if (currLine.equals(myFileEndNotes)) {
+        			break;
+        		} else {
+        			projectNotes += currLine;    
+        		}
+        	}
+        	checkHeader(scan, myFileMaterialsSizeHeader);
+        	int materialsSize = 0;
+        	if (scan.hasNextInt()) {
+        		materialsSize = scan.nextInt();
+        	} else {
+        		closeScanThrowIOEx(scan);
+        	}
+        	Materials materials = new Materials();
+        	for (int j = 0; j < materialsSize; j++) {
+            	//TODO://new material
+        		checkHeader(scan, myFileMaterialNameHeader);
+        		String materialName = scan.next();
+        		checkHeader(scan, myFileMaterialCostHeader);
+        		double materialCost = 0.0;
+            	if (scan.hasNextDouble()) {
+            		materialCost = scan.nextDouble();
+            	} else {
+            		closeScanThrowIOEx(scan);
+            	}
+            	materials.addMaterial(materialName, materialCost);
+        	}
+        	Project project = new Project(projectName, projectDurationDay, projectCost
+        			, materials, Energy.getEnumVal(energyEff), projectNotes);
+        	myProjects.addProject(project);
+    	}
+    	scan.close();
     }
 
 	/**
@@ -260,11 +261,11 @@ public class DIYFileManager {
     		fileWriter.write(myFileDurationDayHeader + myProjects.getProjectList().get(i).getMyDays() + "\n");
 //    		fileWriter.write(fileDurationWeekHeader + "" + "\n");
     		//fileWriter.write(fileDurationMonthHeader + "" + "\n");
-    		fileWriter.write(myFileEnergyEffHeader + "" + "\n");//TODO:
+    		fileWriter.write(myFileEnergyEffHeader + myProjects.getProjectList().get(i).getMyEnergy().getValue() + "\n");
     		fileWriter.write(myFileNotesHeader + myProjects.getProjectList().get(i).getMyNotes() + "\n");
     		fileWriter.write(myFileEndNotes + "\n");
-    		fileWriter.write(myFileMaterialsSizeHeader + myProjects.getProjectList().get(i).getMyMaterials().size() + "\n");
-    		for (Map.Entry<String,Double> entry : myProjects.getProjectList().get(i).getMyMaterials().entrySet()) {
+    		fileWriter.write(myFileMaterialsSizeHeader + myProjects.getProjectList().get(i).getMyMaterials().getMaterialMap().size() + "\n");
+    		for (Map.Entry<String,Double> entry : myProjects.getProjectList().get(i).getMyMaterials().getMaterialMap().entrySet()) {
     			fileWriter.write(myFileMaterialNameHeader + entry.getKey() + "\n");
     			fileWriter.write(myFileMaterialCostHeader + entry.getValue() + "\n");
     		}

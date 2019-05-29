@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import model.DIYFileManager;
-import model.GUILeftComponent;
+import model.ProjectsPanel;
 import model.Project;
 
 public class DIYProjectPlanner extends JFrame {
@@ -47,7 +47,7 @@ public class DIYProjectPlanner extends JFrame {
     JPanel myJPanelLeft;
     
     /** The model for reference. */
-	private /*PropertyChangeEnabledRaceControls*/ DIYFileManager model;
+	private DIYFileManager model;
 
 	public DIYProjectPlanner(final DIYFileManager model) {
 		super("DIY Project Planner");
@@ -73,7 +73,7 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
-		final JScrollPane jScrollPaneLeft = new GUILeftComponent();
+		final JScrollPane jScrollPaneLeft = new ProjectsPanel();
         add(jScrollPaneLeft, BorderLayout.WEST);
         
         //TODO: Description
