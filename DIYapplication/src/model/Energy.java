@@ -26,5 +26,4 @@ public enum Energy {
 	public int getValue() {
 		return value;
 	}
-
 }
