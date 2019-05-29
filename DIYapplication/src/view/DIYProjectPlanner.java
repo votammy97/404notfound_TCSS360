@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import controller.Controller;
+import model.ProjectList;
 
 /**
  * Main Application
@@ -39,7 +40,7 @@ public class DIYProjectPlanner extends JFrame {
     /**
      * The left panel where the projects are
      */
-    public ProjectsScrollPane myJPanelLeft;
+    private ProjectsPanel myProjectsJpanel;
 
     
     /** The model for reference. */
@@ -85,13 +86,20 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
-		//myProjectsScrollPane = new ProjectsPanel(myController);
-        //add(myProjectsScrollPane, BorderLayout.WEST);
-		add(new ProjectsPanel(myController), BorderLayout.WEST);
+		myProjectsJpanel = new ProjectsPanel(myController);
+        add(myProjectsJpanel, BorderLayout.WEST);
+		//add(new ProjectsPanel(myController), BorderLayout.WEST);
         
         //TODO: Description
         final JPanel jPanelRight = new JPanel();
         add(jPanelRight, BorderLayout.EAST);
+	}
+	
+	/**
+	 * Creates the project panels and sets their buttons actions
+	 */
+	public void buildProjectPanels(final ProjectList theProjectsList) {
+		myProjectsJpanel.buildProjectPanels(theProjectsList);
 	}
 	
 	public JMenuBar createMenuBar() {
