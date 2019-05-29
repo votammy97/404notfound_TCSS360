@@ -17,9 +17,6 @@ public class Controller {
 	/* The project model. */
 	private DIYFileManager myModel;
 	
-    /** The file chooser for opening and saving an image. */
-    private JFileChooser myJFileChooser;
-	
 	public Controller(final Login theLogin) {
 		theLogin.assignController(this);
 	}
@@ -28,7 +25,6 @@ public class Controller {
 												final DIYFileManager theModel) {
 		myView = theView;
 		myModel = theModel;
-		myJFileChooser = new JFileChooser(".");
 	}
 	
 	public void createNewProject() {
@@ -39,17 +35,24 @@ public class Controller {
 		myModel.addProject(theProject);
 	}
 	
+	public void editProject(final Project theProject) {
+		new NewEditProjectWindow(theProject, myView, this);
+	}
+	
+	public void refreshProjects() {
+		// This method will refresh the GUI with the updated project list.
+		System.out.println("Refreshing project list not yet implemented.");
+	}
+	
 	/**
      * Sets the action of Open
      */
     public void openProjects() {
-    	if (myJFileChooser.showOpenDialog(myView) == JFileChooser.APPROVE_OPTION) {
+    	if (myModel.getFileChooser().showOpenDialog(myView) == JFileChooser.APPROVE_OPTION) {
     		try {                  
-    			myModel.loadProjects(myJFileChooser.getSelectedFile()); 
-                    
+    			myModel.loadProjects(myModel.getFileChooser().getSelectedFile());
             } catch (final IOException e) {
-                JOptionPane.showMessageDialog(myView,
-                                "Error loading file.");
+                JOptionPane.showMessageDialog(myView, "Error loading file.");
             }
         }
     }
@@ -58,13 +61,11 @@ public class Controller {
      * Sets the action of Save
      */
     public void saveProjects() {
-    	if (myJFileChooser.showSaveDialog(myView) == JFileChooser.APPROVE_OPTION) {
+    	if (myModel.getFileChooser().showSaveDialog(myView) == JFileChooser.APPROVE_OPTION) {
     		try {                  
-    			myModel.saveProjects(myJFileChooser.getSelectedFile()); 
-                    
+    			myModel.saveProjects(myModel.getFileChooser().getSelectedFile()); 
             } catch (final IOException e) {
-                JOptionPane.showMessageDialog(myView,
-                                "Error saving file.");
+                JOptionPane.showMessageDialog(myView, "Error saving file.");
             }
         }
     }

@@ -73,6 +73,9 @@ public class NewEditProjectWindow {
 	/* The application controller. */
 	private Controller myController;
 	
+	/* True if creating a new project. */
+	private boolean myNewFlag;
+	
 	/**
 	 * Constructor for the NewEditProjectWindow.
 	 * 
@@ -90,7 +93,8 @@ public class NewEditProjectWindow {
 		buildPanel(panel);
 		
 		// Sets JFrame title and JButton text based on whether new or editing.
-		if ("".equals(theProject.getMyName())) {
+		myNewFlag = "".equals(theProject.getMyName());
+		if (myNewFlag) {
 			myFrame = new JFrame("Create New Project");
 		} else {
 			myFrame = new JFrame("Edit Project");
@@ -300,8 +304,13 @@ public class NewEditProjectWindow {
 						myProject.setMyEnergy(Energy.LOW);
 				}
 				myProject.setMyNotes(myNotesField.getText());
+				myApp.setAlwaysOnTop(true);
 				myFrame.dispose();
-				myController.addCreatedProject(myProject);
+				myApp.setAlwaysOnTop(false);
+				if (myNewFlag) {
+					myController.addCreatedProject(myProject);
+				}
+				myController.refreshProjects();
 				myApp.setEnabled(true);
 			}
 		});
