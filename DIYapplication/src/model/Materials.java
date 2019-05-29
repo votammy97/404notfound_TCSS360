@@ -23,7 +23,7 @@ public class Materials {
 	 * @param theName of the material.
 	 * @param theCost of the material.
 	 */
-	public void addMaterials(final String theName, final double theCost) {
+	public void addMaterial(final String theName, final double theCost) {
 		myMaterials.put(theName, theCost);
 	}
 
