@@ -19,9 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-import model.DIYFileManager;
+import controller.Controller;
 import model.ProjectsPanel;
-import model.Project;
 
 public class DIYProjectPlanner extends JFrame {
 
@@ -47,15 +46,16 @@ public class DIYProjectPlanner extends JFrame {
     JPanel myJPanelLeft;
     
     /** The model for reference. */
-	private DIYFileManager model;
+	private Controller myController;
 
-	public DIYProjectPlanner(final DIYFileManager model) {
+	public DIYProjectPlanner(final Controller theController) {
 		super("DIY Project Planner");
 		super.setIconImage((new ImageIcon("./Images/iconDIY.png")).getImage());
+		myController = theController;
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(500, 400));
-		this.model = model;
 		myJFileChooser = new JFileChooser(".");
+		createAndShowGUI();
 	}
 
 	public void createAndShowGUI() {
@@ -95,6 +95,7 @@ public class DIYProjectPlanner extends JFrame {
 		menu.setMnemonic(KeyEvent.VK_F);
 
 		final JMenuItem make = new JMenuItem("New...");
+		make.addActionListener(theEvent -> myController.createNewProject());
 		final JMenuItem open = addAndSetsMenuItemOpen();
 		final JMenuItem save = addAndSetsMenuItemSave();
 		final JMenuItem exit = new JMenuItem("Exit");
@@ -113,46 +114,35 @@ public class DIYProjectPlanner extends JFrame {
      */
     private JMenuItem addAndSetsMenuItemOpen() {
         final JMenuItem jMenuItemLoadRace = new JMenuItem("Open...");
-        jMenuItemLoadRace.addActionListener(theEvent -> {
-        	if (myJFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-        		try {                  
-        			model.loadProjects(myJFileChooser.getSelectedFile()); 
-                        
-                } catch (final IOException e) {
-                    JOptionPane.showMessageDialog(this,
-                                    "Error loading file.");
-                }
-            }
-        });
+//        jMenuItemLoadRace.addActionListener(theEvent -> {
+//        	if (myJFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+//        		try {                  
+//        			model.loadProjects(myJFileChooser.getSelectedFile()); 
+//                        
+//                } catch (final IOException e) {
+//                    JOptionPane.showMessageDialog(this,
+//                                    "Error loading file.");
+//                }
+//            }
+//        });
         return jMenuItemLoadRace;
     }
     
     private JMenuItem addAndSetsMenuItemSave() {
     	final JMenuItem jMenuItemLoadRace = new JMenuItem("Save...");
-        jMenuItemLoadRace.addActionListener(theEvent -> {
-        	if (myJFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-        		try {                  
-        			model.saveProjects(myJFileChooser.getSelectedFile()); 
-                        
-                } catch (final IOException e) {
-                    JOptionPane.showMessageDialog(this,
-                                    "Error saving file.");
-                }
-            }
-        });
+//        jMenuItemLoadRace.addActionListener(theEvent -> {
+//        	if (myJFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+//        		try {                  
+//        			model.saveProjects(myJFileChooser.getSelectedFile()); 
+//                        
+//                } catch (final IOException e) {
+//                    JOptionPane.showMessageDialog(this,
+//                                    "Error saving file.");
+//                }
+//            }
+//        });
     	return jMenuItemLoadRace;
     }
-    
-    /**
-     * Start of the application.
-     */
-    public static void start(String name, String emailAddr) {  
-        final DIYFileManager model = new DIYFileManager(name, emailAddr);
-        final DIYProjectPlanner controller = new DIYProjectPlanner(model);
-        
-        controller.createAndShowGUI();
-    }
-
 
 	private JMenu createHelpMenu() {
 		final JMenu menu = new JMenu("Help");
