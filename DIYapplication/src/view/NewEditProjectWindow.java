@@ -24,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import model.Energy;
 import model.Project;
 
 /**
@@ -97,7 +99,7 @@ public class NewEditProjectWindow {
 												   theProject.getMyCost()));
 		myDaysField.setText("" + (theProject.getMyDays() % 7));
 		myWeeksField.setText("" + (theProject.getMyDays() / 7));
-		myEnergyField.setSelectedIndex(theProject.getMyEnergy());
+		myEnergyField.setSelectedIndex(theProject.getMyEnergy().getValue());
 		myNotesField.setText(theProject.getMyNotes());
 		
 		// Finish up and show frame.
@@ -284,13 +286,13 @@ public class NewEditProjectWindow {
 				String energy = (String) myEnergyField.getSelectedItem();
 				switch (energy) {
 					case "High":
-						myProject.setMyEnergy(Byte.valueOf("2"));
+						myProject.setMyEnergy(Energy.HIGH);
 						break;
 					case "Medium":
-						myProject.setMyEnergy(Byte.valueOf("1"));
+						myProject.setMyEnergy(Energy.MEDIUM);
 						break;
 					default:
-						myProject.setMyEnergy(Byte.valueOf("0"));
+						myProject.setMyEnergy(Energy.LOW);
 				}
 				myProject.setMyNotes(myNotesField.getText());
 				myFrame.dispose();
