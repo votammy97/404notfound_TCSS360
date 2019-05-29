@@ -15,6 +15,10 @@ public enum Energy {
 		value = newValue;
 	}
 	
+	public Energy valueOf(final int theValue) {
+		return Energy.values()[theValue];
+	}
+	
 	/**
 	 * Get value for energy.
 	 * @return value for energy.
