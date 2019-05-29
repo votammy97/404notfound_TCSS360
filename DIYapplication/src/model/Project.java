@@ -51,73 +51,83 @@ public class Project {
 		myNotes = theNotes;
 
 	}
+
 	/**
 	 * Get project name.
-	 * @return project name. 
+	 * 
+	 * @return project name.
 	 */
 	public String getMyName() {
 		return myName;
 	}
-	
+
 	/**
 	 * Set project name.
-	 * @param myName project name. 
+	 * 
+	 * @param myName project name.
 	 */
 	public void setMyName(final String myName) {
 		this.myName = myName;
 	}
-	
+
 	/**
-	 * Get project days. 
-	 * @return project days. 
+	 * Get project days.
+	 * 
+	 * @return project days.
 	 */
 	public int getMyDays() {
 		return myDays;
 	}
 
 	/**
-	 * Set project days. 
-	 * @param myDays project days. 
+	 * Set project days.
+	 * 
+	 * @param myDays project days.
 	 */
 	public void setMyDays(final int myDays) {
 		this.myDays = myDays;
 	}
 
 	/**
-	 * Get project cost. 
-	 * @return project cost. 
+	 * Get project cost.
+	 * 
+	 * @return project cost.
 	 */
 	public double getMyCost() {
 		return myCost;
 	}
 
 	/**
-	 * Set project cost. 
-	 * @param myCost project cost. 
+	 * Set project cost.
+	 * 
+	 * @param myCost project cost.
 	 */
-	public void setMyCost(final int myCost) {
+	public void setMyCost(final double myCost) {
 		this.myCost = myCost;
 	}
 
 	/**
 	 * Get energy efficiency.
-	 * @return LOW, MED, or HIGH. 
+	 * 
+	 * @return LOW, MED, or HIGH.
 	 */
 	public Energy getMyEnergy() {
 		return myEnergy;
 	}
 
 	/**
-	 * Set energy efficiency. 
-	 * @param myEnergy project energy efficiency. 
+	 * Set energy efficiency.
+	 * 
+	 * @param myEnergy project energy efficiency.
 	 */
 	public void setMyEnergy(final Energy myEnergy) {
 		this.myEnergy = myEnergy;
 	}
 
 	/**
-	 * Get project notes. 
-	 * @return project notes. 
+	 * Get project notes.
+	 * 
+	 * @return project notes.
 	 */
 	public String getMyNotes() {
 		return myNotes;
@@ -125,15 +135,17 @@ public class Project {
 
 	/**
 	 * Set project notes.
-	 * @param myNotes project notes. 
+	 * 
+	 * @param myNotes project notes.
 	 */
 	public void setMyNotes(final String myNotes) {
 		this.myNotes = myNotes;
 	}
-	
+
 	/**
 	 * Get materials.
-	 * @return materials. 
+	 * 
+	 * @return materials.
 	 */
 	public HashMap<String, Double> getMyMaterials() {
 		return myMaterials;
