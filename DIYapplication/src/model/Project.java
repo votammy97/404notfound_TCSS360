@@ -149,4 +149,9 @@ public class Project {
 		return myMaterials;
 	}
 
+	@Override
+	public String toString() {
+		return "[" + myName + ", " + myDays + ", " + myCost + ", " + myEnergy + "]";
+		
+	}
 }
