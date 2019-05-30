@@ -285,4 +285,8 @@ public class DIYFileManager {
     public void setEmail(String theEmailAddr) {
     	myUserEmailAddr = theEmailAddr;
     }
+    
+    public ProjectList getProjectList() {
+    	return myProjects;
+    }
 }
