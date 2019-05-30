@@ -64,9 +64,9 @@ public class Login extends JFrame{
 				} else {
 					panel4.setVisible(false);
 					dispose();
+					final DIYProjectPlanner view = new DIYProjectPlanner(myController);
 					final DIYFileManager model = new DIYFileManager(
 							   myFirstName.getText(), myEmailAddress.getText());
-					final DIYProjectPlanner view = new DIYProjectPlanner(myController);
 					myController.loginSuccess(view, model);
 				}
 			}

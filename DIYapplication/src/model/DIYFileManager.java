@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.swing.JFileChooser;
+
 /**
  * Class for saving and loading information
  * @author Ken Gil Romero
@@ -93,6 +95,10 @@ public class DIYFileManager {
 	 */
 	private String myUserEmailAddr;
 	
+	/** The file chooser for opening and saving an image. */
+	private JFileChooser myJFileChooser;
+	
+		
 	/**
 	 * Constructor of  the DIYFileManager
 	 */
@@ -100,6 +106,14 @@ public class DIYFileManager {
 		myProjects= new ProjectList();
 		myUserFirstName = theFirstName;
 		myUserEmailAddr = theEmailAddr;
+		myJFileChooser = new JFileChooser(".");
+	}
+	
+	/**
+	 * @return the list of projects
+	 */
+	public ProjectList getProjects() {
+		return myProjects;
 	}
 	
 	/**
@@ -109,6 +123,9 @@ public class DIYFileManager {
 		return myUserFirstName;
 	}
 	
+	public JFileChooser getFileChooser() {
+		return myJFileChooser;
+	}
 	
 	/**
 	 * @return the email address of the DIYer
@@ -267,5 +284,9 @@ public class DIYFileManager {
     
     public void setEmail(String theEmailAddr) {
     	myUserEmailAddr = theEmailAddr;
+    }
+    
+    public ProjectList getProjectList() {
+    	return myProjects;
     }
 }
