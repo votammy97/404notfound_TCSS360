@@ -1,11 +1,8 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.swing.JFileChooser;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-
 import model.*;
 import view.*;
 
@@ -17,31 +14,61 @@ public class Controller {
 	/* The project model. */
 	private DIYFileManager myModel;
 	
+	/**
+	 * Constructor for the Controller.
+	 * 
+	 * @param theLogin The login window.
+	 */
 	public Controller(final Login theLogin) {
 		theLogin.assignController(this);
 	}
 	
+	/**
+	 * This method is automatically called by the login window after a login is
+	 * successful.
+	 * 
+	 * @param theView The view received from the login.
+	 * @param theModel The model received from the login.
+	 */
 	public void loginSuccess(final DIYProjectPlanner theView,
 												final DIYFileManager theModel) {
 		myView = theView;
 		myModel = theModel;
 	}
 	
+	/**
+	 * Calling this method will bring up the New Project Window.
+	 */
 	public void createNewProject() {
 		new NewEditProjectWindow(new Project(), myView, this);
 	}
 	
+	/**
+	 * This method is automatically called by the New Project Window once the
+	 * create button is clicked.
+	 * 
+	 * @param theProject The project that was created.
+	 */
 	public void addCreatedProject(final Project theProject) {
 		myModel.addProject(theProject);
 	}
 	
+	/**
+	 * Calling this method will bring up the Edit Project Window.
+	 * 
+	 * @param theProject The project that will be edited.
+	 */
 	public void editProject(final Project theProject) {
 		new NewEditProjectWindow(theProject, myView, this);
 	}
 	
+	/**
+	 * Calling this method refreshes the GUI display of the current project
+	 * list. This method should be called whenever a project is added, deleted,
+	 * or whenever sorting is performed on the ProjectList.
+	 */
 	public void refreshProjects() {
-		// This method will refresh the GUI with the updated project list.
-		System.out.println("Refreshing project list not yet implemented.");
+		myView.buildProjectPanels(myModel.getProjects());
 	}
 	
 	/**
@@ -55,6 +82,7 @@ public class Controller {
                 JOptionPane.showMessageDialog(myView, "Error loading file.");
             }
         }
+    	refreshProjects();
     }
     
     /**
@@ -68,5 +96,47 @@ public class Controller {
                 JOptionPane.showMessageDialog(myView, "Error saving file.");
             }
         }
+    }
+    
+	/**
+	 * Determines whether a project already exists with the given name.
+	 * 
+	 * @param theProjectName The project name to search for.
+	 * @return True if the project already exists.
+	 */
+	public boolean projectExists(final String theProjectName) {
+		return myModel.getProjectList().containsName(theProjectName);
+	}
+	
+	/**
+     * Removes the non-integer characters from a given string.
+     * 
+     * @param theInput The string to be formatted.
+     * @return The original string with non-integer character removed.
+     */
+    public String formatInt(final String theInput) {
+    	return model.StringFormatters.removeNonInt(theInput);
+    }
+    
+    /**
+     * Formats the given string to represent a US dollar cost.
+     * 
+     * @param theInput The string to be formatted.
+     * @return The original string formatted to represent a US dollar cost.
+     */
+    public String formatCost(final String theInput) {
+    	return model.StringFormatters.formatCost(theInput);
+    }
+    
+    /**
+     * If the given string is longer than the given length, the string return
+     * with any character past the given length removed.
+     * 
+     * @param theInput The string to be formatted.
+     * @param theLength The maximum length allowed.
+     * @return The string with length less than or equal to the given length.
+     */
+    public String formatLength(final String theInput, final int theLength) {
+    	return model.StringFormatters.formatLength(theInput, theLength);
     }
 }

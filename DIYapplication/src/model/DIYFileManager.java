@@ -95,8 +95,10 @@ public class DIYFileManager {
 	 */
 	private String myUserEmailAddr;
 	
+	/** The file chooser for opening and saving an image. */
 	private JFileChooser myJFileChooser;
 	
+		
 	/**
 	 * Constructor of  the DIYFileManager
 	 */
@@ -105,6 +107,13 @@ public class DIYFileManager {
 		myUserFirstName = theFirstName;
 		myUserEmailAddr = theEmailAddr;
 		myJFileChooser = new JFileChooser(".");
+	}
+	
+	/**
+	 * @return the list of projects
+	 */
+	public ProjectList getProjects() {
+		return myProjects;
 	}
 	
 	/**
@@ -275,5 +284,9 @@ public class DIYFileManager {
     
     public void setEmail(String theEmailAddr) {
     	myUserEmailAddr = theEmailAddr;
+    }
+    
+    public ProjectList getProjectList() {
+    	return myProjects;
     }
 }
