@@ -146,7 +146,20 @@ public class Project {
 	 * @return materials.
 	 */
 	public Materials getMyMaterials() {
-		return myMaterials;
+		Materials mats = new Materials();
+		for (String name : myMaterials.getMaterialMap().keySet()) {
+			mats.addMaterial(name, myMaterials.getMaterialMap().get(name));
+		}
+		return mats;
+	}
+	
+	/**
+	 * Set materials.
+	 * 
+	 * @param myMaterials materials.
+	 */
+	public void setMyMaterials(final Materials myMaterials) {
+		this.myMaterials = myMaterials;
 	}
 
 	@Override
