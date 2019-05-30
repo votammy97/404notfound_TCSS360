@@ -3,9 +3,10 @@ package model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.swing.JFileChooser;
 
 /**
  * Class for saving and loading information
@@ -48,8 +49,6 @@ public class DIYFileManager {
 	 * Header of the project's duration for days
 	 */
 	private static final String myFileDurationDayHeader = "#DurationDay: ";
-//	private static final String fileDurationWeekHeader = "#DurationWeek: ";
-//  private static final String fileDurationMonthHeader = "#DurationMonth: ";
 	
 	/**
 	 * Header of the project's energy efficiency
@@ -96,6 +95,10 @@ public class DIYFileManager {
 	 */
 	private String myUserEmailAddr;
 	
+	/** The file chooser for opening and saving an image. */
+	private JFileChooser myJFileChooser;
+	
+		
 	/**
 	 * Constructor of  the DIYFileManager
 	 */
@@ -103,6 +106,14 @@ public class DIYFileManager {
 		myProjects= new ProjectList();
 		myUserFirstName = theFirstName;
 		myUserEmailAddr = theEmailAddr;
+		myJFileChooser = new JFileChooser(".");
+	}
+	
+	/**
+	 * @return the list of projects
+	 */
+	public ProjectList getProjects() {
+		return myProjects;
 	}
 	
 	/**
@@ -112,6 +123,9 @@ public class DIYFileManager {
 		return myUserFirstName;
 	}
 	
+	public JFileChooser getFileChooser() {
+		return myJFileChooser;
+	}
 	
 	/**
 	 * @return the email address of the DIYer
@@ -164,20 +178,6 @@ public class DIYFileManager {
         	} else {
         		closeScanThrowIOEx(scan);
         	}
-//        	checkHeader(scan, fileDurationWeekHeader);
-//        	int projectDurationWeek;    
-//        	if (scan.hasNextInt()) {
-//        		projectDurationWeek = scan.nextInt();
-//        	} else {
-//        		closeScanThrowIOEx(scan);
-//        	}
-//        	checkHeader(scan, fileDurationMonthHeader);
-//        	int projectDurationMonth;    	
-//        	if (scan.hasNextInt()) {
-//        		projectDurationMonth = scan.nextInt();
-//        	} else {
-//        		closeScanThrowIOEx(scan);
-//        	}
         	checkHeader(scan, myFileEnergyEffHeader);
         	int energyEff = 0;
         	if (scan.hasNextInt()) {
@@ -204,7 +204,6 @@ public class DIYFileManager {
         	}
         	Materials materials = new Materials();
         	for (int j = 0; j < materialsSize; j++) {
-            	//TODO://new material
         		checkHeader(scan, myFileMaterialNameHeader);
         		String materialName = scan.next();
         		checkHeader(scan, myFileMaterialCostHeader);
@@ -259,8 +258,6 @@ public class DIYFileManager {
     		fileWriter.write(myFileProjectNameHeader + myProjects.getProjectList().get(i).getMyName() + "\n");  	
     		fileWriter.write(myFileCostHeader + myProjects.getProjectList().get(i).getMyCost() + "\n");
     		fileWriter.write(myFileDurationDayHeader + myProjects.getProjectList().get(i).getMyDays() + "\n");
-//    		fileWriter.write(fileDurationWeekHeader + "" + "\n");
-    		//fileWriter.write(fileDurationMonthHeader + "" + "\n");
     		fileWriter.write(myFileEnergyEffHeader + myProjects.getProjectList().get(i).getMyEnergy().getValue() + "\n");
     		fileWriter.write(myFileNotesHeader + myProjects.getProjectList().get(i).getMyNotes() + "\n");
     		fileWriter.write(myFileEndNotes + "\n");
@@ -287,5 +284,9 @@ public class DIYFileManager {
     
     public void setEmail(String theEmailAddr) {
     	myUserEmailAddr = theEmailAddr;
+    }
+    
+    public ProjectList getProjectList() {
+    	return myProjects;
     }
 }

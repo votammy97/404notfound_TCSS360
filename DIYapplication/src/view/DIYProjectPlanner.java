@@ -1,13 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-
-import javax.swing.JFileChooser;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,12 +12,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 
-import model.DIYFileManager;
-import model.ProjectsPanel;
-import model.Project;
+import controller.Controller;
+import model.ProjectList;
 
+/**
+ * Main Application
+ * @author
+ * @author Ken Gil Romero
+ * @version Spring 19
+ */
 public class DIYProjectPlanner extends JFrame {
 
     /**
@@ -32,30 +31,44 @@ public class DIYProjectPlanner extends JFrame {
 	private static final long serialVersionUID = -131614090848525596L;
 	
 	private static final String VERSION = "0.0.1";
-	
-    /** The file chooser for opening and saving an image. */
-    private JFileChooser myJFileChooser;
-    
+	    
     /**
      * The add button to add projects and its panel
      */
-    JButton myAddJButton;
+    private JButton myAddJButton;
     
     /**
      * The left panel where the projects are
      */
-    JPanel myJPanelLeft;
+    private ProjectsPanel myProjectsJpanel;
+
     
     /** The model for reference. */
-	private DIYFileManager model;
+	private Controller myController;
+	
+	/**
+	 * JMenuItem for saving the projects
+	 */
+	private JMenuItem mySave;
+	
+	/**
+	 * JMenuItem for opening a file
+	 */
+	public JMenuItem myOpen;
+	
+//	/**
+//	 * The left component of the application where the project panels are
+//	 */
+//	public JScrollPane myProjectsScrollPane;
 
-	public DIYProjectPlanner(final DIYFileManager model) {
+	public DIYProjectPlanner(final Controller theController) {
 		super("DIY Project Planner");
 		super.setIconImage((new ImageIcon("./Images/iconDIY.png")).getImage());
+		myController = theController;
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(500, 400));
-		this.model = model;
-		myJFileChooser = new JFileChooser(".");
+		
+		createAndShowGUI();
 	}
 
 	public void createAndShowGUI() {
@@ -73,12 +86,20 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
-		final JScrollPane jScrollPaneLeft = new ProjectsPanel();
-        add(jScrollPaneLeft, BorderLayout.WEST);
+		myProjectsJpanel = new ProjectsPanel(myController);
+        add(myProjectsJpanel, BorderLayout.WEST);
+		//add(new ProjectsPanel(myController), BorderLayout.WEST);
         
         //TODO: Description
-        final JPanel jPanelRight = new JPanel();//setUpLeftPanel();
+        final JPanel jPanelRight = new JPanel();
         add(jPanelRight, BorderLayout.EAST);
+	}
+	
+	/**
+	 * Creates the project panels and sets their buttons actions
+	 */
+	public void buildProjectPanels(final ProjectList theProjectsList) {
+		myProjectsJpanel.buildProjectPanels(theProjectsList);
 	}
 	
 	public JMenuBar createMenuBar() {
@@ -95,65 +116,22 @@ public class DIYProjectPlanner extends JFrame {
 		menu.setMnemonic(KeyEvent.VK_F);
 
 		final JMenuItem make = new JMenuItem("New...");
-		final JMenuItem open = addAndSetsMenuItemOpen();
-		final JMenuItem save = addAndSetsMenuItemSave();
+		make.addActionListener(theEvent -> myController.createNewProject());
+		myOpen = new JMenuItem("Open...");
+		myOpen.addActionListener(theEvent -> myController.openProjects());
+		mySave = new JMenuItem("Save...");
+		mySave.addActionListener(theEvent -> myController.saveProjects());
 		final JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(theEvent -> System.exit(0));
 
 		menu.add(make);
-		menu.add(open);
-		menu.add(save);
+		menu.add(myOpen);
+		menu.add(mySave);
 		menu.add(exit);
 
 		return menu;
 	}
 	
-	/**
-     * @return adds and sets the JMenuItem open
-     */
-    private JMenuItem addAndSetsMenuItemOpen() {
-        final JMenuItem jMenuItemLoadRace = new JMenuItem("Open...");
-        jMenuItemLoadRace.addActionListener(theEvent -> {
-        	if (myJFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-        		try {                  
-        			model.loadProjects(myJFileChooser.getSelectedFile()); 
-                        
-                } catch (final IOException e) {
-                    JOptionPane.showMessageDialog(this,
-                                    "Error loading file.");
-                }
-            }
-        });
-        return jMenuItemLoadRace;
-    }
-    
-    private JMenuItem addAndSetsMenuItemSave() {
-    	final JMenuItem jMenuItemLoadRace = new JMenuItem("Save...");
-        jMenuItemLoadRace.addActionListener(theEvent -> {
-        	if (myJFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-        		try {                  
-        			model.saveProjects(myJFileChooser.getSelectedFile()); 
-                        
-                } catch (final IOException e) {
-                    JOptionPane.showMessageDialog(this,
-                                    "Error saving file.");
-                }
-            }
-        });
-    	return jMenuItemLoadRace;
-    }
-    
-    /**
-     * Start of the application.
-     */
-    public static void start(String name, String emailAddr) {  
-        final DIYFileManager model = new DIYFileManager(name, emailAddr);
-        final DIYProjectPlanner controller = new DIYProjectPlanner(model);
-        
-        controller.createAndShowGUI();
-    }
-
-
 	private JMenu createHelpMenu() {
 		final JMenu menu = new JMenu("Help");
 		menu.setMnemonic(KeyEvent.VK_H);

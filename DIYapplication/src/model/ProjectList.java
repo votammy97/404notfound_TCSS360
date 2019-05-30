@@ -31,5 +31,23 @@ public class ProjectList {
 	public ArrayList<Project> getProjectList() {
 		return myProjectList;
 	}
+	
+	/**
+	 * Determines whether the project list contains a project with the given
+	 * name.
+	 * 
+	 * @param theName The name to search for.
+	 * @return True if the project already exists.
+	 */
+	public boolean containsName(final String theName) {
+		boolean result = false;
+		for (Project p : myProjectList) {
+			if (p.getMyName().equals(theName)) {
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
 
 }

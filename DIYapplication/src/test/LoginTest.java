@@ -19,32 +19,32 @@ class LoginTest {
 		assertEquals(name, a.getName());
 	}
 
-	@Test
-	void testSetEmail() {
-		String email = "fhiwehf@guh.eiwfhiew";
-		a.setEmail(email);
-		assertEquals(email, a.getEmail());
-		
-	}
-
-	@Test
-	void testGetName() {
-		a.setName("1313");
-		assertEquals("1313", a.getName());
-	}
-
-	@Test
-	void testGetEmail() {
-		a.setEmail("123@13.123");
-		assertEquals("123@13.123", a.getEmail());
-	}
-	
-	@Test
-	void testsetInfo() {
-		a.setEmail("123@13.123");
-		a.setName("1313");
-		a.setInfo(mng);
-		assertEquals("123@13.123", mng.getEmail());
-		assertEquals("1313", mng.getName());
-	}
+//	@Test
+//	void testSetEmail() {
+//		String email = "fhiwehf@guh.eiwfhiew";
+//		a.setEmail(email);
+//		assertEquals(email, a.getEmail());
+//		
+//	}
+//
+//	@Test
+//	void testGetName() {
+//		a.setName("1313");
+//		assertEquals("1313", a.getName());
+//	}
+//
+//	@Test
+//	void testGetEmail() {
+//		a.setEmail("123@13.123");
+//		assertEquals("123@13.123", a.getEmail());
+//	}
+//	
+//	@Test
+//	void testsetInfo() {
+//		a.setEmail("123@13.123");
+//		a.setName("1313");
+//		a.setInfo(mng);
+//		assertEquals("123@13.123", mng.getEmail());
+//		assertEquals("1313", mng.getName());
+//	}
 }
