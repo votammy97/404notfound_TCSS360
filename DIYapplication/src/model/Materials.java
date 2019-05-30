@@ -26,6 +26,10 @@ public class Materials {
 	public void addMaterial(final String theName, final double theCost) {
 		myMaterials.put(theName, theCost);
 	}
+	
+	public void deleteMaterial(final String theName) {
+		myMaterials.remove(theName);
+	}
 
 	/**
 	 * Returns the materials.
