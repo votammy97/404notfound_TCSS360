@@ -1,7 +1,3 @@
-/*
- * TCSS 360 - Spring 2019
- */
-
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -73,11 +69,22 @@ class StringFormattersTest {
 	public void testFormatLength0() {
 		assertEquals("", StringFormatters.formatLength("", 10));
 	}
-	
-	// Tests StringFormatters.formatLength(String theInput, int theLength);
 	@Test
 	public void testFormatLength1() {
 		assertEquals("", StringFormatters.formatLength("", 0));
+	}
+	@Test
+	public void testFormatLength2() {
+		assertEquals("12345", StringFormatters.formatLength("123456789", 5));
+	}
+	@Test
+	public void testFormatLength3() {
+		assertEquals("12345678", StringFormatters.formatLength("12345678", 8));
+	}
+	@Test
+	public void testFormatLengthThrow() {
+		assertThrows(IndexOutOfBoundsException.class,
+							  () -> StringFormatters.formatLength("12345", -1));
 	}
 
 }
