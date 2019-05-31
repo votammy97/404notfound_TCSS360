@@ -56,6 +56,7 @@ public class StringFormatters {
 	 * @param theOriginal The original string before formatting.
 	 * @param theLength The maximum length of the string.
 	 * @return The new string after removing character past index theLength.
+	 * @throws IndexOutOfBoundsException If theLength is negative.
 	 */
 	public static String formatLength(final String theOriginal, final int theLength) {
 		String result = theOriginal;
