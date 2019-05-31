@@ -163,7 +163,7 @@ public class DIYFileManager {
     	//new project list
     	for (int i = 0; i < projectsSize; i++) {
         	checkHeader(scan, myFileProjectNameHeader);
-        	String projectName = scan.next();    
+        	String projectName = scan.nextLine().trim();    
         	checkHeader(scan, myFileCostHeader);
         	double projectCost = 0;    
         	if (scan.hasNextDouble()) {
@@ -187,12 +187,13 @@ public class DIYFileManager {
         	}
         	checkHeader(scan, myFileNotesHeader);
         	String projectNotes = "";
+        	scan.nextLine();
         	while (scan.hasNextLine()) {
         		String currLine = scan.nextLine();    	
         		if (currLine.equals(myFileEndNotes)) {
         			break;
         		} else {
-        			projectNotes += currLine;    
+        			projectNotes += currLine + "\n";    
         		}
         	}
         	checkHeader(scan, myFileMaterialsSizeHeader);
@@ -205,7 +206,7 @@ public class DIYFileManager {
         	Materials materials = new Materials();
         	for (int j = 0; j < materialsSize; j++) {
         		checkHeader(scan, myFileMaterialNameHeader);
-        		String materialName = scan.next();
+        		String materialName = scan.nextLine().trim();
         		checkHeader(scan, myFileMaterialCostHeader);
         		double materialCost = 0.0;
             	if (scan.hasNextDouble()) {
@@ -259,7 +260,7 @@ public class DIYFileManager {
     		fileWriter.write(myFileCostHeader + myProjects.getProjectList().get(i).getMyCost() + "\n");
     		fileWriter.write(myFileDurationDayHeader + myProjects.getProjectList().get(i).getMyDays() + "\n");
     		fileWriter.write(myFileEnergyEffHeader + myProjects.getProjectList().get(i).getMyEnergy().getValue() + "\n");
-    		fileWriter.write(myFileNotesHeader + myProjects.getProjectList().get(i).getMyNotes() + "\n");
+    		fileWriter.write(myFileNotesHeader + "\n" + myProjects.getProjectList().get(i).getMyNotes());
     		fileWriter.write(myFileEndNotes + "\n");
     		fileWriter.write(myFileMaterialsSizeHeader + myProjects.getProjectList().get(i).getMyMaterials().getMaterialMap().size() + "\n");
     		for (Map.Entry<String,Double> entry : myProjects.getProjectList().get(i).getMyMaterials().getMaterialMap().entrySet()) {
