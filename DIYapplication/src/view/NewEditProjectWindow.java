@@ -414,7 +414,7 @@ public class NewEditProjectWindow {
 	private void submitProject() {
 		myProject.setMyName(myNameField.getText());
 		try {
-			myProject.setMyCost(Double.parseDouble(
+			myProject.setMyCost(Double.parseDouble(0 +
 										   myCostField.getText().substring(1)));
 		} catch (final StringIndexOutOfBoundsException theException) {
 			myProject.setMyCost(0);
