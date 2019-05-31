@@ -42,6 +42,10 @@ public class DIYProjectPlanner extends JFrame {
      */
     private ProjectsPanel myProjectsJpanel;
 
+    /**
+     * The right panel where the projects are
+     */
+    private DescriptionPanel myDescriptionJpanel;
     
     /** The model for reference. */
 	private Controller myController;
@@ -91,8 +95,8 @@ public class DIYProjectPlanner extends JFrame {
 		//add(new ProjectsPanel(myController), BorderLayout.WEST);
         
         //TODO: Description
-        final JPanel jPanelRight = new JPanel();
-        add(jPanelRight, BorderLayout.EAST);
+        myDescriptionJpanel = new DescriptionPanel();
+        add(myDescriptionJpanel, BorderLayout.EAST);
 	}
 	
 	/**
