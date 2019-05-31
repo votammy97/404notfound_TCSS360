@@ -5,16 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 
 import model.Energy;
 import model.Project;
 import model.ProjectComparator;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SortingTest {
 
 	private final Project a = new Project("A", 10, 10000.0, null, Energy.MEDIUM, "Notes A");
@@ -36,7 +32,6 @@ public class SortingTest {
 	}
 
 	@Test
-	@Order(1)
 	void testSortByName() {
 		myProjects.sort(ProjectComparator.sortByName());
 
@@ -50,7 +45,6 @@ public class SortingTest {
 	}
 
 	@Test
-	@Order(2)
 	void testSortByNameReversed() {
 		myProjects.sort(ProjectComparator.sortByNameReversed());
 
@@ -64,7 +58,6 @@ public class SortingTest {
 	}
 
 	@Test
-	@Order(3)
 	void testSortByCost() {
 		myProjects.sort(ProjectComparator.sortByCost());
 
@@ -78,7 +71,6 @@ public class SortingTest {
 	}
 
 	@Test
-	@Order(4)
 	void testSortByCostReversed() {
 		myProjects.sort(ProjectComparator.sortByCostReversed());
 
@@ -92,7 +84,6 @@ public class SortingTest {
 	}
 
 	@Test
-	@Order(5)
 	void testSortByDuration() {
 		myProjects.sort(ProjectComparator.sortByDuration());
 
@@ -106,7 +97,6 @@ public class SortingTest {
 	}
 
 	@Test
-	@Order(6)
 	void testSortByDurationReversed() {
 		myProjects.sort(ProjectComparator.sortByDurationReversed());
 
@@ -120,7 +110,6 @@ public class SortingTest {
 	}
 
 	@Test
-	@Order(7)
 	void testSortByEnergy() {
 		myProjects.sort(ProjectComparator.sortByEnergy());
 
@@ -134,7 +123,6 @@ public class SortingTest {
 	}
 
 	@Test
-	@Order(8)
 	void testSortByEnergyReversed() {
 		myProjects.sort(ProjectComparator.sortByEnergyReversed());
 
