@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,6 +15,13 @@ public class ProjectPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7412616505273929177L;
+	
+	ProjectPanel(Project theProject) {
+		super();
+		setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
+		setPreferredSize(new Dimension(250, 50));
+		setBackground(Color.GRAY);
+	}
 	
     
 //    /**
