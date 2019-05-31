@@ -4,15 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import controller.Controller;
 import model.ProjectList;
 
@@ -31,11 +28,6 @@ public class DIYProjectPlanner extends JFrame {
 	private static final long serialVersionUID = -131614090848525596L;
 	
 	private static final String VERSION = "0.0.1";
-	    
-    /**
-     * The add button to add projects and its panel
-     */
-    private JButton myAddJButton;
     
     /**
      * The left panel where the projects are

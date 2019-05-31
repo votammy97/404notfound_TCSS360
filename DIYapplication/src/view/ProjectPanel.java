@@ -13,24 +13,6 @@ public class ProjectPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 7412616505273929177L;
 	
-//  /**
-//  * The add button to add projects and its panel
-//  */
-// private JButton myAddJButton;   
-// 
-// /**
-//  * The edit button to edit a project and its panel
-//  */
-// public JButton myEditJButton;
-// 
-// /**
-//  * The delete button to delete a project and its panel
-//  */
-// public JButton myDeleteJButton;
-	
-// /** The model for reference. */
-// private Controller myController;
-	
     
 //    /**
 //     * add a project to the left components.
