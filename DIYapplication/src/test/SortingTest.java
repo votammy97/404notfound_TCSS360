@@ -13,7 +13,6 @@ import model.ProjectComparator;
 
 public class SortingTest {
 
-	// Temp projects
 	private final Project a = new Project("A", 10, 10000.0, null, Energy.MEDIUM, "Notes A");
 	private final Project a1 = new Project("A1", 10, 10000.0, null, Energy.MEDIUM, "Notes A1");
 	private final Project a2 = new Project("A2", 10, 1000.0, null, Energy.MEDIUM, "Notes A2");
