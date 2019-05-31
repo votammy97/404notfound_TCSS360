@@ -11,20 +11,47 @@ import controller.Controller;
 
 
 public class Login extends JFrame{
-
+	/**
+	 * ID.
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * user's first name.
+	 */
 	private JTextField myFirstName;
+	/**
+	 * user's email address.
+	 */
 	private JTextField myEmailAddress;
-	private JLabel myErrorMessage;
+	/**
+	 * error message 1.
+	 */
+	private JLabel myErrorMessage1;
+	/**
+	 * error message 2.
+	 */
+	private JLabel myErrorMessage2;
+	/**
+	 * ok button.
+	 */
 	private JButton myOkButton;
+	/**
+	 * cancel button.
+	 */
 	private JButton myCancelButton;
+	/**
+	 * controller.
+	 */
 	private Controller myController;
 	
 	public Login() {
+		//set up gui stuff.
 		myFirstName = new JTextField(12);
 		myEmailAddress = new JTextField(12);
-		myErrorMessage = new JLabel("Inputs can't contain any space");
-		myErrorMessage.setForeground(Color.RED);
+		myErrorMessage1 = new JLabel("Inputs can't contain any space");
+		myErrorMessage1.setForeground(Color.RED);
+		myErrorMessage2 = new JLabel("Inputs can't be empty");
+		myErrorMessage2.setForeground(Color.RED);
 		myOkButton = new JButton("Ok");
 		myCancelButton = new JButton("Cancel");
 		JPanel panel1 = new JPanel();
@@ -39,7 +66,7 @@ public class Login extends JFrame{
 		panel2.add(myEmailAddress);
 		panel3.add(myOkButton);
 		panel3.add(myCancelButton);
-		panel4.add(myErrorMessage);
+		//panel4.add(myErrorMessage1);
 		this.add(panel1);
 		this.add(panel2);
 		this.add(panel3);
@@ -51,16 +78,25 @@ public class Login extends JFrame{
 		this.setTitle("Login");
 		this.setLocationRelativeTo(null);
 		
-		
+		//add action listener.
 		myOkButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				if(myFirstName.getText().contains(" ") 
-						|| myEmailAddress.getText().contains(" ")) {
+						|| myEmailAddress.getText().contains(" ") ) {
+					panel4.setVisible(false);
+					panel4.removeAll();
+					panel4.add(myErrorMessage1);
 					panel4.setVisible(true);
 					
+				} else if (myFirstName.getText().equals("")
+							|| myEmailAddress.getText().equals("")){
+					panel4.setVisible(false);
+					panel4.removeAll();
+					panel4.add(myErrorMessage2);
+					panel4.setVisible(true);
 				} else {
 					panel4.setVisible(false);
 					dispose();
@@ -72,7 +108,7 @@ public class Login extends JFrame{
 			}
 			
 		});
-		
+		//add action listener.
 		myCancelButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -82,7 +118,7 @@ public class Login extends JFrame{
 			}
 		});
 	}
-	
+	//set up controller.
 	public void assignController(final Controller theController) {
 		myController = theController;
 	}
