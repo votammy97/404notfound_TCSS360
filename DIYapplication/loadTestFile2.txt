@@ -6,14 +6,14 @@
 #Cost: 1.0
 #DurationDay: 1
 #EnergyEfficiency: 1
-#Notes:
+#Notes: 
 -endnotes-
 #MaterialSize: 0
 #ProjectName: P 2
 #Cost: 100.0
 #DurationDay: 100
 #EnergyEfficiency: 2
-#Notes:
+#Notes: 
 a a
 b b b
 c c c c
