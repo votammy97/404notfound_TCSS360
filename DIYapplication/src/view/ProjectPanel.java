@@ -19,8 +19,8 @@ public class ProjectPanel extends JPanel {
 	ProjectPanel(Project theProject) {
 		super();
 		setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
-		setPreferredSize(new Dimension(250, 50));
-		setBackground(Color.GRAY);
+		setPreferredSize(new Dimension(240, 50));
+		setBackground(Color.LIGHT_GRAY);
 	}
 	
     
