@@ -3,11 +3,16 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.DIYFileManager;
+import model.Energy;
 
 /**
  * Test class for loading and saving
@@ -28,7 +33,27 @@ class LoadAndSaveTest {
 	}
 
 	/**
+	 * Tests the loadProjects method when file is blank
+	 */
+	@Test 
+	void LoadTestErrorEmptyFile()  {
+		assertThrows(IOException.class, () -> {
+			fm.loadProjects(new File(""));
+		});
+	}
+	
+	/**
 	 * Tests the loadProjects method
+	 */
+	@Test 
+	void LoadTestErrorWrongHeader()  {
+		assertThrows(IOException.class, () -> {
+			fm.loadProjects(new File("loadTestFileError.txt"));
+		});
+	}
+	
+	/**
+	 * Tests the loadProjects method expect
 	 */
 	@Test
 	void LoadTest() {
@@ -41,21 +66,45 @@ class LoadAndSaveTest {
 		}
 		assertEquals("AAAA", fm.getFirstName(), "first name wrong");
 		assertEquals("BBBBB", fm.getEmailAddress(), "email address wrong");
+		assertEquals("P 1", fm.getProjectList().getProjectList().get(0).getMyName(), "project name wrong");
+		assertEquals(1 , fm.getProjectList().getProjectList().get(0).getMyCost(), "cost wrong");
+		assertEquals(1 , fm.getProjectList().getProjectList().get(0).getMyDays(), "days wrong");
+		assertEquals(Energy.LOW, fm.getProjectList().getProjectList().get(0).getMyEnergy(), "energy wrong");
+		assertEquals("", fm.getProjectList().getProjectList().get(0).getMyNotes(), "notes wrong");
+		assertEquals(0, fm.getProjectList().getProjectList().get(0).getMyMaterials().getMaterialMap().size(), "material wrong");
+		assertEquals(2, fm.getProjectList().getProjectList().get(1).getMyMaterials().getMaterialMap().size(), "material wrong");
+		assertEquals(100.0, fm.getProjectList().getProjectList().get(1).getMyMaterials().getMaterialMap().get("M 2"), "material wrong");
+		assertEquals("a a\nb b b\nc c c c\n", fm.getProjectList().getProjectList().get(1).getMyNotes(), "notes wrong");
+//
+//		try {
+//			fm.saveProjects(new File("loadTestFile2.txt"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			assertFalse(true);
+//		}
 	}
 	
 	/**
 	 * Tests the saveProjects method
+	 * @throws FileNotFoundException 
 	 */
 	@Test
-	void SaveTest() {
-		File file = new File("saveTestFile.txt");
+	void SaveTest() throws FileNotFoundException {
+		File file = new File("loadTestFile.txt");
+		File file2 = new File("loadTestFile2.txt");
 		try {
-			fm.saveProjects(file);
+			fm.loadProjects(file);
+			fm.saveProjects(file2);
 		} catch (IOException e) {
 			e.printStackTrace();
 			assertFalse(true);
 		}
-		assertEquals("firstName", fm.getFirstName(), "first name wrong");
-		assertEquals("emailAddress", fm.getEmailAddress(), "email address wrong");
+		Scanner scan = new Scanner(file);
+		Scanner scan2 = new Scanner(file2);
+		while(scan.hasNext()) {
+			assertEquals(scan.next(), scan2.next(), "file differ");
+		}
+		scan.close();
+		scan2.close();
 	}
 }

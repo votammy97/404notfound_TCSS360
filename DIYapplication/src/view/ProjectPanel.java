@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -13,23 +16,12 @@ public class ProjectPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 7412616505273929177L;
 	
-//  /**
-//  * The add button to add projects and its panel
-//  */
-// private JButton myAddJButton;   
-// 
-// /**
-//  * The edit button to edit a project and its panel
-//  */
-// public JButton myEditJButton;
-// 
-// /**
-//  * The delete button to delete a project and its panel
-//  */
-// public JButton myDeleteJButton;
-	
-// /** The model for reference. */
-// private Controller myController;
+	ProjectPanel(Project theProject) {
+		super();
+		setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
+		setPreferredSize(new Dimension(240, 50));
+		setBackground(Color.LIGHT_GRAY);
+	}
 	
     
 //    /**

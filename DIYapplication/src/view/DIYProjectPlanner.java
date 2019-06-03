@@ -4,15 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import controller.Controller;
 import model.ProjectList;
 
@@ -31,11 +28,6 @@ public class DIYProjectPlanner extends JFrame {
 	private static final long serialVersionUID = -131614090848525596L;
 	
 	private static final String VERSION = "0.0.1";
-	    
-    /**
-     * The add button to add projects and its panel
-     */
-    private JButton myAddJButton;
     
     /**
      * The left panel where the projects are
@@ -49,16 +41,6 @@ public class DIYProjectPlanner extends JFrame {
     
     /** The model for reference. */
 	private Controller myController;
-	
-	/**
-	 * JMenuItem for saving the projects
-	 */
-	private JMenuItem mySave;
-	
-	/**
-	 * JMenuItem for opening a file
-	 */
-	public JMenuItem myOpen;
 	
 //	/**
 //	 * The left component of the application where the project panels are
@@ -121,16 +103,16 @@ public class DIYProjectPlanner extends JFrame {
 
 		final JMenuItem make = new JMenuItem("New...");
 		make.addActionListener(theEvent -> myController.createNewProject());
-		myOpen = new JMenuItem("Open...");
-		myOpen.addActionListener(theEvent -> myController.openProjects());
-		mySave = new JMenuItem("Save...");
-		mySave.addActionListener(theEvent -> myController.saveProjects());
+		final JMenuItem open = new JMenuItem("Open...");
+		open.addActionListener(theEvent -> myController.openProjects());
+		final JMenuItem save = new JMenuItem("Save...");
+		save.addActionListener(theEvent -> myController.saveProjects());
 		final JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(theEvent -> System.exit(0));
 
 		menu.add(make);
-		menu.add(myOpen);
-		menu.add(mySave);
+		menu.add(open);
+		menu.add(save);
 		menu.add(exit);
 
 		return menu;
