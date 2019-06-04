@@ -22,7 +22,7 @@ import model.ProjectList;
  * @author Ken Gil Romero
  * @version Spring 19
  */
-public class DIYProjectPlanner extends JFrame {
+public class View extends JFrame {
 
     /**
      * A generated serial version UID for object Serialization.
@@ -58,7 +58,7 @@ public class DIYProjectPlanner extends JFrame {
 	 * @param theController
 	 * @author 
 	 */
-	public DIYProjectPlanner(final Controller theController) {
+	public View(final Controller theController) {
 		super("DIY Project Planner");
 		super.setIconImage((new ImageIcon("./Images/iconDIY.png")).getImage());
 		myController = theController;
