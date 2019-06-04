@@ -20,6 +20,9 @@ import model.Energy;
  */
 class LoadAndSaveTest {
 	
+	/**
+	 * model to be tested
+	 */
 	Model fm;
 
 	/**

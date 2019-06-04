@@ -100,7 +100,7 @@ public class Login extends JFrame{
 				} else {
 					panel4.setVisible(false);
 					dispose();
-					final DIYProjectPlanner view = new DIYProjectPlanner(myController);
+					final View view = new View(myController);
 					final Model model = new Model(
 							   myFirstName.getText(), myEmailAddress.getText());
 					myController.loginSuccess(view, model);

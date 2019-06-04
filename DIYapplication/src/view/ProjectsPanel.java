@@ -27,6 +27,11 @@ public class ProjectsPanel extends JPanel {
 	 * Dimension of the button for adding projects
 	 */
 	private static final Dimension ADDBTNDIMENSION = new Dimension(250, 50);
+	
+	/**
+	 * Size of project panel with gap
+	 */
+	private static final int PROJPANELSIZE = 55;
 
     /**
      * A generated serial version UID for object Serialization.
@@ -57,12 +62,10 @@ public class ProjectsPanel extends JPanel {
         add.addActionListener(theEvent -> myController.createNewProject());
         
         myProjectsPanel = new JPanel();
-        myProjectsPanel.setPreferredSize(PROJLISTDIMENSION);
         final JScrollPane scrollPane = new JScrollPane(myProjectsPanel, 
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setPreferredSize(myProjectsPanel.getPreferredSize());
-        
+        scrollPane.setPreferredSize(PROJLISTDIMENSION);
         LeftPanel.add(add, BorderLayout.NORTH);
         LeftPanel.add(new JPanel(), BorderLayout.CENTER);
 		LeftPanel.add(scrollPane, BorderLayout.SOUTH);
@@ -80,7 +83,12 @@ public class ProjectsPanel extends JPanel {
 		for (int i = 0; i < theProjectsList.getProjectList().size(); i++) {
 			myProjectsPanel.add(new ProjectPanel(theProjectsList.getProjectList().get(i), myController));
 		}
+		int temp = myController.getProjectsSize() * PROJPANELSIZE;
+		if (myProjectsPanel.getPreferredSize().getHeight() < temp) {
+			myProjectsPanel.setPreferredSize(new Dimension(myProjectsPanel.getWidth()
+					,temp));
+		}
 		myProjectsPanel.revalidate();
-		repaint();
+		myProjectsPanel.repaint();
 	}
 }

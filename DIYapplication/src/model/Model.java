@@ -3,6 +3,7 @@ package model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -146,6 +147,7 @@ public class Model {
 	 * @author Ken Gil Romero
 	 */
     public void loadProjects(final File theProjectsFile) throws IOException {
+    	ArrayList<Project> tempProjects = new ArrayList<>();
     	final Scanner scan = new Scanner(theProjectsFile); 
     	int projectsSize = 0;
     	checkHeader(scan, myFileHeader);
@@ -217,9 +219,15 @@ public class Model {
         	}
         	Project project = new Project(projectName, projectDurationDay, projectCost
         			, materials, Energy.getEnumVal(energyEff), projectNotes);
-        	myProjects.addProject(project);
+        	tempProjects.add(project);
     	}
     	scan.close();
+    	//deleting current projects
+    	myProjects = new ProjectList();
+    	//adding the loaded projects
+    	for (Project project: tempProjects) {
+    		myProjects.addProject(project);
+    	}
     }
 
 	/**
@@ -262,7 +270,10 @@ public class Model {
     		fileWriter.write(myFileCostHeader + myProjects.getProjectList().get(i).getMyCost() + "\n");
     		fileWriter.write(myFileDurationDayHeader + myProjects.getProjectList().get(i).getMyDays() + "\n");
     		fileWriter.write(myFileEnergyEffHeader + myProjects.getProjectList().get(i).getMyEnergy().getValue() + "\n");
-    		fileWriter.write(myFileNotesHeader + "\n" + myProjects.getProjectList().get(i).getMyNotes());
+    		fileWriter.write(myFileNotesHeader + "\n" + myProjects.getProjectList().get(i).getMyNotes().trim());
+    		if (!myProjects.getProjectList().get(i).getMyNotes().trim().equals("")) {
+    			fileWriter.write("\n");
+    		}
     		fileWriter.write(myFileEndNotes + "\n");
     		fileWriter.write(myFileMaterialsSizeHeader + myProjects.getProjectList().get(i).getMyMaterials().getMaterialMap().size() + "\n");
     		for (Map.Entry<String,Double> entry : myProjects.getProjectList().get(i).getMyMaterials().getMaterialMap().entrySet()) {
