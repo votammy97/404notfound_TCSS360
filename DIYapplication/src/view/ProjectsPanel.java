@@ -17,6 +17,16 @@ import model.ProjectList;
 * @version Spring 19
 */
 public class ProjectsPanel extends JPanel {
+	
+	/**
+	 * Dimension of the Panel of project list
+	 */
+	private static final Dimension PROJLISTDIMENSION = new Dimension(250, 370);
+	
+	/**
+	 * Dimension of the button for adding projects
+	 */
+	private static final Dimension ADDBTNDIMENSION = new Dimension(250, 50);
 
     /**
      * A generated serial version UID for object Serialization.
@@ -26,42 +36,51 @@ public class ProjectsPanel extends JPanel {
 	/**
 	 * Panel that contains all the projects panel	
 	 */
-	private JPanel myProjectsPanel;
+	private final JPanel myProjectsPanel;
 	
     /** The model for reference. */
-    private Controller myController;
+    private final Controller myController;
 	
     /**
      * Constructor of the ProjectsPanel
      * @param theController to references the constructor
+     * @author Ken Gil Romero
      */
 	ProjectsPanel(final Controller theController) {
 		super();
-		JPanel LeftPanel = new JPanel(new BorderLayout());
+		final JPanel LeftPanel = new JPanel(new BorderLayout());
 		myController = theController;
+		
         JButton add = new JButton("  +  ");
         add.setBackground(Color.WHITE);
-        add.setPreferredSize(new Dimension(250, 50));    
+        add.setPreferredSize(ADDBTNDIMENSION);    
         add.addActionListener(theEvent -> myController.createNewProject());
+        
+        myProjectsPanel = new JPanel();
+        myProjectsPanel.setPreferredSize(PROJLISTDIMENSION);
+        final JScrollPane scrollPane = new JScrollPane(myProjectsPanel, 
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(myProjectsPanel.getPreferredSize());
+        
         LeftPanel.add(add, BorderLayout.NORTH);
         LeftPanel.add(new JPanel(), BorderLayout.CENTER);
-        myProjectsPanel = new JPanel();
-        myProjectsPanel.setPreferredSize(new Dimension(250, 270));
-		LeftPanel.add(new JScrollPane(myProjectsPanel, 
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, //VERTICAL_SCROLLBAR_ALWAYS
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.SOUTH);
+		LeftPanel.add(scrollPane, BorderLayout.SOUTH);
+		
         add(LeftPanel);
 	}
 
 	/**
 	 * Builds the project panels using the projectsList
 	 * @param theProjectsList the panels list of projects
+	 * @author Ken Gil Romero
 	 */
 	public void buildProjectPanels(final ProjectList theProjectsList) {
 		myProjectsPanel.removeAll();
 		for (int i = 0; i < theProjectsList.getProjectList().size(); i++) {
-			myProjectsPanel.add(new ProjectPanel(theProjectsList.getProjectList().get(i)));
+			myProjectsPanel.add(new ProjectPanel(theProjectsList.getProjectList().get(i), myController));
 		}
 		myProjectsPanel.revalidate();
+		repaint();
 	}
 }
