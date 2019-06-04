@@ -66,8 +66,9 @@ public class ProjectsPanel extends JPanel {
 	public void buildProjectPanels(final ProjectList theProjectsList) {
 		myProjectsPanel.removeAll();
 		for (int i = 0; i < theProjectsList.getProjectList().size(); i++) {
-			myProjectsPanel.add(new ProjectPanel(theProjectsList.getProjectList().get(i)));
+			myProjectsPanel.add(new ProjectPanel(theProjectsList.getProjectList().get(i), myController));
 		}
 		myProjectsPanel.revalidate();
+		repaint();
 	}
 }
