@@ -8,6 +8,11 @@ import controller.Controller;
 import model.*;
 import view.*;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public final class Main {
 
     /**

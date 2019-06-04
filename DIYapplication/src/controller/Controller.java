@@ -105,16 +105,20 @@ public class Controller {
     }
     
     /**
-     * Sets the action of Save
+     * Sets the action of Save, returns true if save was successful
 	 * @author Ken Gil Romero
      */
-    public void saveProjects() {
+    public boolean saveProjects() {
     	if (myModel.getFileChooser().showSaveDialog(myView) == JFileChooser.APPROVE_OPTION) {
     		try {                  
     			myModel.saveProjects(myModel.getFileChooser().getSelectedFile()); 
+        		return true;
             } catch (final IOException e) {
                 JOptionPane.showMessageDialog(myView, "Error saving file.");
+                return false;
             }
+        } else {
+        	return false;
         }
     }
     
