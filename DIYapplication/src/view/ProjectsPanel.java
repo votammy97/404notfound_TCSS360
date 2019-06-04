@@ -83,11 +83,8 @@ public class ProjectsPanel extends JPanel {
 		for (int i = 0; i < theProjectsList.getProjectList().size(); i++) {
 			myProjectsPanel.add(new ProjectPanel(theProjectsList.getProjectList().get(i), myController));
 		}
-		int temp = myController.getProjectsSize() * PROJPANELSIZE;
-		if (myProjectsPanel.getPreferredSize().getHeight() < temp) {
-			myProjectsPanel.setPreferredSize(new Dimension(myProjectsPanel.getWidth()
-					,temp));
-		}
+		int temp = myController.getProjectsSize() * PROJPANELSIZE + 5;
+		myProjectsPanel.setPreferredSize(new Dimension(myProjectsPanel.getWidth(), temp));
 		myProjectsPanel.revalidate();
 		myProjectsPanel.repaint();
 	}
