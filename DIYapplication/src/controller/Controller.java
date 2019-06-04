@@ -55,10 +55,12 @@ public class Controller {
 	 * create button is clicked.
 	 * 
 	 * @author Gordon McCreary
+	 * @author Ken Gil Romero
 	 * @param theProject The project that was created.
 	 */
 	public void addCreatedProject(final Project theProject) {
 		myModel.addProject(theProject);
+		myView.setSaveFlag(false);
 	}
 	
 	/**
@@ -74,9 +76,12 @@ public class Controller {
 	/**
 	 * Calling this method will delete given project from project list.
 	 * @param theProject the project which will be delete.
+	 * @author 
+	 * @author Ken Gil Romero
 	 */
 	public void deleteProject(final Project theProject) {
 		myModel.getProjectList().deleteProject(theProject);
+		myView.setSaveFlag(false);
 	}
 	
 	/**
@@ -97,6 +102,7 @@ public class Controller {
     	if (myModel.getFileChooser().showOpenDialog(myView) == JFileChooser.APPROVE_OPTION) {
     		try {                  
     			myModel.loadProjects(myModel.getFileChooser().getSelectedFile());
+    			myView.setSaveFlag(true);
             } catch (final IOException e) {
                 JOptionPane.showMessageDialog(myView, "Error loading file.");
             }
@@ -112,6 +118,7 @@ public class Controller {
     	if (myModel.getFileChooser().showSaveDialog(myView) == JFileChooser.APPROVE_OPTION) {
     		try {                  
     			myModel.saveProjects(myModel.getFileChooser().getSelectedFile()); 
+    			myView.setSaveFlag(true);
         		return true;
             } catch (final IOException e) {
                 JOptionPane.showMessageDialog(myView, "Error saving file.");
