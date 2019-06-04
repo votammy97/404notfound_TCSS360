@@ -13,7 +13,7 @@ import view.*;
 public class Controller {
 	
 	/* The project view. */
-	private DIYProjectPlanner myView;
+	private View myView;
 	
 	/* The project model. */
 	private Model myModel;
@@ -36,7 +36,7 @@ public class Controller {
 	 * @param theView The view received from the login.
 	 * @param theModel The model received from the login.
 	 */
-	public void loginSuccess(final DIYProjectPlanner theView,
+	public void loginSuccess(final View theView,
 												final Model theModel) {
 		myView = theView;
 		myModel = theModel;
@@ -137,6 +137,13 @@ public class Controller {
      */
     public String getEmailAddress() {
     	return myModel.getEmailAddress();
+    }
+    
+    /**
+     * @return the size of the list of projects
+     */
+    public int getProjectsSize() {
+    	return myModel.getProjectList().getProjectList().size();
     }
     
 	/**

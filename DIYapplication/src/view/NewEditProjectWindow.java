@@ -40,7 +40,7 @@ public class NewEditProjectWindow {
 	private Controller myController;
 	
 	/* The frame that is the main application. */
-	private DIYProjectPlanner myApp;
+	private View myApp;
 	
 	/* The frame that is this window. */
 	private JFrame myFrame;
@@ -86,7 +86,7 @@ public class NewEditProjectWindow {
 	 * @param theApp The main application that this window was called from.
 	 */
 	public NewEditProjectWindow(final Project theProject,
-			   final DIYProjectPlanner theApp, final Controller theController) {
+			   final View theApp, final Controller theController) {
 		theApp.setEnabled(false);
 		myController = theController;
 		myApp = theApp;
