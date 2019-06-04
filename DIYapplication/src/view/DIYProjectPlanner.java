@@ -1,8 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -43,6 +47,11 @@ public class DIYProjectPlanner extends JFrame {
     
     /** The model for reference. */
 	private final Controller myController;
+	
+	/**
+	 * Exit prompt window adapter
+	 */
+	private WindowAdapter myExitWindowAdapter;
 
 	/**
 	 * 
@@ -55,17 +64,41 @@ public class DIYProjectPlanner extends JFrame {
 		myController = theController;
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(600, 500));
-		
 		createAndShowGUI();
+	}
+	
+	/**
+	 * Closing application show dialog
+	 * @author Ken Gil Romero
+	 */
+	private void showClosingDialog() {
+        int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+        if(PromptResult==JOptionPane.YES_OPTION)
+        {
+        	if (myController.saveProjects()) {
+        		System.exit(0);
+        	}
+        }
+        if(PromptResult==JOptionPane.NO_OPTION) {
+        	System.exit(0);
+        }
 	}
 
 	/**
-	 * 
+	 * @author Owner Ken Gil Romero
 	 */
 	public void createAndShowGUI() {
 		setUpComponents();
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		myExitWindowAdapter = new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent we)
+		    { 
+		    	showClosingDialog();
+		    }
+		};
+		addWindowListener(myExitWindowAdapter);
 		pack();
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -80,11 +113,10 @@ public class DIYProjectPlanner extends JFrame {
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
+		
 		myProjectsJpanel = new ProjectsPanel(myController);
         add(myProjectsJpanel, BorderLayout.WEST);
-		//add(new ProjectsPanel(myController), BorderLayout.WEST);
-        
-        //TODO: Description
+
         myDescriptionJpanel = new DescriptionPanel();
         add(myDescriptionJpanel, BorderLayout.EAST);
 	}
@@ -114,6 +146,8 @@ public class DIYProjectPlanner extends JFrame {
 	/**
 	 * 
 	 * @return
+	 * @author 
+	 * @author Ken Gil Romero
 	 */
 	private JMenu createFileMenu() {
 		final JMenu menu = new JMenu("File");
@@ -126,7 +160,7 @@ public class DIYProjectPlanner extends JFrame {
 		final JMenuItem save = new JMenuItem("Save...");
 		save.addActionListener(theEvent -> myController.saveProjects());
 		final JMenuItem exit = new JMenuItem("Exit");
-		exit.addActionListener(theEvent -> System.exit(0));
+		exit.addActionListener(theEvent -> showClosingDialog());
 
 		menu.add(make);
 		menu.add(open);

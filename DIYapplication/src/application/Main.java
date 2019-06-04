@@ -6,6 +6,11 @@ import javax.swing.UnsupportedLookAndFeelException;
 import controller.Controller;
 import view.*;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public final class Main {
 
     /**
