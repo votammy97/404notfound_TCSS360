@@ -28,10 +28,7 @@ public class ProjectPanel extends JPanel {
 	 * delete button.
 	 */
 	private JButton myDelete;
-	/**
-	 * my project panel.
-	 */
-	private JPanel myProject;
+
 	/**
 	 * right panel.
 	 */
@@ -39,6 +36,8 @@ public class ProjectPanel extends JPanel {
 	/**
 	 * project.
 	 * @param theProject
+	 * @author 
+	 * @author Ken Gil Romero
 	 */
 	ProjectPanel(Project theProject, final Controller theController) {
 		//super();
@@ -89,49 +88,4 @@ public class ProjectPanel extends JPanel {
 			
 		});
 	}
-	
-    
-//    /**
-//     * add a project to the left components.
-//     * @param theProject the project to be added
-//     */
-//    public void addProjectPanel(Project theProject) {
-//	   	JPanel jPanel = new JPanel();
-//	   	jPanel.setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
-//        JButton edit = new JButton("Edit");
-//        edit.addActionListener(theEvent -> myController.setEditProjectButtonActionListener());
-//        JButton delete = new JButton("Delete");
-//        delete.addActionListener(theEvent -> myController.setDeleteProjectButtonActionListener());
-//		jPanel.add(edit);
-//		jPanel.add(delete);
-//		this.add(jPanel);
-//		this.revalidate();
-//    }
-//    
-//    /**
-//     * edit a project to the left components.
-//     * @param panel to be edited
-//     * @param theProject to be edited
-//     */
-// 	public void editProject(JPanel theJPanel, Project theProject) {
-// 		//TODO open editGUI and get project	
-//// 		model.addProject(project);
-//// 		addProject(project);
-// 		theJPanel.setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
-//    	revalidate();
-// 	}
-//    
-//    /**
-//     * remove a panel to the left components.
-//     * @param theJPanel the panel to be deleted
-//     * @param theProject to be deleted
-//     */
-//    public void deleteProject(JPanel theJPanel, Project theProject) {
-// 		//myView.myJPanelLeft.remove(theJPanel);
-// 		//TODO:delete Project
-// 		revalidate();
-//    }   
-    
-    
-
 }

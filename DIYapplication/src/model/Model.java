@@ -13,7 +13,7 @@ import javax.swing.JFileChooser;
  * @author Ken Gil Romero
  * @version Spring 19
  */
-public class DIYFileManager {
+public class Model {
 	
 	/**
 	 * Header of the project workspace
@@ -101,19 +101,13 @@ public class DIYFileManager {
 		
 	/**
 	 * Constructor of  the DIYFileManager
+	 * @author Ken Gil Romero
 	 */
-	public DIYFileManager(String theFirstName, String theEmailAddr) {
+	public Model(String theFirstName, String theEmailAddr) {
 		myProjects= new ProjectList();
 		myUserFirstName = theFirstName;
 		myUserEmailAddr = theEmailAddr;
 		myJFileChooser = new JFileChooser(".");
-	}
-	
-	/**
-	 * @return the list of projects
-	 */
-	public ProjectList getProjects() {
-		return myProjects;
 	}
 	
 	/**
@@ -123,6 +117,10 @@ public class DIYFileManager {
 		return myUserFirstName;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public JFileChooser getFileChooser() {
 		return myJFileChooser;
 	}
@@ -145,6 +143,7 @@ public class DIYFileManager {
 	 * loading the list of projects
 	 * @param theProjectsFile the file to be loaded
 	 * @throws IOException the exception to be thrown
+	 * @author Ken Gil Romero
 	 */
     public void loadProjects(final File theProjectsFile) throws IOException {
     	final Scanner scan = new Scanner(theProjectsFile); 
@@ -226,6 +225,7 @@ public class DIYFileManager {
 	/**
 	 * @param theScan the scanner to be closed
 	 * @throws IOException the exception to be thrown
+	 * @author Ken Gil Romero
 	 */
 	private void closeScanThrowIOEx(final Scanner theScan) throws IOException {
 		theScan.close();
@@ -237,6 +237,7 @@ public class DIYFileManager {
      * @param theScan the scanner to be closed
      * @param theHeader the header to be checked
      * @throws IOException the exception thrown.
+     * @author Ken Gil Romero
      */
     private void checkHeader(Scanner theScan, String theHeader) throws IOException {
     	String scan1 = theScan.next();
@@ -248,6 +249,7 @@ public class DIYFileManager {
     /**
      * @param theProjectsFile the file to be saved
      * @throws IOException the exception to be thrown
+     * @author Ken Gil Romero
      */
     public void saveProjects(final File theProjectsFile) throws IOException {
     	FileWriter fileWriter = new FileWriter(theProjectsFile);

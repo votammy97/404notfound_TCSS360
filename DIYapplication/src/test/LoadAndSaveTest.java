@@ -7,11 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.DIYFileManager;
+import model.Model;
 import model.Energy;
 
 /**
@@ -21,7 +20,7 @@ import model.Energy;
  */
 class LoadAndSaveTest {
 	
-	DIYFileManager fm;
+	Model fm;
 
 	/**
 	 * Set up all fields for test cases 
@@ -29,7 +28,7 @@ class LoadAndSaveTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
-		fm = new DIYFileManager("firstName", "emailAddress");
+		fm = new Model("firstName", "emailAddress");
 	}
 
 	/**
