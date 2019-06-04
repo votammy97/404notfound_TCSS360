@@ -139,4 +139,68 @@ public class Controller {
     public String formatLength(final String theInput, final int theLength) {
     	return model.StringFormatters.formatLength(theInput, theLength);
     }
+    
+	/**
+	 * Sorts the project panels by name in alphabetical order.
+	 */
+    public void sortByName() {
+    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByName());
+    	myView.buildProjectPanels(myModel.getProjects());
+    }
+    
+	/**
+	 * Sorts the project panels by name in reverse alphabetical order.
+	 */
+    public void sortByNameR() {
+    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByNameReversed());
+    	myView.buildProjectPanels(myModel.getProjects());
+    }
+    
+	/**
+	 * Sorts the project panels by cost in ascending order.
+	 */
+    public void sortByCost() {
+    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByCost());
+    	myView.buildProjectPanels(myModel.getProjects());
+    }
+    
+	/**
+	 * Sorts the project panels by cost in descending order.
+	 */
+    public void sortByCostR() {
+    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByCostReversed());
+    	myView.buildProjectPanels(myModel.getProjects());
+    }
+    
+	/**
+	 * Sorts the project panels by duration in ascending order.
+	 */
+    public void sortByDuration() {
+    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByDuration());
+    	myView.buildProjectPanels(myModel.getProjects());
+    }
+    
+	/**
+	 * Sorts the project panels by duration in descending order.
+	 */
+    public void sortByDurationR() {
+    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByDurationReversed());
+    	myView.buildProjectPanels(myModel.getProjects());
+    }
+    
+	/**
+	 * Sorts the project panels by energy efficiency in normal order.
+	 */
+    public void sortByEnergy() {
+    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByEnergy());
+    	myView.buildProjectPanels(myModel.getProjects());
+    }
+    
+	/**
+	 * Sorts the project panels by energy efficiency in reversed order.
+	 */
+    public void sortByEnergyR() {
+    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByEnergyReversed());
+    	myView.buildProjectPanels(myModel.getProjects());
+    }
 }
