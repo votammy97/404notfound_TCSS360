@@ -21,6 +21,7 @@ public class Controller {
 	/**
 	 * Constructor for the Controller.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theLogin The login window.
 	 */
 	public Controller(final Login theLogin) {
@@ -31,6 +32,7 @@ public class Controller {
 	 * This method is automatically called by the login window after a login is
 	 * successful.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theView The view received from the login.
 	 * @param theModel The model received from the login.
 	 */
@@ -42,6 +44,7 @@ public class Controller {
 	
 	/**
 	 * Calling this method will bring up the New Project Window.
+	 * @author Gordon McCreary
 	 */
 	public void createNewProject() {
 		new NewEditProjectWindow(new Project(), myView, this);
@@ -51,6 +54,7 @@ public class Controller {
 	 * This method is automatically called by the New Project Window once the
 	 * create button is clicked.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theProject The project that was created.
 	 */
 	public void addCreatedProject(final Project theProject) {
@@ -60,6 +64,7 @@ public class Controller {
 	/**
 	 * Calling this method will bring up the Edit Project Window.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theProject The project that will be edited.
 	 */
 	public void editProject(final Project theProject) {

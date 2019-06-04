@@ -15,6 +15,7 @@ public class StringFormatters {
 	/**
 	 * Formats the given string by removing any non-integer characters.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theOriginal The original string before formatting.
 	 * @return The new string after formatting to integer.
 	 */
@@ -33,6 +34,7 @@ public class StringFormatters {
 	/**
 	 * Formats the given string to properly represent a US dollar value.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theOriginal The original string before formatting.
 	 * @return The new string after formatting to US dollar.
 	 */
@@ -53,12 +55,14 @@ public class StringFormatters {
 	/**
 	 * Formats the given string to make its length theLength or less..
 	 * 
+	 * @author Gordon McCreary
 	 * @param theOriginal The original string before formatting.
 	 * @param theLength The maximum length of the string.
 	 * @return The new string after removing character past index theLength.
 	 * @throws IndexOutOfBoundsException If theLength is negative.
 	 */
-	public static String formatLength(final String theOriginal, final int theLength) {
+	public static String formatLength(final String theOriginal,
+						 final int theLength) throws IndexOutOfBoundsException {
 		String result = theOriginal;
 		if (result.length() > theLength) {
 			result = result.substring(0, theLength);
