@@ -63,6 +63,14 @@ public class Controller {
 	}
 	
 	/**
+	 * Calling this method will delete given project from project list.
+	 * @param theProject the project which will be delete.
+	 */
+	public void deleteProject(final Project theProject) {
+		myModel.getProjectList().deleteProject(theProject);
+	}
+	
+	/**
 	 * Calling this method refreshes the GUI display of the current project
 	 * list. This method should be called whenever a project is added, deleted,
 	 * or whenever sorting is performed on the ProjectList.
