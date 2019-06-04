@@ -43,6 +43,7 @@ public class MaterialsWindow {
 	/**
 	 * Material window constructor to display project materials.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theHost The JFrame this is being called from.
 	 * @param theMaterials The Materials.
 	 * @param theWindow The NewEditProjectWindow this was called from.
@@ -78,6 +79,7 @@ public class MaterialsWindow {
 	/**
 	 * Builds the panel by adding all the labels, fields, buttons, etc.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The panel to add the components to.
 	 */
 	private void buildPanel(final JPanel thePanel) {
@@ -90,6 +92,7 @@ public class MaterialsWindow {
 	/**
 	 * Shows the frame.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theFrame The frame to be shown.
 	 */
 	private void showFrame(final JFrame theFrame) {
@@ -114,6 +117,7 @@ public class MaterialsWindow {
 		/**
 		 * Mat constructor.
 		 * 
+		 * @author Gordon McCreary
 		 * @param theName The name of the project.
 		 * @param theCost The cost of the project.
 		 */

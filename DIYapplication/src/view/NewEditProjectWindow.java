@@ -32,7 +32,7 @@ import model.Project;
  * The new and edit project window for DIYProjectPlanner application.
  * 
  * @author Gordon McCreary
- * @version May 30, 2019
+ * @version June 4, 2019
  */
 public class NewEditProjectWindow {
 	
@@ -40,7 +40,7 @@ public class NewEditProjectWindow {
 	private Controller myController;
 	
 	/* The frame that is the main application. */
-	private DIYProjectPlanner myApp;
+	private View myApp;
 	
 	/* The frame that is this window. */
 	private JFrame myFrame;
@@ -81,11 +81,12 @@ public class NewEditProjectWindow {
 	/**
 	 * Constructor for the NewEditProjectWindow.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theProject The project being edited.
 	 * @param theApp The main application that this window was called from.
 	 */
 	public NewEditProjectWindow(final Project theProject,
-			   final DIYProjectPlanner theApp, final Controller theController) {
+			   final View theApp, final Controller theController) {
 		theApp.setEnabled(false);
 		myController = theController;
 		myApp = theApp;
@@ -105,7 +106,8 @@ public class NewEditProjectWindow {
 					   								   theProject.getMyCost()));
 			myDaysField.setText("" + (theProject.getMyDays() % 7));
 			myWeeksField.setText("" + (theProject.getMyDays() / 7));
-			myEnergyField.setSelectedIndex(theProject.getMyEnergy().getValue());
+			myEnergyField.setSelectedIndex(
+									   theProject.getMyEnergy().getValue() - 1);
 			myNotesField.setText(theProject.getMyNotes());
 			mySubmitButton.setText("Update");
 		}
@@ -124,6 +126,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Builds the panel by adding all the labels, fields, buttons, etc.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The panel to add the components to.
 	 */
 	private void buildPanel(final JPanel thePanel) {
@@ -141,6 +144,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Adds the name JLabel and JTextField to the main JPanel.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The main JPanel.
 	 */
 	private void addName(final JPanel thePanel) {
@@ -168,6 +172,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Adds the cost JLabel and JTextField to the main JPanel.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The main JPanel.
 	 */
 	private void addCost(final JPanel thePanel) {
@@ -196,6 +201,7 @@ public class NewEditProjectWindow {
 	 * Adds the duration JLabel and JTextFields to the main JPanel, both for
 	 * Days and Weeks.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The main JPanel.
 	 */
 	private void addDuration(final JPanel thePanel) {
@@ -250,6 +256,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Adds the material JPanel consisting of the label, fields, and buttons.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The main JPanel.
 	 */
 	private void addMaterials(final JPanel thePanel) {
@@ -320,6 +327,10 @@ public class NewEditProjectWindow {
 		thePanel.add(Mats);
 	}
 	
+	/**
+	 * Update the label the displays the number of materials.
+	 * @author Gordon McCreary
+	 */
 	protected void updateMatLabel() {
 		myMaterialLabel.setText("Total Materials: "
 										 + myMaterials.getMaterialMap().size());
@@ -328,6 +339,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Adds the energy JLabel and JComboBox to the main JPanel.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The main JPanel.
 	 */
 	private void addEnergyEfficiency(final JPanel thePanel) {
@@ -347,6 +359,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Adds the notes JLabel and JTextArea to the main JPanel.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The main JPanel.
 	 */
 	private void addNotes(final JPanel thePanel) {
@@ -365,6 +378,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Adds the submit JButton to the main JPanel.
 	 * 
+	 * @author Gordon McCreary
 	 * @param thePanel The main JPanel.
 	 */
 	private void addSubmit(final JPanel thePanel) {
@@ -379,7 +393,7 @@ public class NewEditProjectWindow {
 											   "You must enter a project name!",
 											   				 "Empty Name Field",
 						   					   JOptionPane.INFORMATION_MESSAGE);
-				} else  if (myController.projectExists(myNameField.getText())) {
+				} else  if (myNewFlag && myController.projectExists(myNameField.getText())) {
 					JOptionPane.showMessageDialog(null,
 												 "Enter a unique project name!",
 												 	   "Duplicate Project Name",
@@ -410,6 +424,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Submits the project information to the project, updating all of its
 	 * fields to the inputed values.
+	 * @author Gordon McCreary
 	 */
 	private void submitProject() {
 		myProject.setMyName(myNameField.getText());
@@ -430,6 +445,7 @@ public class NewEditProjectWindow {
 	/**
 	 * Shows the frame.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theFrame The frame to be shown.
 	 */
 	private void showFrame(final JFrame theFrame) {

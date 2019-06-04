@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import model.DIYFileManager;
+import model.Model;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -100,8 +100,8 @@ public class Login extends JFrame{
 				} else {
 					panel4.setVisible(false);
 					dispose();
-					final DIYProjectPlanner view = new DIYProjectPlanner(myController);
-					final DIYFileManager model = new DIYFileManager(
+					final View view = new View(myController);
+					final Model model = new Model(
 							   myFirstName.getText(), myEmailAddress.getText());
 					myController.loginSuccess(view, model);
 				}

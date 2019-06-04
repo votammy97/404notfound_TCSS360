@@ -3,11 +3,14 @@ package application;
 import java.awt.EventQueue;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
 import controller.Controller;
-import model.*;
 import view.*;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public final class Main {
 
     /**
