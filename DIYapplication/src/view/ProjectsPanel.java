@@ -17,6 +17,8 @@ import model.ProjectList;
 * @version Spring 19
 */
 public class ProjectsPanel extends JPanel {
+	
+	private static final Dimension DIMENSION = new Dimension(250, 270);
 
     /**
      * A generated serial version UID for object Serialization.
@@ -34,6 +36,7 @@ public class ProjectsPanel extends JPanel {
     /**
      * Constructor of the ProjectsPanel
      * @param theController to references the constructor
+     * @author Ken Gil Romero
      */
 	ProjectsPanel(final Controller theController) {
 		super();
@@ -46,16 +49,19 @@ public class ProjectsPanel extends JPanel {
         LeftPanel.add(add, BorderLayout.NORTH);
         LeftPanel.add(new JPanel(), BorderLayout.CENTER);
         myProjectsPanel = new JPanel();
-        myProjectsPanel.setPreferredSize(new Dimension(250, 270));
-		LeftPanel.add(new JScrollPane(myProjectsPanel, 
+        myProjectsPanel.setPreferredSize(DIMENSION);
+        JScrollPane scrollPane = new JScrollPane(myProjectsPanel, 
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, //VERTICAL_SCROLLBAR_ALWAYS
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.SOUTH);
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(myProjectsPanel.getPreferredSize());
+		LeftPanel.add(scrollPane, BorderLayout.SOUTH);
         add(LeftPanel);
 	}
 
 	/**
 	 * Builds the project panels using the projectsList
 	 * @param theProjectsList the panels list of projects
+	 * @author Ken Gil Romero
 	 */
 	public void buildProjectPanels(final ProjectList theProjectsList) {
 		myProjectsPanel.removeAll();
