@@ -6,13 +6,17 @@ import javax.swing.JOptionPane;
 import model.*;
 import view.*;
 
+/**
+ * 
+ * @author Owner	
+ */
 public class Controller {
 	
 	/* The project view. */
 	private DIYProjectPlanner myView;
 	
 	/* The project model. */
-	private DIYFileManager myModel;
+	private Model myModel;
 	
 	/**
 	 * Constructor for the Controller.
@@ -31,7 +35,7 @@ public class Controller {
 	 * @param theModel The model received from the login.
 	 */
 	public void loginSuccess(final DIYProjectPlanner theView,
-												final DIYFileManager theModel) {
+												final Model theModel) {
 		myView = theView;
 		myModel = theModel;
 	}
@@ -74,13 +78,15 @@ public class Controller {
 	 * Calling this method refreshes the GUI display of the current project
 	 * list. This method should be called whenever a project is added, deleted,
 	 * or whenever sorting is performed on the ProjectList.
+	 * @author Ken Gil Romero
 	 */
 	public void refreshProjects() {
-		myView.buildProjectPanels(myModel.getProjects());
+		myView.buildProjectPanels(myModel.getProjectList());
 	}
 	
 	/**
      * Sets the action of Open
+     * @author Ken Gil Romero
      */
     public void openProjects() {
     	if (myModel.getFileChooser().showOpenDialog(myView) == JFileChooser.APPROVE_OPTION) {
@@ -95,6 +101,7 @@ public class Controller {
     
     /**
      * Sets the action of Save
+	 * @author Ken Gil Romero
      */
     public void saveProjects() {
     	if (myModel.getFileChooser().showSaveDialog(myView) == JFileChooser.APPROVE_OPTION) {
@@ -104,6 +111,23 @@ public class Controller {
                 JOptionPane.showMessageDialog(myView, "Error saving file.");
             }
         }
+    }
+    
+    /**
+     * @return the firstname of the user
+     * @author Ken Gil Romero
+     */
+    public String getFirstName() {
+    	return myModel.getFirstName();
+    }
+    
+    
+    /**
+     * @return the email of the user
+     * @author Ken Gil Romero
+     */
+    public String getEmailAddress() {
+    	return myModel.getEmailAddress();
     }
     
 	/**
@@ -152,63 +176,63 @@ public class Controller {
 	 * Sorts the project panels by name in alphabetical order.
 	 */
     public void sortByName() {
-    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByName());
-    	myView.buildProjectPanels(myModel.getProjects());
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByName());
+    	myView.buildProjectPanels(myModel.getProjectList());
     }
     
 	/**
 	 * Sorts the project panels by name in reverse alphabetical order.
 	 */
     public void sortByNameR() {
-    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByNameReversed());
-    	myView.buildProjectPanels(myModel.getProjects());
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByNameReversed());
+    	myView.buildProjectPanels(myModel.getProjectList());
     }
     
 	/**
 	 * Sorts the project panels by cost in ascending order.
 	 */
     public void sortByCost() {
-    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByCost());
-    	myView.buildProjectPanels(myModel.getProjects());
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByCost());
+    	myView.buildProjectPanels(myModel.getProjectList());
     }
     
 	/**
 	 * Sorts the project panels by cost in descending order.
 	 */
     public void sortByCostR() {
-    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByCostReversed());
-    	myView.buildProjectPanels(myModel.getProjects());
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByCostReversed());
+    	myView.buildProjectPanels(myModel.getProjectList());
     }
     
 	/**
 	 * Sorts the project panels by duration in ascending order.
 	 */
     public void sortByDuration() {
-    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByDuration());
-    	myView.buildProjectPanels(myModel.getProjects());
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByDuration());
+    	myView.buildProjectPanels(myModel.getProjectList());
     }
     
 	/**
 	 * Sorts the project panels by duration in descending order.
 	 */
     public void sortByDurationR() {
-    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByDurationReversed());
-    	myView.buildProjectPanels(myModel.getProjects());
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByDurationReversed());
+    	myView.buildProjectPanels(myModel.getProjectList());
     }
     
 	/**
 	 * Sorts the project panels by energy efficiency in normal order.
 	 */
     public void sortByEnergy() {
-    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByEnergy());
-    	myView.buildProjectPanels(myModel.getProjects());
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByEnergy());
+    	myView.buildProjectPanels(myModel.getProjectList());
     }
     
 	/**
 	 * Sorts the project panels by energy efficiency in reversed order.
 	 */
     public void sortByEnergyR() {
-    	myModel.getProjects().getProjectList().sort(ProjectComparator.sortByEnergyReversed());
-    	myView.buildProjectPanels(myModel.getProjects());
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByEnergyReversed());
+    	myView.buildProjectPanels(myModel.getProjectList());
     }
 }
