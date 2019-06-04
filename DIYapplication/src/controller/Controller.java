@@ -102,6 +102,7 @@ public class Controller {
     	if (myModel.getFileChooser().showOpenDialog(myView) == JFileChooser.APPROVE_OPTION) {
     		try {                  
     			myModel.loadProjects(myModel.getFileChooser().getSelectedFile());
+    			myView.setSaveFlag(true);
             } catch (final IOException e) {
                 JOptionPane.showMessageDialog(myView, "Error loading file.");
             }
