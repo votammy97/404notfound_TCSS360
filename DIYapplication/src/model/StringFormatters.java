@@ -8,7 +8,7 @@ package model;
  * Provides several static methods for formatting strings.
  * 
  * @author Gordon McCreary
- * @version May 30, 2019
+ * @version June 4, 2019
  */
 public class StringFormatters {
 	
@@ -24,9 +24,12 @@ public class StringFormatters {
 		for (int i = 0; i < theOriginal.length(); i++) {
 			int c = Character.getNumericValue(theOriginal.charAt(i));
 			if (Character.getNumericValue('0') <= c
-								   && c <= Character.getNumericValue('9')) {
+									   && c <= Character.getNumericValue('9')) {
 				result += theOriginal.charAt(i);
 			}
+		}
+		while (result.length() > 1 && "0".equals(result.substring(0, 1))) {
+			result = result.substring(1);
 		}
 		return result;
 	}
