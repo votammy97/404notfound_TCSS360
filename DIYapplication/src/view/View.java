@@ -52,6 +52,11 @@ public class View extends JFrame {
 	 * Exit prompt window adapter
 	 */
 	private WindowAdapter myExitWindowAdapter;
+	
+	/**
+	 * Boolean that is changed if a project was recently saved.
+	 */
+	private boolean mySaveFlag;
 
 	/**
 	 * 
@@ -67,21 +72,34 @@ public class View extends JFrame {
 		createAndShowGUI();
 	}
 	
+	public boolean getSaveFlag() {
+		return mySaveFlag;
+	}
+	
+	
+	public void setSaveFlag(final boolean theFlag) {
+		mySaveFlag = theFlag;
+	}
+	
 	/**
 	 * Closing application show dialog
 	 * @author Ken Gil Romero
 	 */
 	private void showClosingDialog() {
-        int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
-        if(PromptResult==JOptionPane.YES_OPTION)
-        {
-        	if (myController.saveProjects()) {
-        		System.exit(0);
-        	}
-        }
-        if(PromptResult==JOptionPane.NO_OPTION) {
-        	System.exit(0);
-        }
+		if (!mySaveFlag) {
+	        int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+	        if(PromptResult==JOptionPane.YES_OPTION)
+	        {
+	        	if (myController.saveProjects()) {
+	        		System.exit(0);
+	        	}
+	        }
+	        if(PromptResult==JOptionPane.NO_OPTION) {
+	        	System.exit(0);
+	        }
+		} else {
+			System.exit(0);
+		}
 	}
 
 	/**
