@@ -171,41 +171,43 @@ public class View extends JFrame {
 	}
 	
 	/**
+	 * Creates the Sort JMenu.
 	 * 
-	 * @return
+	 * @author Matthew Chan
+	 * @return the Sort JMenu
 	 */
 	private JMenu createSortMenu() {
 		final JMenu menu = new JMenu("Sort");
 		menu.setMnemonic(KeyEvent.VK_S);
 		
 		final JMenu sortByName = new JMenu("By Name");
-		final JMenuItem nameAsc = new JMenuItem("Normal");
+		final JMenuItem nameAsc = new JMenuItem("A - Z");
 		nameAsc.addActionListener(theEvent -> myController.sortByName());
-		final JMenuItem nameDes = new JMenuItem("Reversed");
+		final JMenuItem nameDes = new JMenuItem("Z - A");
 		nameDes.addActionListener(theEvent -> myController.sortByNameR());
 		sortByName.add(nameAsc);
 		sortByName.add(nameDes);
 		
 		final JMenu sortByDuration = new JMenu("By Duration");
-		final JMenuItem durAsc = new JMenuItem("Ascending");
+		final JMenuItem durAsc = new JMenuItem("Shortest - Longest");
 		durAsc.addActionListener(theEvent -> myController.sortByDuration());
-		final JMenuItem durDes = new JMenuItem("Descending");
+		final JMenuItem durDes = new JMenuItem("Longest - Shortest");
 		durDes.addActionListener(theEvent -> myController.sortByDurationR());
 		sortByDuration.add(durAsc);
 		sortByDuration.add(durDes);
 		
 		final JMenu sortByCost = new JMenu("By Cost");
-		final JMenuItem costAsc = new JMenuItem("Ascending");
+		final JMenuItem costAsc = new JMenuItem("Low - High");
 		costAsc.addActionListener(theEvent -> myController.sortByCost());
-		final JMenuItem costDes = new JMenuItem("Descending");
+		final JMenuItem costDes = new JMenuItem("High - Low");
 		costDes.addActionListener(theEvent -> myController.sortByCostR());
 		sortByCost.add(costAsc);
 		sortByCost.add(costDes);
 		
 		final JMenu sortByEnergy = new JMenu("By Energy Efficiency");
-		final JMenuItem energyAsc = new JMenuItem("Normal");
+		final JMenuItem energyAsc = new JMenuItem("Low - High");
 		energyAsc.addActionListener(theEvent -> myController.sortByEnergy());
-		final JMenuItem energyDes = new JMenuItem("Reversed");
+		final JMenuItem energyDes = new JMenuItem("High - Low");
 		energyDes.addActionListener(theEvent -> myController.sortByEnergyR());
 		sortByEnergy.add(energyAsc);
 		sortByEnergy.add(energyDes);
