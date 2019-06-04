@@ -223,9 +223,7 @@ public class Model {
     	}
     	scan.close();
     	//deleting current projects
-    	for (Project project: myProjects.getProjectList()) {
-    		myProjects.deleteProject(project);
-    	}
+    	myProjects = new ProjectList();
     	//adding the loaded projects
     	for (Project project: tempProjects) {
     		myProjects.addProject(project);
@@ -272,8 +270,11 @@ public class Model {
     		fileWriter.write(myFileCostHeader + myProjects.getProjectList().get(i).getMyCost() + "\n");
     		fileWriter.write(myFileDurationDayHeader + myProjects.getProjectList().get(i).getMyDays() + "\n");
     		fileWriter.write(myFileEnergyEffHeader + myProjects.getProjectList().get(i).getMyEnergy().getValue() + "\n");
-    		fileWriter.write(myFileNotesHeader + "\n" + myProjects.getProjectList().get(i).getMyNotes());
-    		fileWriter.write("\n" + myFileEndNotes + "\n");
+    		fileWriter.write(myFileNotesHeader + "\n" + myProjects.getProjectList().get(i).getMyNotes().trim());
+    		if (!myProjects.getProjectList().get(i).getMyNotes().trim().equals("")) {
+    			fileWriter.write("\n");
+    		}
+    		fileWriter.write(myFileEndNotes + "\n");
     		fileWriter.write(myFileMaterialsSizeHeader + myProjects.getProjectList().get(i).getMyMaterials().getMaterialMap().size() + "\n");
     		for (Map.Entry<String,Double> entry : myProjects.getProjectList().get(i).getMyMaterials().getMaterialMap().entrySet()) {
     			fileWriter.write(myFileMaterialNameHeader + entry.getKey() + "\n");

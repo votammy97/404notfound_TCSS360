@@ -7,7 +7,6 @@
 #DurationDay: 1
 #EnergyEfficiency: 1
 #Notes: 
-
 -endnotes-
 #MaterialSize: 0
 #ProjectName: P 2
@@ -18,7 +17,6 @@
 a a
 b b b
 c c c c
-
 -endnotes-
 #MaterialSize: 2
 #MaterialName: M 4 _
