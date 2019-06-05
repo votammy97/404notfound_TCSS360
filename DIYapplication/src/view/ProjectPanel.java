@@ -100,6 +100,7 @@ public class ProjectPanel extends JPanel {
 		/**
 		 * mouselistener which used to listen user's mouse action.
 		 * if a project panel is clicked, this project info will display.
+		 * 
 		 */
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
