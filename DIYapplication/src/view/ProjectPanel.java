@@ -92,7 +92,7 @@ public class ProjectPanel extends JPanel {
 				removeAll();
 				revalidate();
 				theController.refreshProjects();
-				//repaint();
+				repaint();
 			}
 			
 		});
