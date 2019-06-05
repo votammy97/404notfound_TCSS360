@@ -148,6 +148,16 @@ public class View extends JFrame {
 	}
 	
 	/**
+	 * Gets the description panel.
+	 * @author Tammy Vo
+	 * 
+	 * @return description panel. 
+	 */
+	public DescriptionPanel getDescriptionPanel() {
+		return myDescriptionJpanel;
+	}
+	
+	/**
 	 * 
 	 * @return
 	 */

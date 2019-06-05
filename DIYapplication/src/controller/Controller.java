@@ -60,6 +60,7 @@ public class Controller {
 	 */
 	public void addCreatedProject(final Project theProject) {
 		myModel.addProject(theProject);
+		myView.getDescriptionPanel().displayDescription(theProject);
 		myView.setSaveFlag(false);
 	}
 	
