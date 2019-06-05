@@ -46,7 +46,7 @@ public class DescriptionPanel extends JPanel {
 		myTextArea.append("Name: " + project.getMyName());
 		myTextArea.append(String.valueOf("\nCost: $" + project.getMyCost()));
 		myTextArea.append(String.valueOf("\nDuration: " + project.getMyDays() + " days"));
-		myTextArea.append(String.valueOf("\nMaterials: " + project.getMyMaterials()));
+		myTextArea.append(String.valueOf("\n" + project.getMyMaterials()));
 		myTextArea.append(String.valueOf("\nEnergy Efficiency: " + project.getMyEnergy()));
 		myTextArea.append("\nNotes: " + project.getMyNotes());	
 	}

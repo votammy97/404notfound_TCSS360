@@ -6,18 +6,26 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import controller.Controller;
 import model.Project;
 
+/**
+ * 
+ * @author zheli
+ *
+ */
 public class ProjectPanel extends JPanel {
-
 	/**
-	 * 
+	 * id.
 	 */
 	private static final long serialVersionUID = 7412616505273929177L;
 	/**
@@ -36,10 +44,10 @@ public class ProjectPanel extends JPanel {
 	/**
 	 * project.
 	 * @param theProject
-	 * @author 
+	 * @author Zhe Li
 	 * @author Ken Gil Romero
 	 */
-	ProjectPanel(Project theProject, final Controller theController) {
+	public ProjectPanel(Project theProject, final Controller theController) {
 		//super();
 		
 		//setup layout.
@@ -48,9 +56,10 @@ public class ProjectPanel extends JPanel {
 		myEdit = new JButton("edit");
 		myDelete = new JButton("delete");
 		//setup display stuff.
-		setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
 		setPreferredSize(new Dimension(240, 50));
-		setBackground(Color.LIGHT_GRAY);
+		setBackground(new Color(245,245,245));
+		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), 
+				BorderFactory.createTitledBorder(theProject.getMyName())));
 		
 //		add(myProject);
 //		myProject.setBorder(BorderFactory.createTitledBorder(theProject.getMyName()));
@@ -83,9 +92,21 @@ public class ProjectPanel extends JPanel {
 				removeAll();
 				revalidate();
 				theController.refreshProjects();
-				//repaint();
+				repaint();
 			}
 			
+		});
+		
+		/**
+		 * mouselistener which used to listen user's mouse action.
+		 * if a project panel is clicked, this project info will display.
+		 * 
+		 */
+		this.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				theController.getDescription(theProject);
+				repaint();
+			}
 		});
 	}
 }
