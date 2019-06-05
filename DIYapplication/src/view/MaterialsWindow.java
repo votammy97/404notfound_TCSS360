@@ -123,8 +123,12 @@ public class MaterialsWindow {
 		 */
 		public Mat(final String theName, final double theCost) {
 			super(new BorderLayout());
-			this.add(new JLabel(String.format("%-12s$%.2f", theName, theCost)),
-															 BorderLayout.WEST);
+			JPanel tempPanel = new JPanel(new BorderLayout());
+			tempPanel.add(new JLabel(theName), BorderLayout.WEST);
+			tempPanel.add(new JLabel(String.format("$%.2f", theCost)),
+															 BorderLayout.EAST);
+			tempPanel.setPreferredSize(new Dimension(250,50));
+			this.add(tempPanel, BorderLayout.WEST);
 			JButton delete = new JButton("X");
 			delete.setBackground(new Color(226, 61, 61));
 			delete.addActionListener(theEvent -> {
@@ -135,7 +139,7 @@ public class MaterialsWindow {
 				myWindow.updateMatLabel();
 			});
 			this.add(delete, BorderLayout.EAST);
-			this.setPreferredSize(new Dimension(200, 25));
+			this.setPreferredSize(new Dimension(300, 25));
 			this.setBorder(BorderFactory.createBevelBorder(
 														  BevelBorder.LOWERED));
 		}
