@@ -65,6 +65,17 @@ public class Controller {
 	}
 	
 	/**
+	 * this method is used to display the project's info when user click one of 
+	 * project from project list.
+	 * @param theProject the project.
+	 * @author zhe li
+	 */
+	public void getDescription(final Project theProject) {
+		myView.getDescriptionPanel().displayDescription(theProject);
+		myView.setSaveFlag(false);
+	}
+	
+	/**
 	 * Calling this method will bring up the Edit Project Window.
 	 * 
 	 * @author Gordon McCreary
