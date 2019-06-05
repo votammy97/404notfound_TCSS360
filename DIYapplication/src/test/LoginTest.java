@@ -5,46 +5,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import controller.Controller;
 import model.Model;
 import view.Login;
+import view.View;
 
 class LoginTest {
 
 	private Login a = new Login();
-	private Model mng = new Model("firstName", "emailAddress");
+	private Controller controller = new Controller(a);
 	@Test
-	void testSetNameString() {
-		String name = "testName";
-		a.setName(name);
-		assertEquals(name, a.getName());
+	void testSetNameAndSetEmailString() {
+		View view = new View(controller);
+		Model m = new Model("testName", "test@email.com");
+		controller.loginSuccess(view, m);
+		assertEquals("testName", controller.getFirstName());
+		assertEquals("test@email.com", controller.getEmailAddress());
 	}
-
-//	@Test
-//	void testSetEmail() {
-//		String email = "fhiwehf@guh.eiwfhiew";
-//		a.setEmail(email);
-//		assertEquals(email, a.getEmail());
-//		
-//	}
-//
-//	@Test
-//	void testGetName() {
-//		a.setName("1313");
-//		assertEquals("1313", a.getName());
-//	}
-//
-//	@Test
-//	void testGetEmail() {
-//		a.setEmail("123@13.123");
-//		assertEquals("123@13.123", a.getEmail());
-//	}
-//	
-//	@Test
-//	void testsetInfo() {
-//		a.setEmail("123@13.123");
-//		a.setName("1313");
-//		a.setInfo(mng);
-//		assertEquals("123@13.123", mng.getEmail());
-//		assertEquals("1313", mng.getName());
-//	}
 }
