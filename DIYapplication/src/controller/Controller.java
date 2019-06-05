@@ -60,7 +60,6 @@ public class Controller {
 	 */
 	public void addCreatedProject(final Project theProject) {
 		myModel.addProject(theProject);
-		myView.getDescriptionPanel().displayDescription(theProject);
 		myView.setSaveFlag(false);
 	}
 	
@@ -93,6 +92,7 @@ public class Controller {
 	 */
 	public void deleteProject(final Project theProject) {
 		myModel.getProjectList().deleteProject(theProject);
+		myView.getDescriptionPanel().displayDescription(myModel.getProjectList().getProjectList().get(0));
 		myView.setSaveFlag(false);
 	}
 	
@@ -104,6 +104,7 @@ public class Controller {
 	 */
 	public void refreshProjects() {
 		myView.buildProjectPanels(myModel.getProjectList());
+		
 	}
 	
 	/**
