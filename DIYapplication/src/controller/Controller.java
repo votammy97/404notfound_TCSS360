@@ -72,7 +72,7 @@ public class Controller {
 	 */
 	public void getDescription(final Project theProject) {
 		myView.getDescriptionPanel().displayDescription(theProject);
-		myView.setSaveFlag(false);
+		//myView.setSaveFlag(false);
 	}
 	
 	/**
