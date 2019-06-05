@@ -9,7 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import controller.Controller;
 
-
+/**
+ * 
+ * @author zheli
+ *
+ */
 public class Login extends JFrame{
 	/**
 	 * ID.
@@ -43,7 +47,9 @@ public class Login extends JFrame{
 	 * controller.
 	 */
 	private Controller myController;
-	
+	/**
+	 * @author Zhe Li
+	 */
 	public Login() {
 		//set up gui stuff.
 		myFirstName = new JTextField(12);
@@ -118,6 +124,10 @@ public class Login extends JFrame{
 			}
 		});
 	}
+	/**
+	 * @author Zheli
+	 * @param theController the controller.
+	 */
 	//set up controller.
 	public void assignController(final Controller theController) {
 		myController = theController;
