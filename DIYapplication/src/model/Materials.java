@@ -45,17 +45,23 @@ public class Materials {
 
 	@Override
 	public String toString() {
-		DecimalFormat df = new DecimalFormat("0.##");
-		StringBuilder sb = new StringBuilder();
 		
-		for (Map.Entry<String, Double> entry : myMaterials.entrySet() ) {
-			sb.append("Material: " + entry.getKey() + " | Cost: $" + df.format(entry.getValue()));
-			sb.append("\n");
+		
+		if(!myMaterials.isEmpty()) {
+			DecimalFormat df = new DecimalFormat("0.##");
+			StringBuilder sb = new StringBuilder();
+			
+			for (Map.Entry<String, Double> entry : myMaterials.entrySet() ) {
+				sb.append("Material: " + entry.getKey() + " | Cost: $" + df.format(entry.getValue()));
+				sb.append("\n");
+			}
+			
+			sb.delete(sb.lastIndexOf("\n"), sb.length());
+			return sb.toString();
+			
+		} else {
+			return "No Materials is Found.";
 		}
-		
-		sb.delete(sb.lastIndexOf("\n"), sb.length());
-		
-		return sb.toString();
 	}
 
 }
