@@ -52,6 +52,11 @@ public class View extends JFrame {
 	 * Exit prompt window adapter
 	 */
 	private WindowAdapter myExitWindowAdapter;
+	
+	/**
+	 * Boolean that is changed if a project was recently saved.
+	 */
+	private boolean mySaveFlag;
 
 	/**
 	 * 
@@ -65,6 +70,15 @@ public class View extends JFrame {
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(600, 500));
 		createAndShowGUI();
+		mySaveFlag = true;
+	}
+	
+	
+	/**
+	 * @param theFlag to be setted for the feature that asks if you have saved before exiting
+	 */
+	public void setSaveFlag(final boolean theFlag) {
+		mySaveFlag = theFlag;
 	}
 	
 	/**
@@ -72,16 +86,20 @@ public class View extends JFrame {
 	 * @author Ken Gil Romero
 	 */
 	private void showClosingDialog() {
-        int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
-        if(PromptResult==JOptionPane.YES_OPTION)
-        {
-        	if (myController.saveProjects()) {
-        		System.exit(0);
-        	}
-        }
-        if(PromptResult==JOptionPane.NO_OPTION) {
-        	System.exit(0);
-        }
+		if (!mySaveFlag) {
+	        int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+	        if(PromptResult==JOptionPane.YES_OPTION)
+	        {
+	        	if (myController.saveProjects()) {
+	        		System.exit(0);
+	        	}
+	        }
+	        if(PromptResult==JOptionPane.NO_OPTION) {
+	        	System.exit(0);
+	        }
+		} else {
+			System.exit(0);
+		}
 	}
 
 	/**
@@ -130,6 +148,16 @@ public class View extends JFrame {
 	}
 	
 	/**
+	 * Gets the description panel.
+	 * @author Tammy Vo
+	 * 
+	 * @return description panel. 
+	 */
+	public DescriptionPanel getDescriptionPanel() {
+		return myDescriptionJpanel;
+	}
+	
+	/**
 	 * 
 	 * @return
 	 */
@@ -156,7 +184,23 @@ public class View extends JFrame {
 		final JMenuItem make = new JMenuItem("New...");
 		make.addActionListener(theEvent -> myController.createNewProject());
 		final JMenuItem open = new JMenuItem("Open...");
-		open.addActionListener(theEvent -> myController.openProjects());
+		open.addActionListener(theEvent -> {
+			if (mySaveFlag) {
+				myController.openProjects();
+			} else {
+				int PromptResult = JOptionPane.showConfirmDialog((Component) null, 
+						"Do you want to save before loading?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+		        if(PromptResult==JOptionPane.YES_OPTION)
+		        {
+		        	if (myController.saveProjects()) {
+		        		myController.openProjects();
+		        	}
+		        }
+		        if(PromptResult==JOptionPane.NO_OPTION) {
+		        	myController.openProjects();
+		        }
+			}
+		});
 		final JMenuItem save = new JMenuItem("Save...");
 		save.addActionListener(theEvent -> myController.saveProjects());
 		final JMenuItem exit = new JMenuItem("Exit");

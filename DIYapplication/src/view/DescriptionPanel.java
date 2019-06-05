@@ -30,7 +30,7 @@ public class DescriptionPanel extends JPanel {
 		myScrollPane = new JScrollPane(myTextArea);
 		myScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		myScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		myScrollPane.setPreferredSize(new Dimension(215, 350));
+		myScrollPane.setPreferredSize(new Dimension(330, 430));
 	
 		myTextArea.append("No Project Found.\nPlease Create or Load a Project!"); 
 		myTextArea.setEditable(false);
@@ -44,11 +44,11 @@ public class DescriptionPanel extends JPanel {
 	public void displayDescription (final Project project) {
 		myTextArea.setText("");	
 		myTextArea.append("Name: " + project.getMyName());
-		myTextArea.append(String.valueOf("Cost: " + project.getMyCost()));
-		myTextArea.append(String.valueOf("Duration: " + project.getMyDays()));
-		myTextArea.append(String.valueOf("Materials: " + project.getMyMaterials()));
-		myTextArea.append(String.valueOf("Energy Efficiency" + project.getMyEnergy()));
-		myTextArea.append("Notes" + project.getMyNotes());	
+		myTextArea.append(String.valueOf("\nCost: $" + project.getMyCost()));
+		myTextArea.append(String.valueOf("\nDuration: " + project.getMyDays() + " days"));
+		myTextArea.append(String.valueOf("\nMaterials: " + project.getMyMaterials()));
+		myTextArea.append(String.valueOf("\nEnergy Efficiency: " + project.getMyEnergy()));
+		myTextArea.append("\nNotes: " + project.getMyNotes());	
 	}
 	
 //		textArea.setText("Name: " + project.getMyName());
