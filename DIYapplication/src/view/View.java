@@ -52,6 +52,11 @@ public class View extends JFrame {
 	 * Exit prompt window adapter
 	 */
 	private WindowAdapter myExitWindowAdapter;
+	
+	/**
+	 * Boolean that is changed if a project was recently saved.
+	 */
+	private boolean mySaveFlag;
 
 	/**
 	 * 
@@ -65,6 +70,15 @@ public class View extends JFrame {
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(600, 500));
 		createAndShowGUI();
+		mySaveFlag = true;
+	}
+	
+	
+	/**
+	 * @param theFlag to be setted for the feature that asks if you have saved before exiting
+	 */
+	public void setSaveFlag(final boolean theFlag) {
+		mySaveFlag = theFlag;
 	}
 	
 	/**
@@ -72,16 +86,20 @@ public class View extends JFrame {
 	 * @author Ken Gil Romero
 	 */
 	private void showClosingDialog() {
-        int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
-        if(PromptResult==JOptionPane.YES_OPTION)
-        {
-        	if (myController.saveProjects()) {
-        		System.exit(0);
-        	}
-        }
-        if(PromptResult==JOptionPane.NO_OPTION) {
-        	System.exit(0);
-        }
+		if (!mySaveFlag) {
+	        int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+	        if(PromptResult==JOptionPane.YES_OPTION)
+	        {
+	        	if (myController.saveProjects()) {
+	        		System.exit(0);
+	        	}
+	        }
+	        if(PromptResult==JOptionPane.NO_OPTION) {
+	        	System.exit(0);
+	        }
+		} else {
+			System.exit(0);
+		}
 	}
 
 	/**
@@ -130,6 +148,16 @@ public class View extends JFrame {
 	}
 	
 	/**
+	 * Gets the description panel.
+	 * @author Tammy Vo
+	 * 
+	 * @return description panel. 
+	 */
+	public DescriptionPanel getDescriptionPanel() {
+		return myDescriptionJpanel;
+	}
+	
+	/**
 	 * 
 	 * @return
 	 */
@@ -156,7 +184,23 @@ public class View extends JFrame {
 		final JMenuItem make = new JMenuItem("New...");
 		make.addActionListener(theEvent -> myController.createNewProject());
 		final JMenuItem open = new JMenuItem("Open...");
-		open.addActionListener(theEvent -> myController.openProjects());
+		open.addActionListener(theEvent -> {
+			if (mySaveFlag) {
+				myController.openProjects();
+			} else {
+				int PromptResult = JOptionPane.showConfirmDialog((Component) null, 
+						"Do you want to save before loading?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+		        if(PromptResult==JOptionPane.YES_OPTION)
+		        {
+		        	if (myController.saveProjects()) {
+		        		myController.openProjects();
+		        	}
+		        }
+		        if(PromptResult==JOptionPane.NO_OPTION) {
+		        	myController.openProjects();
+		        }
+			}
+		});
 		final JMenuItem save = new JMenuItem("Save...");
 		save.addActionListener(theEvent -> myController.saveProjects());
 		final JMenuItem exit = new JMenuItem("Exit");
@@ -171,41 +215,43 @@ public class View extends JFrame {
 	}
 	
 	/**
+	 * Creates the Sort JMenu.
 	 * 
-	 * @return
+	 * @author Matthew Chan
+	 * @return the Sort JMenu
 	 */
 	private JMenu createSortMenu() {
 		final JMenu menu = new JMenu("Sort");
 		menu.setMnemonic(KeyEvent.VK_S);
 		
 		final JMenu sortByName = new JMenu("By Name");
-		final JMenuItem nameAsc = new JMenuItem("Normal");
+		final JMenuItem nameAsc = new JMenuItem("A - Z");
 		nameAsc.addActionListener(theEvent -> myController.sortByName());
-		final JMenuItem nameDes = new JMenuItem("Reversed");
+		final JMenuItem nameDes = new JMenuItem("Z - A");
 		nameDes.addActionListener(theEvent -> myController.sortByNameR());
 		sortByName.add(nameAsc);
 		sortByName.add(nameDes);
 		
 		final JMenu sortByDuration = new JMenu("By Duration");
-		final JMenuItem durAsc = new JMenuItem("Ascending");
+		final JMenuItem durAsc = new JMenuItem("Shortest - Longest");
 		durAsc.addActionListener(theEvent -> myController.sortByDuration());
-		final JMenuItem durDes = new JMenuItem("Descending");
+		final JMenuItem durDes = new JMenuItem("Longest - Shortest");
 		durDes.addActionListener(theEvent -> myController.sortByDurationR());
 		sortByDuration.add(durAsc);
 		sortByDuration.add(durDes);
 		
 		final JMenu sortByCost = new JMenu("By Cost");
-		final JMenuItem costAsc = new JMenuItem("Ascending");
+		final JMenuItem costAsc = new JMenuItem("Low - High");
 		costAsc.addActionListener(theEvent -> myController.sortByCost());
-		final JMenuItem costDes = new JMenuItem("Descending");
+		final JMenuItem costDes = new JMenuItem("High - Low");
 		costDes.addActionListener(theEvent -> myController.sortByCostR());
 		sortByCost.add(costAsc);
 		sortByCost.add(costDes);
 		
 		final JMenu sortByEnergy = new JMenu("By Energy Efficiency");
-		final JMenuItem energyAsc = new JMenuItem("Normal");
+		final JMenuItem energyAsc = new JMenuItem("Low - High");
 		energyAsc.addActionListener(theEvent -> myController.sortByEnergy());
-		final JMenuItem energyDes = new JMenuItem("Reversed");
+		final JMenuItem energyDes = new JMenuItem("High - Low");
 		energyDes.addActionListener(theEvent -> myController.sortByEnergyR());
 		sortByEnergy.add(energyAsc);
 		sortByEnergy.add(energyDes);
