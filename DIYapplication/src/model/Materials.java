@@ -57,7 +57,7 @@ public class Materials {
 			StringBuilder sb = new StringBuilder();
 			
 			for (Map.Entry<String, Double> entry : myMaterials.entrySet() ) {
-				sb.append("Material: " + entry.getKey() + " | Cost: $" + df.format(entry.getValue()));
+				sb.append(entry.getKey() + " | Cost: $" + df.format(entry.getValue()));
 				sb.append("\n");
 			}
 			

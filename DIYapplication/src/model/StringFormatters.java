@@ -28,7 +28,7 @@ public class StringFormatters {
 				result += theOriginal.charAt(i);
 				count++;
 			}
-			if (count == 8) {
+			if (count == 7) {
 				break;
 			}
 		}
@@ -55,9 +55,6 @@ public class StringFormatters {
 				change += "0";
 			}
 			result += "." + change.substring(0, 2);
-		}
-		if (result.length() > 12) {
-			result = formatCost(result.substring(result.length() - 11));
 		}
 		return result;
 	}
