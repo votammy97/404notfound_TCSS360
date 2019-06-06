@@ -408,6 +408,7 @@ public class NewEditProjectWindow {
 						myController.addCreatedProject(myProject);
 					}
 					myController.refreshProjects();
+					myController.getDescription(myProject);
 					myApp.setEnabled(true);
 				}
 			}
@@ -440,6 +441,8 @@ public class NewEditProjectWindow {
 					 ((String) myEnergyField.getSelectedItem()).toUpperCase()));
 		myProject.setMyNotes(myNotesField.getText());
 		myProject.setMyMaterials(myMaterials);
+		myProject.calculateCostBenefit(myProject.getMyDays(),
+								myProject.getMyCost(), myProject.getMyEnergy());
 	}
 	
 	/**
