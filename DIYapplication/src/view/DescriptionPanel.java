@@ -13,7 +13,7 @@ import model.Project;
  * Class for Description Panel.
  * 
  * @author Tammy Vo
- * @version May 30th, 2019
+ * @version June 5th, 2019
  *
  */
 public class DescriptionPanel extends JPanel {
@@ -24,7 +24,7 @@ public class DescriptionPanel extends JPanel {
 	private JScrollPane myScrollPane;
 
 	/**
-	 * Description Panel. 
+	 * Description Panel.
 	 * 
 	 * @author Tammy Vo
 	 */
@@ -45,21 +45,26 @@ public class DescriptionPanel extends JPanel {
 	 * Display description when new project created.
 	 * 
 	 * @author Tammy Vo
-	 * @param project
+	 * @param theProject the project
 	 */
-	public void displayDescription(final Project project) {
+	public void displayDescription(final Project theProject) {
 		DecimalFormat df = new DecimalFormat("0.00");
 		myTextArea.setText("");
-		myTextArea.append("Name: " + project.getMyName());
-		myTextArea.append(String.valueOf("\nCost: $" + df.format(project.getMyCost())));
-		myTextArea.append(String.valueOf("\nDuration: " + project.getMyDays() + " days"));
-		myTextArea.append(String.valueOf("\n" + project.getMyMaterials()));
-		myTextArea.append(String.valueOf("\nEnergy Efficiency: " + project.getMyEnergy()));
-		myTextArea.append("\nNotes: " + project.getMyNotes());
+		myTextArea.append("Name: " + theProject.getMyName());
+		myTextArea.append(String.valueOf("\nCost: $" + df.format(theProject.getMyCost())));
+		myTextArea.append(String.valueOf("\nDuration: " + theProject.getMyDays() + " days"));
+		myTextArea.append(String.valueOf("\n" + theProject.getMyMaterials()));
+		myTextArea.append(String.valueOf("\nEnergy Efficiency: " + theProject.getMyEnergy()));
+		myTextArea.append("\nNotes: " + theProject.getMyNotes());
 	}
-	
-	public void clearDescription() {
-		myTextArea.setText("");
+
+	/**
+	 * Reset the DescriptionPanel to its initial state.
+	 * 
+	 * @author Tammy Vo
+	 */
+	public void resetDescription() {
+		myTextArea.setText("No Project Found.\nPlease Create or Load a Project!");
 	}
 
 }
