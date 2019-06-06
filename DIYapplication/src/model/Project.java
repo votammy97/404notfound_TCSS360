@@ -176,7 +176,7 @@ public class Project {
 	/**
 	 * Calculates a value to weigh cost vs benefit for user story 10, and saves
 	 * the value as a field.
-	 * Calculated as: (theDays + theCost) / theEnergy.
+	 * Calculated as: (theDays + theCost) / theEnergy^2.
 	 * 
 	 * @param theDays The number of days to complete the project.
 	 * @param theCost The amount of money to complete the project.
@@ -184,7 +184,7 @@ public class Project {
 	 */
 	public void calculateCostBenefit(final int theDays, final double theCost,
 													   final Energy theEnergy) {
-		myCostBenefitVal = (theDays + theCost) / theEnergy.getValue();
+		myCostBenefitVal = (theDays + theCost) / Math.pow(theEnergy.getValue(), 2);
 		
 	}
 

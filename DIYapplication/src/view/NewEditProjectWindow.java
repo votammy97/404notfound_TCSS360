@@ -231,6 +231,9 @@ public class NewEditProjectWindow {
 							     myController.formatInt(myDaysField.getText()));
 				int weeks = (days / 7) + Integer.parseInt(0 +
 						                                myWeeksField.getText());
+				if (weeks > 9999999) {
+					weeks = 9999999;
+				}
 				myDaysField.setText("" + (days % 7));
 				myWeeksField.setText("" + weeks);
 			}
