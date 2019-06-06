@@ -21,6 +21,8 @@ public class Project {
 	private Energy myEnergy;
 	/** Project notes. */
 	private String myNotes;
+	/** Value used to sort by cost vs benefit calculation. (User Story 10) */
+	private double myCostBenefitVal;
 
 	/**
 	 * Default constructor.
@@ -47,7 +49,7 @@ public class Project {
 		myMaterials = theMaterials;
 		myEnergy = theEnergy;
 		myNotes = theNotes;
-
+		calculateCostBenefit(theDays, theCost, theEnergy);
 	}
 
 	/**
@@ -160,6 +162,30 @@ public class Project {
 	 */
 	public void setMyMaterials(final Materials myMaterials) {
 		this.myMaterials = myMaterials;
+	}
+	
+	/**
+	 * Returns the value used to compare cost vs benefit.
+	 * 
+	 * @return The value used to compare cost vs benefit.
+	 */
+	public double getCostBenefit() {
+		return myCostBenefitVal;
+	}
+	
+	/**
+	 * Calculates a value to weigh cost vs benefit for user story 10, and saves
+	 * the value as a field.
+	 * Calculated as: (theDays + theCost) / theEnergy.
+	 * 
+	 * @param theDays The number of days to complete the project.
+	 * @param theCost The amount of money to complete the project.
+	 * @param theEnergy The energy efficiency of the project.
+	 */
+	public void calculateCostBenefit(final int theDays, final double theCost,
+													   final Energy theEnergy) {
+		myCostBenefitVal = (theDays + theCost) / theEnergy.getValue();
+		
 	}
 
 	@Override

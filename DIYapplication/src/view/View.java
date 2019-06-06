@@ -2,11 +2,9 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -33,7 +31,7 @@ public class View extends JFrame {
 	/**
 	 * 
 	 */
-	private static final String VERSION = "0.0.1";
+	private static final String VERSION = "1.0.0";
     
     /**
      * The left panel where the projects are
@@ -68,7 +66,6 @@ public class View extends JFrame {
 		super.setIconImage((new ImageIcon("./Images/iconDIY.png")).getImage());
 		myController = theController;
 		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension(600, 500));
 		createAndShowGUI();
 		mySaveFlag = true;
 	}
@@ -256,10 +253,19 @@ public class View extends JFrame {
 		sortByEnergy.add(energyAsc);
 		sortByEnergy.add(energyDes);
 		
+		final JMenu sortByCalculation = new JMenu("By Cost vs Benefit");
+		final JMenuItem calcAsc = new JMenuItem("Best - Worst");
+		calcAsc.addActionListener(theEvent -> myController.sortByCalc());
+		final JMenuItem calcDes = new JMenuItem("Worst - Best");
+		calcDes.addActionListener(theEvent -> myController.sortByCalcR());
+		sortByCalculation.add(calcAsc);
+		sortByCalculation.add(calcDes);
+		
 		menu.add(sortByName);
 		menu.add(sortByDuration);
 		menu.add(sortByCost);
 		menu.add(sortByEnergy);
+		menu.add(sortByCalculation);
 		
 		return menu;
 	}
