@@ -2,7 +2,6 @@ package model;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -23,6 +22,7 @@ public class Materials {
 	/**
 	 * Adds the material.
 	 * 
+	 * @author Tammy Vo
 	 * @param theName of the material.
 	 * @param theCost of the material.
 	 */
@@ -30,13 +30,20 @@ public class Materials {
 		myMaterials.put(theName, theCost);
 	}
 
+	/**
+	 * Method to delete materials. 
+	 * 
+	 * @author Tammy Vo
+	 * @param theName
+	 */
 	public void deleteMaterial(final String theName) {
 		myMaterials.remove(theName);
 	}
 
 	/**
-	 * Returns the materials.
+	 * Method to returns the materials.
 	 * 
+	 * @author Tammy Vo
 	 * @return the materials.
 	 */
 	public HashMap<String, Double> getMaterialMap() {
@@ -45,10 +52,8 @@ public class Materials {
 
 	@Override
 	public String toString() {
-		
-		
 		if(!myMaterials.isEmpty()) {
-			DecimalFormat df = new DecimalFormat("0.##");
+			DecimalFormat df = new DecimalFormat("0.00");
 			StringBuilder sb = new StringBuilder();
 			
 			for (Map.Entry<String, Double> entry : myMaterials.entrySet() ) {
