@@ -123,6 +123,7 @@ public class Controller {
 			try {
 				myModel.loadProjects(myModel.getFileChooser().getSelectedFile());
 				myView.setSaveFlag(true);
+				putFileInTitle(myModel.getFileChooser().getSelectedFile().getName());
 			} catch (final IOException e) {
 				JOptionPane.showMessageDialog(myView, "Error loading file.");
 			}
@@ -143,6 +144,7 @@ public class Controller {
 			try {
 				myModel.saveProjects(myModel.getFileChooser().getSelectedFile());
 				myView.setSaveFlag(true);
+				putFileInTitle(myModel.getFileChooser().getSelectedFile().getName());
 				return true;
 			} catch (final IOException e) {
 				JOptionPane.showMessageDialog(myView, "Error saving file.");
@@ -296,5 +298,15 @@ public class Controller {
 	public void sortByCalcR() {
 		myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByCalculationReversed());
 		myView.buildProjectPanels(myModel.getProjectList());
+	}
+	
+	/**
+	 * Changes the view's JFrame title to display the file that is currently
+	 * open.
+	 * 
+	 * @param theFileName The name of the file that is currently open.
+	 */
+	private void putFileInTitle(final String theFileName) {
+		myView.setTitle("DIY Project Planner - " + theFileName);
 	}
 }
