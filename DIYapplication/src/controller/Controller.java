@@ -271,4 +271,20 @@ public class Controller {
     	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByEnergyReversed());
     	myView.buildProjectPanels(myModel.getProjectList());
     }
+    
+    /**
+	 * Sorts the project panels by cost vs benefit in normal order.
+	 */
+    public void sortByCalc() {
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByCalculation());
+    	myView.buildProjectPanels(myModel.getProjectList());
+    }
+    
+	/**
+	 * Sorts the project panels by cost vs benefit in reversed order.
+	 */
+    public void sortByCalcR() {
+    	myModel.getProjectList().getProjectList().sort(ProjectComparator.sortByCalculationReversed());
+    	myView.buildProjectPanels(myModel.getProjectList());
+    }
 }
