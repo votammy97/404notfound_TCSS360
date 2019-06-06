@@ -21,11 +21,15 @@ public class StringFormatters {
 	 */
 	public static String removeNonInt(final String theOriginal) {
 		String result = "";
-		for (int i = 0; i < theOriginal.length(); i++) {
+		for (int i = 0, count = 0; i < theOriginal.length(); i++) {
 			int c = Character.getNumericValue(theOriginal.charAt(i));
 			if (Character.getNumericValue('0') <= c
 									   && c <= Character.getNumericValue('9')) {
 				result += theOriginal.charAt(i);
+				count++;
+			}
+			if (count == 8) {
+				break;
 			}
 		}
 		while (result.length() > 1 && "0".equals(result.substring(0, 1))) {
@@ -51,6 +55,9 @@ public class StringFormatters {
 				change += "0";
 			}
 			result += "." + change.substring(0, 2);
+		}
+		if (result.length() > 12) {
+			result = formatCost(result.substring(result.length() - 11));
 		}
 		return result;
 	}

@@ -61,6 +61,22 @@ class StringFormattersTest {
 	public void testFormatCost5() {
 		assertEquals("$1.15", StringFormatters.formatCost("af1.$159.0"));
 	}
+	@Test
+	public void testFormatCost6() {
+		assertEquals("$99999999", StringFormatters.formatCost("$99999999"));
+	}
+	@Test
+	public void testFormatCost7() {
+		assertEquals("$99999999", StringFormatters.formatCost("$999999999"));
+	}
+	@Test
+	public void testFormatCost8() {
+		assertEquals("$99999999.99", StringFormatters.formatCost("$99999999.99"));
+	}
+	@Test
+	public void testFormatCost9() {
+		assertEquals("$99999999.99", StringFormatters.formatCost("$999999999.99"));
+	}
 	
 	
 	
