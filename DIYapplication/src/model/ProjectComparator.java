@@ -87,5 +87,23 @@ public class ProjectComparator {
 	public static Comparator<Project> sortByEnergyReversed() {
 		return Comparator.comparing(Project::getMyEnergy).reversed().thenComparing(Project::getMyName);
 	}
+	
+	/**
+	 * Sorts the project list by calculation comparing cost vs benefit.
+	 * 
+	 * @return a cost vs benefit comparator
+	 */
+	public static Comparator<Project> sortByCalculation() {
+		return Comparator.comparing(Project::getCostBenefit).thenComparing(Project::getMyName);
+	}
+
+	/**
+	 * Sorts the project list by calculation comparing cost vs benefit.
+	 * 
+	 * @return a reversed cost vs benefit comparator
+	 */
+	public static Comparator<Project> sortByCalculationReversed() {
+		return Comparator.comparing(Project::getCostBenefit).reversed().thenComparing(Project::getMyName);
+	}
 
 }
