@@ -50,12 +50,12 @@ public class DescriptionPanel extends JPanel {
 	public void displayDescription(final Project theProject) {
 		DecimalFormat df = new DecimalFormat("0.00");
 		myTextArea.setText("");
-		myTextArea.append("Name: " + theProject.getMyName());
-		myTextArea.append(String.valueOf("\nCost: $" + df.format(theProject.getMyCost())));
-		myTextArea.append(String.valueOf("\nDuration: " + theProject.getMyDays() + " days"));
-		myTextArea.append(String.valueOf("\n" + theProject.getMyMaterials()));
-		myTextArea.append(String.valueOf("\nEnergy Efficiency: " + theProject.getMyEnergy()));
-		myTextArea.append("\nNotes: " + theProject.getMyNotes());
+		myTextArea.append("Name:\n" + theProject.getMyName());
+		myTextArea.append(String.valueOf("\n\nCost:\n$" + df.format(theProject.getMyCost())));
+		myTextArea.append(String.valueOf("\n\nDuration:\n" + theProject.getMyDays() + " days"));
+		myTextArea.append(String.valueOf("\n\nEnergy Efficiency:\n" + theProject.getMyEnergy()));
+		myTextArea.append(String.valueOf("\n\nMaterials:\n" + theProject.getMyMaterials()));
+		myTextArea.append("\n\nNotes:\n" + theProject.getMyNotes());
 	}
 
 	/**

@@ -99,10 +99,10 @@ public class ProjectPanel extends JPanel {
 		 * 
 		 */
 		this.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				theController.getDescription(theProject);
-				repaint();
 			}
+			
 		});
 	}
 }
