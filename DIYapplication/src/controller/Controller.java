@@ -12,10 +12,14 @@ import view.*;
  */
 public class Controller {
 
-	/* The project view. */
+	/**
+	 * The project view. 
+	 */
 	private View myView;
 
-	/* The project model. */
+	/** 
+	 * The project model. 
+	 */
 	private Model myModel;
 
 	/**
@@ -114,7 +118,7 @@ public class Controller {
 	}
 
 	/**
-	 * Sets the action of Open
+	 * The action of Opening a project list txt file
 	 * 
 	 * @author Ken Gil Romero
 	 */
@@ -173,6 +177,7 @@ public class Controller {
 
 	/**
 	 * @return the size of the list of projects
+	 * @author Ken Gil Romero
 	 */
 	public int getProjectsSize() {
 		return myModel.getProjectList().getProjectList().size();
