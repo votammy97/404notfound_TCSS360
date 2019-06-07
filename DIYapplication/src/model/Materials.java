@@ -1,8 +1,8 @@
 package model;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Class for materials.
@@ -11,12 +11,12 @@ import java.util.Map;
  */
 public class Materials {
 
-	/** The HashMap storing all materials needed. */
-	private HashMap<String, Double> myMaterials;
+	/** The TreeMap storing all materials needed. */
+	private TreeMap<String, Double> myMaterials;
 
 	/** Private constructor. */
 	public Materials() {
-		myMaterials = new HashMap<>();
+		myMaterials = new TreeMap<>();
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class Materials {
 	 * @author Tammy Vo
 	 * @return the materials.
 	 */
-	public HashMap<String, Double> getMaterialMap() {
+	public TreeMap<String, Double> getMaterialMap() {
 		return myMaterials;
 	}
 
@@ -57,7 +57,7 @@ public class Materials {
 			StringBuilder sb = new StringBuilder();
 			
 			for (Map.Entry<String, Double> entry : myMaterials.entrySet() ) {
-				sb.append("Material: " + entry.getKey() + " | Cost: $" + df.format(entry.getValue()));
+				sb.append(entry.getKey() + " | Cost: $" + df.format(entry.getValue()));
 				sb.append("\n");
 			}
 			
