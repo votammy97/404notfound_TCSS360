@@ -127,6 +127,7 @@ public class Model {
 	
 	/**
 	 * @return the email address of the DIYer
+	 * @author Ken Gil Romero
 	 */
 	public String getEmailAddress() {
 		return myUserEmailAddr;
@@ -134,6 +135,7 @@ public class Model {
 	
 	/**
 	 * @param theProject to be added to the list of projects
+	 * @author Ken Gil Romero
 	 */
 	public void addProject(Project theProject) {
 		myProjects.addProject(theProject);
@@ -281,24 +283,12 @@ public class Model {
     		}
     	}
     	fileWriter.close();
-    }
-    
-    public String getName() {
-    	return myUserFirstName;
-    }
-    
-    public void setName(String theFirstName) {
-    	myUserFirstName = theFirstName;
-    }
-    
-    public String getEmail() {
-    	return myUserEmailAddr;
-    }
-    
-    public void setEmail(String theEmailAddr) {
-    	myUserEmailAddr = theEmailAddr;
-    }
-    
+    }  
+
+    /**
+     * 
+     * @return
+     */
     public ProjectList getProjectList() {
     	return myProjects;
     }
