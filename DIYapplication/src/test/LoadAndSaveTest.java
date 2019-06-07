@@ -21,9 +21,9 @@ import model.Energy;
 class LoadAndSaveTest {
 	
 	/**
-	 * model to be tested
+	 * Model to be tested
 	 */
-	Model fm;
+	private Model myModel;
 
 	/**
 	 * Set up all fields for test cases 
@@ -32,7 +32,7 @@ class LoadAndSaveTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
-		fm = new Model("firstName", "emailAddress");
+		myModel = new Model("firstName", "emailAddress");
 	}
 
 	/**
@@ -42,7 +42,7 @@ class LoadAndSaveTest {
 	@Test 
 	void LoadTestErrorEmptyFile()  {
 		assertThrows(IOException.class, () -> {
-			fm.loadProjects(new File(""));
+			myModel.loadProjects(new File(""));
 		});
 	}
 	
@@ -53,7 +53,7 @@ class LoadAndSaveTest {
 	@Test 
 	void LoadTestErrorWrongHeader()  {
 		assertThrows(IOException.class, () -> {
-			fm.loadProjects(new File("loadTestFileError.txt"));
+			myModel.loadProjects(new File("loadTestFileError.txt"));
 		});
 	}
 	
@@ -65,25 +65,25 @@ class LoadAndSaveTest {
 	void LoadTest() {
 		File file = new File("loadTestFile.txt");
 		try {
-			fm.loadProjects(file);
+			myModel.loadProjects(file);
 		} catch (IOException e) {
 			e.printStackTrace();
 			
 		}
-		assertEquals("AAAA", fm.getFirstName(), "first name wrong");
-		assertEquals("BBBBB", fm.getEmailAddress(), "email address wrong");
-		assertEquals("P 1", fm.getProjectList().getProjectList().get(0).getMyName(), "project name wrong");
-		assertEquals(1 , fm.getProjectList().getProjectList().get(0).getMyCost(), "cost wrong");
-		assertEquals(1 , fm.getProjectList().getProjectList().get(0).getMyDays(), "days wrong");
-		assertEquals(Energy.LOW, fm.getProjectList().getProjectList().get(0).getMyEnergy(), "energy wrong");
-		assertEquals("", fm.getProjectList().getProjectList().get(0).getMyNotes(), "notes wrong");
-		assertEquals(0, fm.getProjectList().getProjectList().get(0).getMyMaterials().getMaterialMap().size()
+		assertEquals("AAAA", myModel.getFirstName(), "first name wrong");
+		assertEquals("BBBBB", myModel.getEmailAddress(), "email address wrong");
+		assertEquals("P 1", myModel.getProjectList().getProjectList().get(0).getMyName(), "project name wrong");
+		assertEquals(1 , myModel.getProjectList().getProjectList().get(0).getMyCost(), "cost wrong");
+		assertEquals(1 , myModel.getProjectList().getProjectList().get(0).getMyDays(), "days wrong");
+		assertEquals(Energy.LOW, myModel.getProjectList().getProjectList().get(0).getMyEnergy(), "energy wrong");
+		assertEquals("", myModel.getProjectList().getProjectList().get(0).getMyNotes(), "notes wrong");
+		assertEquals(0, myModel.getProjectList().getProjectList().get(0).getMyMaterials().getMaterialMap().size()
 				, "material wrong");
-		assertEquals(2, fm.getProjectList().getProjectList().get(1).getMyMaterials().getMaterialMap().size()
+		assertEquals(2, myModel.getProjectList().getProjectList().get(1).getMyMaterials().getMaterialMap().size()
 				, "material wrong");
-		assertEquals(100.0, fm.getProjectList().getProjectList().get(1).getMyMaterials().getMaterialMap().get("M 2")
+		assertEquals(100.0, myModel.getProjectList().getProjectList().get(1).getMyMaterials().getMaterialMap().get("M 2")
 				, "material wrong");
-		assertEquals("a a\nb b b\nc c c c\n", fm.getProjectList().getProjectList().get(1).getMyNotes(), "notes wrong");
+		assertEquals("a a\nb b b\nc c c c\n", myModel.getProjectList().getProjectList().get(1).getMyNotes(), "notes wrong");
 	}
 	
 	/**
@@ -96,8 +96,8 @@ class LoadAndSaveTest {
 		File file = new File("loadTestFile.txt");
 		File file2 = new File("loadTestFile2.txt");
 		try {
-			fm.loadProjects(file);
-			fm.saveProjects(file2);
+			myModel.loadProjects(file);
+			myModel.saveProjects(file2);
 		} catch (IOException e) {
 			e.printStackTrace();
 			assertFalse(true);
