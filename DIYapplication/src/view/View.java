@@ -5,6 +5,11 @@ import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -16,41 +21,42 @@ import model.ProjectList;
 
 /**
  * Main Application view class
+ * 
  * @author
  * @author Ken Gil Romero
  * @version Spring 19
  */
 public class View extends JFrame {
 
-    /**
-     * A generated serial version UID for object Serialization.
-     * http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html
-     */
-	private static final long serialVersionUID = -131614090848525596L;
-	
 	/**
-	 * 
+	 * A generated serial version UID for object Serialization.
+	 * http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html
 	 */
-	private static final String VERSION = "1.0.0";
-    
-    /**
-     * The left panel where the projects are
-     */
-    private ProjectsPanel myProjectsJpanel;
+	private static final long serialVersionUID = -131614090848525596L;
 
-    /**
-     * The right panel where the projects are
-     */
-    private DescriptionPanel myDescriptionJpanel;
-    
-    /** The model for reference. */
+	/**
+	 * The version number of the application.
+	 */
+	private static String myVersion;
+
+	/**
+	 * The left panel where the projects are
+	 */
+	private ProjectsPanel myProjectsJpanel;
+
+	/**
+	 * The right panel where the projects are
+	 */
+	private DescriptionPanel myDescriptionJpanel;
+
+	/** The model for reference. */
 	private final Controller myController;
-	
+
 	/**
 	 * Exit prompt window adapter
 	 */
 	private WindowAdapter myExitWindowAdapter;
-	
+
 	/**
 	 * Boolean that is changed if a project was recently saved.
 	 */
@@ -59,41 +65,53 @@ public class View extends JFrame {
 	/**
 	 * 
 	 * @param theController
-	 * @author 
+	 * @author
+	 * @throws MalformedURLException
 	 */
 	public View(final Controller theController) {
 		super("DIY Project Planner");
 		super.setIconImage((new ImageIcon("./Images/iconDIY.png")).getImage());
+
+		try {
+			final URL url = new URL(
+					"https://raw.githubusercontent.com/404github/404notfound_TCSS360/master/version.txt");
+			final Scanner s = new Scanner(url.openStream());
+			myVersion = s.next();
+			s.close();
+		} catch (final IOException e) {
+		}
+
 		myController = theController;
 		setLayout(new BorderLayout());
 		createAndShowGUI();
 		mySaveFlag = true;
 	}
-	
-	
+
 	/**
-	 * @param theFlag to be setted for the feature that asks if you have saved before exiting
+	 * @param theFlag to be setted for the feature that asks if you have saved
+	 *                before exiting
 	 */
 	public void setSaveFlag(final boolean theFlag) {
 		mySaveFlag = theFlag;
 	}
-	
+
 	/**
 	 * Closing application show dialog
+	 * 
 	 * @author Ken Gil Romero
 	 */
 	private void showClosingDialog() {
 		if (!mySaveFlag) {
-	        int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
-	        if(PromptResult==JOptionPane.YES_OPTION)
-	        {
-	        	if (myController.saveProjects()) {
-	        		System.exit(0);
-	        	}
-	        }
-	        if(PromptResult==JOptionPane.NO_OPTION) {
-	        	System.exit(0);
-	        }
+			int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?",
+					"Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+			if (PromptResult == JOptionPane.YES_OPTION) {
+				if (myController.saveProjects()) {
+					System.exit(0);
+				}
+			}
+			if (PromptResult == JOptionPane.NO_OPTION) {
+				System.exit(0);
+			}
 		} else {
 			System.exit(0);
 		}
@@ -107,11 +125,10 @@ public class View extends JFrame {
 
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		myExitWindowAdapter = new WindowAdapter() {
-		    @Override
-		    public void windowClosing(WindowEvent we)
-		    { 
-		    	showClosingDialog();
-		    }
+			@Override
+			public void windowClosing(WindowEvent we) {
+				showClosingDialog();
+			}
 		};
 		addWindowListener(myExitWindowAdapter);
 		pack();
@@ -122,38 +139,41 @@ public class View extends JFrame {
 
 	/**
 	 * Sets up the components of the GUI.
-	 * @author 
+	 * 
+	 * @author
 	 * @author Ken Gil Romero
-	 * @author 
+	 * @author
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
-		
-		myProjectsJpanel = new ProjectsPanel(myController);
-        add(myProjectsJpanel, BorderLayout.WEST);
 
-        myDescriptionJpanel = new DescriptionPanel();
-        add(myDescriptionJpanel, BorderLayout.EAST);
+		myProjectsJpanel = new ProjectsPanel(myController);
+		add(myProjectsJpanel, BorderLayout.WEST);
+
+		myDescriptionJpanel = new DescriptionPanel();
+		add(myDescriptionJpanel, BorderLayout.EAST);
 	}
-	
+
 	/**
 	 * Creates the project panels and sets their buttons actions
+	 * 
 	 * @author Ken Gil Romero
 	 */
 	public void buildProjectPanels(final ProjectList theProjectsList) {
 		myProjectsJpanel.buildProjectPanels(theProjectsList);
 	}
-	
+
 	/**
 	 * Gets the description panel.
+	 * 
 	 * @author Tammy Vo
 	 * 
-	 * @return description panel. 
+	 * @return description panel.
 	 */
 	public DescriptionPanel getDescriptionPanel() {
 		return myDescriptionJpanel;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -171,7 +191,7 @@ public class View extends JFrame {
 	/**
 	 * 
 	 * @return
-	 * @author 
+	 * @author
 	 * @author Ken Gil Romero
 	 */
 	private JMenu createFileMenu() {
@@ -185,17 +205,16 @@ public class View extends JFrame {
 			if (mySaveFlag) {
 				myController.openProjects();
 			} else {
-				int PromptResult = JOptionPane.showConfirmDialog((Component) null, 
-						"Do you want to save before loading?","Alert", JOptionPane.YES_NO_CANCEL_OPTION);
-		        if(PromptResult==JOptionPane.YES_OPTION)
-		        {
-		        	if (myController.saveProjects()) {
-		        		myController.openProjects();
-		        	}
-		        }
-		        if(PromptResult==JOptionPane.NO_OPTION) {
-		        	myController.openProjects();
-		        }
+				int PromptResult = JOptionPane.showConfirmDialog((Component) null,
+						"Do you want to save before loading?", "Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+				if (PromptResult == JOptionPane.YES_OPTION) {
+					if (myController.saveProjects()) {
+						myController.openProjects();
+					}
+				}
+				if (PromptResult == JOptionPane.NO_OPTION) {
+					myController.openProjects();
+				}
 			}
 		});
 		final JMenuItem save = new JMenuItem("Save...");
@@ -210,7 +229,7 @@ public class View extends JFrame {
 
 		return menu;
 	}
-	
+
 	/**
 	 * Creates the Sort JMenu.
 	 * 
@@ -220,7 +239,7 @@ public class View extends JFrame {
 	private JMenu createSortMenu() {
 		final JMenu menu = new JMenu("Sort");
 		menu.setMnemonic(KeyEvent.VK_S);
-		
+
 		final JMenu sortByName = new JMenu("By Name");
 		final JMenuItem nameAsc = new JMenuItem("A - Z");
 		nameAsc.addActionListener(theEvent -> myController.sortByName());
@@ -228,7 +247,7 @@ public class View extends JFrame {
 		nameDes.addActionListener(theEvent -> myController.sortByNameR());
 		sortByName.add(nameAsc);
 		sortByName.add(nameDes);
-		
+
 		final JMenu sortByDuration = new JMenu("By Duration");
 		final JMenuItem durAsc = new JMenuItem("Shortest - Longest");
 		durAsc.addActionListener(theEvent -> myController.sortByDuration());
@@ -236,7 +255,7 @@ public class View extends JFrame {
 		durDes.addActionListener(theEvent -> myController.sortByDurationR());
 		sortByDuration.add(durAsc);
 		sortByDuration.add(durDes);
-		
+
 		final JMenu sortByCost = new JMenu("By Cost");
 		final JMenuItem costAsc = new JMenuItem("Low - High");
 		costAsc.addActionListener(theEvent -> myController.sortByCost());
@@ -244,7 +263,7 @@ public class View extends JFrame {
 		costDes.addActionListener(theEvent -> myController.sortByCostR());
 		sortByCost.add(costAsc);
 		sortByCost.add(costDes);
-		
+
 		final JMenu sortByEnergy = new JMenu("By Energy Efficiency");
 		final JMenuItem energyAsc = new JMenuItem("Low - High");
 		energyAsc.addActionListener(theEvent -> myController.sortByEnergy());
@@ -252,7 +271,7 @@ public class View extends JFrame {
 		energyDes.addActionListener(theEvent -> myController.sortByEnergyR());
 		sortByEnergy.add(energyAsc);
 		sortByEnergy.add(energyDes);
-		
+
 		final JMenu sortByCalculation = new JMenu("By Cost vs Benefit");
 		final JMenuItem calcAsc = new JMenuItem("Best - Worst");
 		calcAsc.addActionListener(theEvent -> myController.sortByCalc());
@@ -260,16 +279,16 @@ public class View extends JFrame {
 		calcDes.addActionListener(theEvent -> myController.sortByCalcR());
 		sortByCalculation.add(calcAsc);
 		sortByCalculation.add(calcDes);
-		
+
 		menu.add(sortByName);
 		menu.add(sortByDuration);
 		menu.add(sortByCost);
 		menu.add(sortByEnergy);
 		menu.add(sortByCalculation);
-		
+
 		return menu;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -287,15 +306,15 @@ public class View extends JFrame {
 
 	/**
 	 * 
-	 * @author 
+	 * @author
 	 * @author Ken Gil Romero
 	 */
 	private void showAboutDialog() {
 		JOptionPane.showMessageDialog(null,
-				String.format("First Name of User: \n" + myController.getFirstName() + "\n" +
-						"Email Address of User: \n" + myController.getEmailAddress() + "\n\n" + 
-						"Created by:\nMatthew Chan\nZhe Li\nGordon McCreary\nKen Gil Romero\nTammy Vo\n\nVersion: %s",
-						VERSION),
+				String.format("First Name of User: \n" + myController.getFirstName() + "\n"
+						+ "Email Address of User: \n" + myController.getEmailAddress() + "\n\n"
+						+ "Created by:\nMatthew Chan\nZhe Li\nGordon McCreary\nKen Gil Romero\nTammy Vo\n\nVersion: %s",
+						myVersion),
 				"About", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
