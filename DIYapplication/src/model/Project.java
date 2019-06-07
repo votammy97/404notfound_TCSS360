@@ -145,6 +145,7 @@ public class Project {
 	/**
 	 * Get materials.
 	 * 
+	 * @author Gordon McCreary
 	 * @return materials.
 	 */
 	public Materials getMyMaterials() {
@@ -167,6 +168,7 @@ public class Project {
 	/**
 	 * Returns the value used to compare cost vs benefit.
 	 * 
+	 * @author Gordon McCreary
 	 * @return The value used to compare cost vs benefit.
 	 */
 	public double getCostBenefit() {
@@ -178,6 +180,7 @@ public class Project {
 	 * the value as a field.
 	 * Calculated as: (theDays + theCost) / theEnergy^2.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theDays The number of days to complete the project.
 	 * @param theCost The amount of money to complete the project.
 	 * @param theEnergy The energy efficiency of the project.
