@@ -36,6 +36,7 @@ public class ProjectList {
 	 * Determines whether the project list contains a project with the given
 	 * name.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theName The name to search for.
 	 * @return True if the project already exists.
 	 */

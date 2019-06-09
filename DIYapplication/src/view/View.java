@@ -90,6 +90,7 @@ public class View extends JFrame {
 	/**
 	 * @param theFlag to be setted for the feature that asks if you have saved
 	 *                before exiting
+	 * @author Ken Gil Romero
 	 */
 	public void setSaveFlag(final boolean theFlag) {
 		mySaveFlag = theFlag;
@@ -118,7 +119,8 @@ public class View extends JFrame {
 	}
 
 	/**
-	 * @author Owner Ken Gil Romero
+	 * @author 
+	 * @author Ken Gil Romero
 	 */
 	public void createAndShowGUI() {
 		setUpComponents();
