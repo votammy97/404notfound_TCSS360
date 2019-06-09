@@ -186,6 +186,7 @@ public class Controller {
 	/**
 	 * Determines whether a project already exists with the given name.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theProjectName The project name to search for.
 	 * @return True if the project already exists.
 	 */
@@ -196,6 +197,7 @@ public class Controller {
 	/**
 	 * Removes the non-integer characters from a given string.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theInput The string to be formatted.
 	 * @return The original string with non-integer character removed.
 	 */
@@ -206,6 +208,7 @@ public class Controller {
 	/**
 	 * Formats the given string to represent a US dollar cost.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theInput The string to be formatted.
 	 * @return The original string formatted to represent a US dollar cost.
 	 */
@@ -217,6 +220,7 @@ public class Controller {
 	 * If the given string is longer than the given length, the string return with
 	 * any character past the given length removed.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theInput  The string to be formatted.
 	 * @param theLength The maximum length allowed.
 	 * @return The string with length less than or equal to the given length.
@@ -309,6 +313,7 @@ public class Controller {
 	 * Changes the view's JFrame title to display the file that is currently
 	 * open.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theFileName The name of the file that is currently open.
 	 */
 	private void putFileInTitle(final String theFileName) {

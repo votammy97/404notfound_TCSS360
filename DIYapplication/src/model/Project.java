@@ -33,7 +33,7 @@ public class Project {
 
 	/**
 	 * Create a project object.
-	 * 
+	 * @author Tammy Vo
 	 * @param theName      the name of the project.
 	 * @param theDays      the days to complete project.
 	 * @param theCost      the cost of the project.
@@ -54,7 +54,7 @@ public class Project {
 
 	/**
 	 * Get project name.
-	 * 
+	 * @author Tammy Vo
 	 * @return project name.
 	 */
 	public String getMyName() {
@@ -63,7 +63,7 @@ public class Project {
 
 	/**
 	 * Set project name.
-	 * 
+	 * @author Tammy Vo
 	 * @param myName project name.
 	 */
 	public void setMyName(final String myName) {
@@ -72,7 +72,7 @@ public class Project {
 
 	/**
 	 * Get project days.
-	 * 
+	 * @author Tammy Vo
 	 * @return project days.
 	 */
 	public int getMyDays() {
@@ -81,7 +81,7 @@ public class Project {
 
 	/**
 	 * Set project days.
-	 * 
+	 * @author Tammy Vo
 	 * @param myDays project days.
 	 */
 	public void setMyDays(final int myDays) {
@@ -90,7 +90,7 @@ public class Project {
 
 	/**
 	 * Get project cost.
-	 * 
+	 * @author Tammy Vo
 	 * @return project cost.
 	 */
 	public double getMyCost() {
@@ -99,7 +99,7 @@ public class Project {
 
 	/**
 	 * Set project cost.
-	 * 
+	 * @author Tammy Vo
 	 * @param myCost project cost.
 	 */
 	public void setMyCost(final double myCost) {
@@ -108,7 +108,7 @@ public class Project {
 
 	/**
 	 * Get energy efficiency.
-	 * 
+	 * @author Tammy Vo
 	 * @return LOW, MED, or HIGH.
 	 */
 	public Energy getMyEnergy() {
@@ -117,7 +117,7 @@ public class Project {
 
 	/**
 	 * Set energy efficiency.
-	 * 
+	 * @author Tammy Vo
 	 * @param myEnergy project energy efficiency.
 	 */
 	public void setMyEnergy(final Energy myEnergy) {
@@ -126,7 +126,7 @@ public class Project {
 
 	/**
 	 * Get project notes.
-	 * 
+	 * @author Tammy Vo
 	 * @return project notes.
 	 */
 	public String getMyNotes() {
@@ -135,7 +135,7 @@ public class Project {
 
 	/**
 	 * Set project notes.
-	 * 
+	 * @author Tammy Vo
 	 * @param myNotes project notes.
 	 */
 	public void setMyNotes(final String myNotes) {
@@ -145,6 +145,7 @@ public class Project {
 	/**
 	 * Get materials.
 	 * 
+	 * @author Gordon McCreary
 	 * @return materials.
 	 */
 	public Materials getMyMaterials() {
@@ -167,6 +168,7 @@ public class Project {
 	/**
 	 * Returns the value used to compare cost vs benefit.
 	 * 
+	 * @author Gordon McCreary
 	 * @return The value used to compare cost vs benefit.
 	 */
 	public double getCostBenefit() {
@@ -178,6 +180,7 @@ public class Project {
 	 * the value as a field.
 	 * Calculated as: (theDays + theCost) / theEnergy^2.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theDays The number of days to complete the project.
 	 * @param theCost The amount of money to complete the project.
 	 * @param theEnergy The energy efficiency of the project.

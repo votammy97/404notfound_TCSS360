@@ -17,17 +17,32 @@ public class ProjectList {
 		myProjectList = new ArrayList<>();
 	}
 
-	/** Method to add projects to project list. */
+	
+	/**
+	 * Method to add projects to project list.
+	 * @author Tammy Vo
+	 * @param theProject
+	 */
 	public void addProject(final Project theProject) {
 		myProjectList.add(theProject);
 	}
 
-	/** Method to delete projects from project list. */
+	
+	/**
+	 * Method to delete projects from project list.
+	 * @author Tammy Vo
+	 * @param theProject
+	 */
 	public void deleteProject(final Project theProject) {
 		myProjectList.remove(theProject);
 	}
 
-	/** Method to get project list. */
+	
+	/**
+	 * Method to get project list.
+	 * @author Tammy Vo
+	 * @return project list. 
+	 */
 	public ArrayList<Project> getProjectList() {
 		return myProjectList;
 	}
@@ -36,6 +51,7 @@ public class ProjectList {
 	 * Determines whether the project list contains a project with the given
 	 * name.
 	 * 
+	 * @author Gordon McCreary
 	 * @param theName The name to search for.
 	 * @return True if the project already exists.
 	 */
