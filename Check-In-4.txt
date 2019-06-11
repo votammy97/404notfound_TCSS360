@@ -1,9 +1,0 @@
-US05: As a DIYer, I want to be able to sort by the project’s costs, duration, and other data that have ranking order.
-
-Codes to look at:
-DIYapplication/src/model/ProjectComparator.java
-https://github.com/404github/404notfound_TCSS360/blob/master/DIYapplication/src/model/ProjectComparator.java
-
-JUnit test case:
-DIYapplication/src/test/SortingTest.java
-https://github.com/404github/404notfound_TCSS360/blob/master/DIYapplication/src/test/SortingTest.java
