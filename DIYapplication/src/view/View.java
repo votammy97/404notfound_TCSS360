@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -20,9 +19,9 @@ import controller.Controller;
 import model.ProjectList;
 
 /**
- * Main Application view class
+ * Main Application view class.
  * 
- * @author
+ * @author Matthew Chan
  * @author Ken Gil Romero
  * @version Spring 19
  */
@@ -53,20 +52,15 @@ public class View extends JFrame {
 	private final Controller myController;
 
 	/**
-	 * Exit prompt window adapter
-	 */
-	private WindowAdapter myExitWindowAdapter;
-
-	/**
 	 * Boolean that is changed if a project was recently saved.
 	 */
 	private boolean mySaveFlag;
 
 	/**
+	 * Creates the application View.
 	 * 
-	 * @param theController
-	 * @author
-	 * @throws MalformedURLException
+	 * @author Matthew Chan
+	 * @param theController the application controller
 	 */
 	public View(final Controller theController) {
 		super("DIY Project Planner");
@@ -83,6 +77,7 @@ public class View extends JFrame {
 
 		myController = theController;
 		setLayout(new BorderLayout());
+
 		createAndShowGUI();
 		mySaveFlag = true;
 	}
@@ -103,8 +98,8 @@ public class View extends JFrame {
 	 */
 	private void showClosingDialog() {
 		if (!mySaveFlag) {
-			int PromptResult = JOptionPane.showConfirmDialog((Component) null, "Do you want to save before exiting?",
-					"Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+			final int PromptResult = JOptionPane.showConfirmDialog((Component) null,
+					"Do you want to save before exiting?", "Alert", JOptionPane.YES_NO_CANCEL_OPTION);
 			if (PromptResult == JOptionPane.YES_OPTION) {
 				if (myController.saveProjects()) {
 					System.exit(0);
@@ -119,20 +114,21 @@ public class View extends JFrame {
 	}
 
 	/**
-	 * @author 
+	 * Creates and show the GUI.
+	 * 
+	 * @author Matthew Chan
 	 * @author Ken Gil Romero
 	 */
 	public void createAndShowGUI() {
 		setUpComponents();
 
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		myExitWindowAdapter = new WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				showClosingDialog();
 			}
-		};
-		addWindowListener(myExitWindowAdapter);
+		});
 		pack();
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -142,9 +138,9 @@ public class View extends JFrame {
 	/**
 	 * Sets up the components of the GUI.
 	 * 
-	 * @author
+	 * @author Matthew Chan
 	 * @author Ken Gil Romero
-	 * @author
+	 * @author Tammy Vo
 	 */
 	private void setUpComponents() {
 		setJMenuBar(createMenuBar());
@@ -169,7 +165,6 @@ public class View extends JFrame {
 	 * Gets the description panel.
 	 * 
 	 * @author Tammy Vo
-	 * 
 	 * @return description panel.
 	 */
 	public DescriptionPanel getDescriptionPanel() {
@@ -177,8 +172,10 @@ public class View extends JFrame {
 	}
 
 	/**
+	 * Creates the JMenuBar.
 	 * 
-	 * @return
+	 * @author Matthew Chan
+	 * @return the JMenuBar
 	 */
 	public JMenuBar createMenuBar() {
 		final JMenuBar bar = new JMenuBar();
@@ -191,10 +188,11 @@ public class View extends JFrame {
 	}
 
 	/**
+	 * Creates the File JMenu.
 	 * 
-	 * @return
-	 * @author
+	 * @author Matthew Chan
 	 * @author Ken Gil Romero
+	 * @return the File menu.
 	 */
 	private JMenu createFileMenu() {
 		final JMenu menu = new JMenu("File");
@@ -207,7 +205,7 @@ public class View extends JFrame {
 			if (mySaveFlag) {
 				myController.openProjects();
 			} else {
-				int PromptResult = JOptionPane.showConfirmDialog((Component) null,
+				final int PromptResult = JOptionPane.showConfirmDialog((Component) null,
 						"Do you want to save before loading?", "Alert", JOptionPane.YES_NO_CANCEL_OPTION);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					if (myController.saveProjects()) {
@@ -292,8 +290,10 @@ public class View extends JFrame {
 	}
 
 	/**
+	 * Creates the Help JMenu.
 	 * 
-	 * @return
+	 * @author Matthew Chan
+	 * @return the Help JMenu
 	 */
 	private JMenu createHelpMenu() {
 		final JMenu menu = new JMenu("Help");
@@ -307,8 +307,8 @@ public class View extends JFrame {
 	}
 
 	/**
+	 * Shows the about dialog.
 	 * 
-	 * @author
 	 * @author Ken Gil Romero
 	 */
 	private void showAboutDialog() {
